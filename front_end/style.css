@@ -1,0 +1,98 @@
+/* REFERENTE AO TOP DA PAGINA */
+.navbar {
+    background: rgb(15, 57, 119);
+    background: linear-gradient(180deg, rgb(34, 98, 194) 49%, rgba(34, 98, 194) 100%);
+
+}
+
+.nav-item {
+    font-size: large;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+
+}
+
+/* REFERENTE AO CORPO DA PAGINA */
+
+/* ---- BOX DE BUSCA ---- */
+.search {
+    margin-top: 2%;
+    margin-left: 27%;
+    background-color: #E0EEEE;
+    border: solid 2px #8e90fa;
+    border-radius: 10px;
+    width: 500px;
+    height: 35px;
+}
+
+#txtSearch {
+    margin-left: 1%;
+    float: left;
+    background-color: transparent;
+    padding-left: 5px;
+    font-size: 18px;
+    border: none;
+    height: auto;
+    width: 420px;
+    box-shadow: 0 0 0 0;
+    outline: 0;
+}
+
+#btnSearch {
+    border: none;
+    float: right;
+    height: 32px;
+    border-radius: 0 7px 7px 0;
+    width: 70px;
+    font-weight: bold;
+    background: #8e90fa;
+    box-shadow: 0 0 0 0;
+    outline: 0;
+}
+
+/* ---- CARTAO DE BUSCA REFINADA ---- */
+.cardSearch {
+    margin-top: 2%;
+    background: rgb(176, 176, 176);
+    background: linear-gradient(180deg, rgba(176, 176, 176, 1) 49%, rgba(226, 226, 226, 1) 100%);
+    height: 400px;
+    width: 900px;
+}
+
+#mes {
+    margin-left: 3%;
+
+    width: 150px;
+    font-family: Arial, Helvetica, sans-serif;
+    float: left;
+}
+
+#ano {
+    margin-left: 2%;
+
+    width: 150px;
+    font-family: Arial, Helvetica, sans-serif;
+    float: left;
+}
+
+#estado {
+    margin-top: 2%;
+    margin-left: 3%;
+}
+
+.scrollable-menu {
+    height: auto;
+    max-height: 200px;
+    overflow-x: hidden;
+}
+
+#btSearch {
+    position: relative;
+    margin-top: 22%;
+    margin-left: 3%;
+}
+
+
+
+/* REFERENTE AO RODAPE */
+
+/**/
