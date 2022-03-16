@@ -59,98 +59,122 @@
                     <!--pesquisa com especificacoes-->
         <div class="cardSearch">
           <form action="">
-            <!-- Pede para o usuário selecionar o mês e o ano. -->
-            <br>
-            <div id="mes">
-              <label for="mes">Mês:</label>
-              <select name="month" id="month">
-                  <option value="Janeiro">Janeiro</option>
-                  <option value="Fevereiro">Fevereiro</option>
-                  <option value="Março">Março</option>
-                  <option value="Abril">Abril</option>
-                  <option value="Maio">Maio</option>
-                  <option value="Junho">Junho</option>
-                  <option value="Julho">Julho</option>
-                  <option value="Agosto">Agosto</option>
-                  <option value="Setembro">Setembro</option>
-                  <option value="Outubro">Outubro</option>
-                  <option value="Novembro">Novembro</option>
-                  <option value="Dezembro">Dezembro</option>
-              </select>
-            </div>
-            <div id="ano">
-              <label for="ano">Ano:</label>
-              <select name="year" id="year">
-                  <option value="2000">2000</option>
-                  <option value="2001">2001</option>
-                  <option value="2002">2002</option>
-                  <option value="2003">2003</option>
-                  <option value="2004">2004</option>
-                  <option value="2005">2005</option>
-                  <option value="2006">2006</option>
-                  <option value="2007">2007</option>
-                  <option value="2008">2008</option>
-                  <option value="2009">2009</option>
-                  <option value="2010">2010</option>
-                  <option value="2011">2011</option>
-                  <option value="2012">2012</option>
-                  <option value="2013">2013</option>
-                  <option value="2014">2014</option>
-                  <option value="2015">2015</option>
-                  <option value="2016">2016</option>
-                  <option value="2017">2017</option>
-                  <option value="2018">2018</option>
-                  <option value="2019">2019</option>
-                  <option value="2020">2020</option>
-                  <option value="2021">2021</option>
-                  <option value="2022">2022</option>
-              </select>
-            </div>
-            <!--Pede para o usuário selecionar o estado-->
-            <br>
-            <div class="dropdown" id="estado">
-                <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenu2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                  Selecione um estado
-                </button>
-                <div class="dropdown-menu  scrollable-menu" aria-labelledby="dropdownMenu2">
-                  <button class="dropdown-item" type="button">AC</button>
-                  <button class="dropdown-item" type="button">AL</button>
-                  <button class="dropdown-item" type="button">AP</button>
-                  <button class="dropdown-item" type="button">AM</button>
-                  <button class="dropdown-item" type="button">BA</button>
-                  <button class="dropdown-item" type="button">CE</button>
-                  <button class="dropdown-item" type="button">DF</button>
-                  <button class="dropdown-item" type="button">ES</button>
-                  <button class="dropdown-item" type="button">GO</button>
-                  <button class="dropdown-item" type="button">MA</button>
-                  <button class="dropdown-item" type="button">MT</button>
-                  <button class="dropdown-item" type="button">MS</button>
-                  <button class="dropdown-item" type="button">MG</button>
-                  <button class="dropdown-item" type="button">PA</button>
-                  <button class="dropdown-item" type="button">PB</button>
-                  <button class="dropdown-item" type="button">PR</button>
-                  <button class="dropdown-item" type="button">PE</button>
-                  <button class="dropdown-item" type="button">PI</button>
-                  <button class="dropdown-item" type="button">RJ</button>
-                  <button class="dropdown-item" type="button">RN</button>
-                  <button class="dropdown-item" type="button">RS</button>
-                  <button class="dropdown-item" type="button">RO</button>
-                  <button class="dropdown-item" type="button">RR</button>
-                  <button class="dropdown-item" type="button">SC</button>
-                  <button class="dropdown-item" type="button">SP</button>
-                  <button class="dropdown-item" type="button">SE</button>
-                  <button class="dropdown-item" type="button">TO</button>
+              <!-- Pede para o usuário selecionar o mês e o ano. -->
+              <br>
+                <div id="mes">
+                  <label for="mes">Mês:</label>
+                  <select name="month" id="month">
+                      <option value="Janeiro">Janeiro</option>
+                      <option value="Fevereiro">Fevereiro</option>
+                      <option value="Março">Março</option>
+                      <option value="Abril">Abril</option>
+                      <option value="Maio">Maio</option>
+                      <option value="Junho">Junho</option>
+                      <option value="Julho">Julho</option>
+                      <option value="Agosto">Agosto</option>
+                      <option value="Setembro">Setembro</option>
+                      <option value="Outubro">Outubro</option>
+                      <option value="Novembro">Novembro</option>
+                      <option value="Dezembro">Dezembro</option>
+                  </select>
                 </div>
-            </div>
-            <br>
+                <div id="ano">
+                  <label for="ano">Ano:</label>
+                  <select name="year" id="year">
+                      <option value="2000">2000</option>
+                      <option value="2001">2001</option>
+                      <option value="2002">2002</option>
+                      <option value="2003">2003</option>
+                      <option value="2004">2004</option>
+                      <option value="2005">2005</option>
+                      <option value="2006">2006</option>
+                      <option value="2007">2007</option>
+                      <option value="2008">2008</option>
+                      <option value="2009">2009</option>
+                      <option value="2010">2010</option>
+                      <option value="2011">2011</option>
+                      <option value="2012">2012</option>
+                      <option value="2013">2013</option>
+                      <option value="2014">2014</option>
+                      <option value="2015">2015</option>
+                      <option value="2016">2016</option>
+                      <option value="2017">2017</option>
+                      <option value="2018">2018</option>
+                      <option value="2019">2019</option>
+                      <option value="2020">2020</option>
+                      <option value="2021">2021</option>
+                      <option value="2022">2022</option>
+                  </select>
+                </div>
+              <!--Pede para o usuário selecionar o estado-->
+              <br>
+                <div class="dropdown" id="estado">
+                  <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenu2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    Selecione um estado
+                  </button>
+                  <div class="dropdown-menu  scrollable-menu" aria-labelledby="dropdownMenu2">
+                    <button class="dropdown-item" id="ac" type="button">AC</button>
+                    <button class="dropdown-item" type="button">AL</button>
+                    <button class="dropdown-item" type="button">AP</button>
+                    <button class="dropdown-item" type="button">AM</button>
+                    <button class="dropdown-item" type="button">BA</button>
+                    <button class="dropdown-item" type="button">CE</button>
+                    <button class="dropdown-item" type="button">DF</button>
+                    <button class="dropdown-item" type="button">ES</button>
+                    <button class="dropdown-item" type="button">GO</button>
+                    <button class="dropdown-item" type="button">MA</button>
+                    <button class="dropdown-item" type="button">MT</button>
+                    <button class="dropdown-item" type="button">MS</button>
+                    <button class="dropdown-item" type="button">MG</button>
+                    <button class="dropdown-item" type="button">PA</button>
+                    <button class="dropdown-item" type="button">PB</button>
+                    <button class="dropdown-item" type="button">PR</button>
+                    <button class="dropdown-item" type="button">PE</button>
+                    <button class="dropdown-item" type="button">PI</button>
+                    <button class="dropdown-item" type="button">RJ</button>
+                    <button class="dropdown-item" type="button">RN</button>
+                    <button class="dropdown-item" type="button">RS</button>
+                    <button class="dropdown-item" type="button">RO</button>
+                    <button class="dropdown-item" type="button">RR</button>
+                    <button class="dropdown-item" type="button">SC</button>
+                    <button class="dropdown-item" type="button">SP</button>
+                    <button class="dropdown-item" type="button">SE</button>
+                    <button class="dropdown-item" type="button">TO</button>
+                  </div>
+                </div>
+              <br>
+                <div class="chackbox-densidadeDemografica">
+                  <input type="checkbox" id="densidadeDemografica" name="densidadeDemografica">
+                  <label for="densidadeDemografica">Visualizar Densidade Demográfica</label>
+                </div>
+              <br>
+                <div  class="escolaridade">
+                      <label for="escolaridade">Escolaridade:</label>
+                      <br>
+                      <div class="txtescolariade1">
+                        <input type="text" id="txtescolariade1" placeholder="10 anos"/>
+                      </div>
+                      <div class="a">
+                        <p id="a">A</p>
+                      </div>
+                      <div class="txtescolariade2">
+                        <input type="text" id="txtescolariade2" placeholder="20 anos"/>
+                      </div>
+                      <br>
+                </div>
+                <div id="onlyNumbers" class="form-text">
+                  <p>Use Apenas Números</p>
+                </div> 
+
+              <br>
 
 
 
-                <!--botao de requisicao-->
-            <div class="btSearch">
-              <button id="btSearch" type="button" class="btn btn-primary btn-lg">Procurar</button>
-            </div>
-        </form>
+                  <!--botao de requisicao-->
+              <div class="btSearch">
+                <button id="btSearch" type="button" class="btn btn-primary btn-lg">Procurar</button>
+              </div>
+          </form>
         
         </div>
      

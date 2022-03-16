@@ -87,9 +87,60 @@
 
 #btSearch {
     position: relative;
-    margin-top: 22%;
+    margin-top: 10%;
     margin-left: 3%;
 }
+
+.chackbox-densidadeDemografica {
+    margin-left: 3%;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+.escolaridade {
+    margin-top: -3%;
+    width: auto;
+    margin-left: 3%;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+.txtescolariade1 {
+    margin-top: -5px;
+    float: left;
+    width: 66px;
+}
+
+#txtescolariade1 {
+    width: 65px;
+}
+
+.a {
+    margin-top: -3px;
+    float: left;
+    width: 10px;
+    margin-left: 1%;
+    margin-right: 1%;
+
+}
+
+.txtescolariade2 {
+    margin-top: -5px;
+    float: left;
+    width: auto;
+}
+
+#txtescolariade2 {
+    width: 65px;
+
+
+}
+
+#onlyNumbers {
+    margin-top: -1px;
+    font-size: 15px;
+    margin-left: -156px;
+    float: left;
+}
+
 
 
 
