@@ -18,6 +18,9 @@ function initIBGE() {
     obj.esperancaDeVida = pop.esperancaDeVida;
     obj.densidadeDemografica = pop.densidadeDemografica;
     obj.pibBrasil = pib.pibBrasil;
+    obj.pibEstado = pib.pibEstado;
+    obj.pibMesorregiao = pib.pibMesorregiao;
+    obj.pibGrandeRegiao = pib.pibGrandeRegiao;
 
     return obj;
 };
