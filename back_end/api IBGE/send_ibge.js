@@ -2,25 +2,28 @@
 //import noticias from "./js/IBGE_noticias/ibgenoticias.js";
 
 function initIBGE() {
-    const not = noticias();
-    const pa = paises();
-    const bib = biblioteca();
-    const pop = populacao();
-    const pib = pibBrasil();
+    const not = noticias()
+    const pa = paises()
+    const bib = biblioteca()
+    const pop = populacao()
+    const pib = pibBrasil()
 
-    const obj = {};
+    const obj = {}
 
-    obj.noticiasPorTema = not.noticiasPorTema;
-    obj.noticiasPorData = not.noticiasPorData;
-    obj.paises = pa.paises;
-    obj.biblioteca = bib.biblioteca;
-    obj.populacao = pop.populacao;
-    obj.esperancaDeVida = pop.esperancaDeVida;
-    obj.densidadeDemografica = pop.densidadeDemografica;
-    obj.pibBrasil = pib.pibBrasil;
-    obj.pibEstado = pib.pibEstado;
-    obj.pibMesorregiao = pib.pibMesorregiao;
-    obj.pibGrandeRegiao = pib.pibGrandeRegiao;
+    obj.noticiasPorTema = not.noticiasPorTema
+    obj.noticiasPorData = not.noticiasPorData
+    obj.paises = pa.paises
+    obj.biblioteca = bib.biblioteca
+    obj.populacaoDoBrasil = pop.populacaoDoBrasil
+    obj.populacaoPorGrandeRegiao = pop.populacaoPorGrandeRegiao
+    obj.populacaoPorEstado = pop.populacaoPorEstado
+    obj.populacaoPorMunicipio = pop.populacaoPorMunicipio
+    obj.esperancaDeVida = pop.esperancaDeVida
+    obj.densidadeDemografica = pop.densidadeDemografica
+    obj.pibBrasil = pib.pibBrasil
+    obj.pibEstado = pib.pibEstado
+    obj.pibMesorregiao = pib.pibMesorregiao
+    obj.pibGrandeRegiao = pib.pibGrandeRegiao
 
-    return obj;
-};
+    return obj
+}
