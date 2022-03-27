@@ -5,45 +5,50 @@ function noticias(){
     let dia = date.getDate() < 10 ? `0${date.getDate()}` : `${date.getDate()}`;
     let data = mes+'-'+dia+`-${date.getFullYear()}`;
 
-    obj.noticiasPorTema = (value) => {
+    obj.noticiasPorTema = (value = '') => {
+        if (value === '') return "Erro: insira um tema, exemplo: noticiasPorTema('saúde')"
         const data = [];
-        $.getJSON('http://servicodados.ibge.gov.br/api/v3/noticias/?busca='+value, (json2) => {
-            json2.items.forEach((i1) => {
-                let img = '';
-                for(let i = 0; i <= i1.imagens.length-1; i++){
-                    if(i1.imagens[i] != '\\') img += i1.imagens[i];
-                };
-                data.push({
-                    'titulo': i1.titulo,
-                    'introducao': i1.introducao,
-                    'data_publicacao': i1.data_publicacao,
-                    'editorias': i1.editorias,
-                    'imagens': JSON.parse(img),
-                    'link': i1.link
+        fetch('http://servicodados.ibge.gov.br/api/v3/noticias/?busca='+value)
+            .then(d => d.json())
+            .then(json => {
+                json.items.forEach((i1) => {
+                    let img = '';
+                    for(let i = 0; i <= i1.imagens.length-1; i++){
+                        if(i1.imagens[i] != '\\') img += i1.imagens[i];
+                    };
+                    data.push({
+                        'titulo': i1.titulo,
+                        'introducao': i1.introducao,
+                        'data_publicacao': i1.data_publicacao,
+                        'editorias': i1.editorias,
+                        'imagens': img,
+                        'link': i1.link
+                    });
                 });
             });
-        });
         return data;
     };
 
     obj.noticiasPorData = (de=data) => {
         const data = [];
-        $.getJSON('http://servicodados.ibge.gov.br/api/v3/noticias/?de='+de, (json3) => {
-            json3.items.forEach((i1) => {
-                let img = '';
-                for(let i = 0; i <= i1.imagens.length-1; i++){
-                    if(i1.imagens[i] != '\\') img += i1.imagens[i];
-                };
-                data.push({
-                    'titulo': i1.titulo,
-                    'introducao': i1.introducao,
-                    'data_publicacao': i1.data_publicacao,
-                    'editorias': i1.editorias,
-                    'imagens': JSON.parse(img),
-                    'link': i1.link
+        fetch('http://servicodados.ibge.gov.br/api/v3/noticias/?de='+de)
+            .then(d => d.json())
+            .then(json => {
+                json.items.forEach((i1) => {
+                    let img = '';
+                    for(let i = 0; i <= i1.imagens.length-1; i++){
+                        if(i1.imagens[i] != '\\') img += i1.imagens[i];
+                    };
+                    data.push({
+                        'titulo': i1.titulo,
+                        'introducao': i1.introducao,
+                        'data_publicacao': i1.data_publicacao,
+                        'editorias': i1.editorias,
+                        'imagens': img,
+                        'link': i1.link
+                    });
                 });
             });
-        });
         return data;
     };
     

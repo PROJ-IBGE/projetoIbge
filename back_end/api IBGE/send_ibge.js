@@ -14,16 +14,26 @@ function initIBGE() {
     obj.noticiasPorData = not.noticiasPorData
     obj.paises = pa.paises
     obj.biblioteca = bib.biblioteca
+
+    // funções sobre população
     obj.populacaoDoBrasil = pop.populacaoDoBrasil
     obj.populacaoPorGrandeRegiao = pop.populacaoPorGrandeRegiao
     obj.populacaoPorEstado = pop.populacaoPorEstado
     obj.populacaoPorMunicipio = pop.populacaoPorMunicipio
-    obj.esperancaDeVida = pop.esperancaDeVida
-    obj.densidadeDemografica = pop.densidadeDemografica
-    obj.pibBrasil = pib.pibBrasil
-    obj.pibEstado = pib.pibEstado
-    obj.pibMesorregiao = pib.pibMesorregiao
-    obj.pibGrandeRegiao = pib.pibGrandeRegiao
+    obj.esperancaDeVidaDoBrasil = pop.esperancaDeVidaDoBrasil
+    obj.esperancaDeVidaPorGrandeRegiao = pop.esperancaDeVidaPorGrandeRegiao
+    obj.esperancaDeVidaPorEstado = pop.esperancaDeVidaPorEstado
+    obj.densidadeDemograficaDoBrasil = pop.densidadeDemograficaDoBrasil
+    obj.densidadeDemograficaPorGrandeRegiao = pop.densidadeDemograficaPorGrandeRegiao
+    obj.densidadeDemograficaPorEstado =pop.densidadeDemograficaPorEstado
+
+    // funções sobre o pib
+    obj.pibDoBrasil = pib.pibDoBrasil
+    obj.pibPorEstado = pib.pibPorEstado
+    obj.pibPorGrandeRegiao = pib.pibPorGrandeRegiao
+    obj.pibPorMesorregiao = pib.pibPorMesorregiao
+    obj.pibPorMicrorregiao = pib.pibPorMicrorregiao
+    obj.pibPorMunicipio = pib.pibPorMunicipio
 
     return obj
 }
