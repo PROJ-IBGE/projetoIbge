@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="js/IBGE_populacao/ibgepopulacao.js"></script>
+    <script src="js/IBGE_pip/ibgepib.js"></script>
+    <script src="send_ibge.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@3.7.1/dist/chart.min.js"></script>
+    <title>chart-test</title>
+</head>
+</head>
+<body>
+    <div id="myId"></div>
+
+    <script type="text/javascript">
+      var ibge = initIBGE()
+      ibge.esperancaDeVidaPorGrandeRegiao('all', true, 'div#myId')
+
+
+
+function graficoDeLinha(json){
+
+    const labels = [];
+    let cont = 0
+    for (let i in json) {
+        if (i != 'unidade' && i != 'variavel' && cont === 0) {
+            cont++
+            for (let i2 in json[i]) {
+                labels.push(`${i2}`)
+            }
+        }
+    }
+    const lista = []
+    for (let i in json){
+        if (i != 'unidade' && i != 'variavel') {
+            let datapoints = []
+            for (let i2 in json[i]) {
+                datapoints.push(json[i][i2])
+            }
+            lista.push({
+                label: i,
+                data: datapoints,
+                borderColor: 'red',
+                fill: false,
+                tension: 0.4
+            })
+
+        }
+    }
+const data = {
+  labels: labels,
+  datasets: lista
+};
+
+
+const config = {
+  type: 'line',
+  data: data,
+  options: {
+    responsive: true,
+    plugins: {
+      title: {
+        display: true,
+        text: 'Chart.js Line Chart - Cubic interpolation mode'
+      },
+    },
+    interaction: {
+      intersect: false,
+    },
+    scales: {
+      x: {
+        display: true,
+        title: {
+          display: true
+        }
+      },
+      y: {
+        display: true,
+        title: {
+          display: true,
+          text: 'Value'
+        },
+        suggestedMin: 0,
+        suggestedMax: 30000000
+      }
+    }
+  },
+};
+let canvas = document.createElement('canvas')
+let div = document.getElementById('myId')
+div.appendChild(canvas)
+const myChart = new Chart(canvas, config)
+}
+
+    </script>
+</body>
+</html>

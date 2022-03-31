@@ -2,18 +2,22 @@
 //import noticias from "./js/IBGE_noticias/ibgenoticias.js";
 
 function initIBGE() {
+    /*
     const not = noticias()
     const pa = paises()
     const bib = biblioteca()
+    */
     const pop = populacao()
     const pib = pibBrasil()
 
     const obj = {}
 
+    /*
     obj.noticiasPorTema = not.noticiasPorTema
     obj.noticiasPorData = not.noticiasPorData
     obj.paises = pa.paises
     obj.biblioteca = bib.biblioteca
+    */
 
     // funções sobre população
     obj.populacaoDoBrasil = pop.populacaoDoBrasil
