@@ -4,10 +4,12 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
     <script src="js/IBGE_populacao/ibgepopulacao.js"></script>
     <script src="js/IBGE_pip/ibgepib.js"></script>
     <script src="send_ibge.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/chart.js@3.7.1/dist/chart.min.js"></script>
+
     <title>chart-test</title>
 </head>
 </head>
@@ -33,6 +35,9 @@
       14: pib das mesorregiões
       15: pib das microrregiões
       16: pib dos municípios
+      17: população assalariada no Brasil
+      18: população assalariada nas grandes regiões
+      19: população assalariada nos estados
 
               localidade (local)
       escrever o nome da localidade com as primeiras letras maiúsculas de cada palavra e com acentuação
@@ -48,10 +53,10 @@
       exemplo de grandes regiões: "Norte Nordeste CentroOeste"
 */
       var conf = {
-        op: 9,
+        op: 18,
         local: 'all',
         query: 'div#myId',
-        grafico: 'linha',
+        grafico: 'linha', // por enquanto só existe gráfico de linha
         tabela: false,
         gini: false
       }

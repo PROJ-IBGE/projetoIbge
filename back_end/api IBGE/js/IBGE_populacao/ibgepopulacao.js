@@ -340,6 +340,71 @@ function populacao(){
             })
         return res
     }
+
+    obj.populacaoAssalariadaDoBrasil = (query = '', grafico = '', tabela = false) => {
+        const res = {}
+        fetch(`https://servicodados.ibge.gov.br/api/v3/agregados/2722/periodos/all/variaveis/484?localidades=N1[all]&classificacao=12762[117897]`)
+            .then(data => data.json())
+            .then(json => {
+                res.variavel = json[0].variavel
+                res.unidade = json[0].unidade
+                json[0].resultados[0].series.map(d => res[d.localidade.nome] = d.serie)
+
+                visualizar(query, grafico, tabela, res)
+            })
+        return res
+    }
+
+    obj.populacaoAssalariadaPorGrandeRegiao = (nome = '',  query = '', grafico = '', tabela = false) => {
+        if (nome === '') return "Erro: digite um ou mais nomes de grandes regiões, exemplo: populacaoAssalariadaPorGrandeRegiao('Norte Nordeste')"
+        let numeroRegioes = ''
+        if (nome === 'all') {
+            numeroRegioes += 'all'
+        } else {
+            const listaRegioes = {'Norte':'1', 'Nordeste':'2', 'Sudeste':'3', 'Sul':'4', 'CentroOeste':'5'}
+            nome.split(' ').map(regiao => {
+                if(numeroRegioes === '') numeroRegioes += listaRegioes[regiao]
+                else numeroRegioes += `,${listaRegioes[regiao]}`
+            })
+        }
+        
+        const res = {}
+        fetch(`https://servicodados.ibge.gov.br/api/v3/agregados/2722/periodos/all/variaveis/484?localidades=N2[${numeroRegioes}]&classificacao=12762[117897]`)
+            .then(data => data.json())
+            .then(json => {
+                res.variavel = json[0].variavel
+                res.unidade = json[0].unidade
+                json[0].resultados[0].series.map(d => res[d.localidade.nome] = d.serie)
+
+                visualizar(query, grafico, tabela, res)
+            })
+        return res
+    }
+
+    obj.populacaoAssalariadaPorEstado = (nome = '', query = '', grafico = '', tabela = false) => {
+        if(nome === "") return "Erro: digite um ou mais nomes de estados, exemplo: populacaoAssalariadaPorEstado('Pará RioGrandeDoSul')"
+        let numeroEstado = ''
+        if (nome === 'all') {
+            numeroEstado += 'all'
+        } else {
+            const listaEstados = {'Rondônia': '11', 'Acre': '12', 'Amazonas': '13', 'Roraima': '14', 'Pará': '15', 'Amapá': '16', 'Tocantins': '17', 'Maranhão': '21', 'Piauí': '22', 'Ceará': '24', 'RioGrandeDoNorte': '24', 'Paraíba': '25', 'Pernambuco': '26', 'Alagoas': '27', 'Sergipe': '28', 'Bahia': '29', 'MinasGerais': '31', 'EspíritoSanto': '32', 'RioDeRaneiro': '33', 'SãoPaulo': '35', 'Paraná': '41', 'SantaCatarina': '42', 'RioGrandeDoSul': '43', 'MatoGrossoDoSul': '50', 'MatoGrosso': '51', 'Goiás': '52', 'DistritoFederal': '53'}
+            nome.split(' ').map(estado => {
+                if(numeroEstado === '') numeroEstado += listaEstados[estado]
+                else numeroEstado += `,${listaEstados[estado]}`
+            })
+        }
+
+        const res = {}
+        fetch(`https://servicodados.ibge.gov.br/api/v3/agregados/2722/periodos/all/variaveis/484?localidades=N3[${numeroEstado}]&classificacao=12762[117897]`)
+            .then(data => data.json())
+            .then(json => {
+                res.variavel = json[0].variavel
+                res.unidade = json[0].unidade
+                json[0].resultados[0].series.map(d => res[d.localidade.nome] = d.serie)
+
+                visualizar(query, grafico, tabela, res)
+            })
+    }
     
      return obj
 }

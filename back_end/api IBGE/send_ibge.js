@@ -26,7 +26,10 @@ function initIBGE() {
     obj.esperancaDeVidaPorEstado = pop.esperancaDeVidaPorEstado //7
     obj.densidadeDemograficaDoBrasil = pop.densidadeDemograficaDoBrasil //8
     obj.densidadeDemograficaPorGrandeRegiao = pop.densidadeDemograficaPorGrandeRegiao //9
-    obj.densidadeDemograficaPorEstado =pop.densidadeDemograficaPorEstado //10
+    obj.densidadeDemograficaPorEstado = pop.densidadeDemograficaPorEstado //10
+    obj.populacaoAssalariadaDoBrasil = pop.populacaoAssalariadaDoBrasil //17
+    obj.populacaoAssalariadaPorGrandeRegiao = pop.populacaoAssalariadaPorGrandeRegiao //18
+    obj.populacaoAssalariadaPorEstado = pop.populacaoAssalariadaPorEstado //19
 
     // funções sobre o pib
     obj.pibDoBrasil = pib.pibDoBrasil //11
@@ -53,6 +56,10 @@ var ibge = initIBGE()
 function IBGE(obj = null) {
     if (obj != null) {
         if (typeof obj.op === 'number') {
+            let canvas = document.querySelector('canvas')
+            if (canvas) {
+                canvas.remove()
+            }
             switch (obj.op) {
                 case 1:
                     ibge.populacaoDoBrasil(obj.query, obj.grafico, obj.tabela)
@@ -102,6 +109,17 @@ function IBGE(obj = null) {
                 case 16:
                     ibge.pibPorMunicipio(obj.local, obj.query, obj.grafico, obj.tabela)
                     break
+                case 17:
+                    ibge.populacaoAssalariadaDoBrasil(obj.query, obj.grafico, obj.tabela)
+                    break
+                case 18:
+                    ibge.populacaoAssalariadaPorGrandeRegiao(obj.local,  obj.query, obj.grafico, obj.tabela)
+                    break
+                case 19:
+                    ibge.populacaoAssalariadaPorEstado(obj.local, obj.query, obj.grafico, obj.tabela)
+                    break
+                default:
+                    console.log(`Erro: op = ${obj.op} não existe`)
             }
         } else return "Erro: insira um valor numérico de 1 a 16 na chave op!"
     } else return "Erro: insira um objeto com os parâmetros!"
