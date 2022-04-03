@@ -1,24 +1,63 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-br">
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <!--
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-    -->
-    <script src="send_ibge.js"></script>
-    <script src="js/IBGE_noticias/ibgenoticias.js"></script>
-    <script src="js/IBGE_paises/ibgepaises.js"></script>
-    <script src="js/IBGE_biblioteca/ibgebiblioteca.js"></script>
     <script src="js/IBGE_populacao/ibgepopulacao.js"></script>
     <script src="js/IBGE_pip/ibgepib.js"></script>
-    
-    <title>IBGE - aplicação test</title>
+    <script src="send_ibge.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@3.7.1/dist/chart.min.js"></script>
+    <title>chart-test</title>
+</head>
 </head>
 <body>
+    <div id="myId"></div>
+
     <script type="text/javascript">
-        var ibge = initIBGE();
+/*
+                operações (op)
+      1: quantidade de população no Brasil
+      2: quantidade de população nas grande regiões
+      3: quantidade de população nos estados
+      4: quantidade de população nos municípios
+      5: estimativa de vida dos brasileiros
+      6: estimativa de vida nas grandes regiões
+      7: estimativa de vida nos estados
+      8: densidade demográfica do Brasil
+      9: densidade demográfica nas grandes regiões
+      10: densidade demográfica nos estados
+      11: pib do Brasil
+      12: pib dos estados
+      13: pib das grandes regiões
+      14: pib das mesorregiões
+      15: pib das microrregiões
+      16: pib dos municípios
+
+              localidade (local)
+      escrever o nome da localidade com as primeiras letras maiúsculas de cada palavra e com acentuação
+      e sem espaço, se for um nome de uma microrregião, mesorregião ou município deve está seguido uma uma barra (/)
+      e a sigla do estado logo em seguida e cada nome de localidade deve estar separado por um espaço, exemplo:
+      "Belém/Pa BrasilNovo/Pa AltaFlorestaD'Oeste/Ro SãoMiguelDoGuaporé/Ro".
+      também é possível fazer a pesquisa por estado é só inserir a sigla do estado iniciando com a primeira
+      letra maiúscula e a segunda minúscula, exemplo: "Pa Sp Rj".
+      e para retornar todas as localidades é só inserir a palavra "all", essa configuração não funciona
+      para funções que retorna municípios.
+      para funções que retorna estados e grandes regiões, a localidade deve ser escrita com as primeiras
+      letras maiúsculas de cada palavra e com acentuação e sem espaço, exemplo: de estados "Pará Rondônia MinasGerais" e
+      exemplo de grandes regiões: "Norte Nordeste CentroOeste"
+*/
+      var conf = {
+        op: 9,
+        local: 'all',
+        query: 'div#myId',
+        grafico: 'linha',
+        tabela: false,
+        gini: false
+      }
+
+      IBGE(conf)
+
     </script>
 </body>
 </html>

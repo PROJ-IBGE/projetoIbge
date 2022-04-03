@@ -1,7 +1,113 @@
+function visualizar(query = '', grafico = '', tabela = false, res) {
+    if (tabela) {
+        if (query != '') {
+            let div = document.querySelector(query)
+            let ano
+            for (let i in res) {
+                if (i != 'unidade' && i != 'variavel') {
+                    ano = Object.keys(res[i])
+                    break
+                }
+            }
+            let cont = 0
+            let html = '<table border="1" class="tabelaClass" id="tabelaId"><caption class="tituloClass" id="tituloId">'+res.variavel+' - '+res.unidade+'</caption><tr>'
+            for (let i in ano) {
+                if (cont === 0) {
+                    cont++
+                    html += '<th></th>'
+                }
+                html += '<th>'+ano[i]+'</th>'
+            }
+            cont = 0
+            html += '</tr>'
+            for (let i in res) {
+                if (i != 'unidade' && i != 'variavel') {
+                    html += '<tr><th>'+i+'</th>'
+                    for (let i1 in res[i]) {
+                        html += '<td>'+res[i][i1]+'</td>'
+                    }
+                    html += '</tr>'
+                }
+            }
+            html += '</table>'
+            div.innerHTML = html
+        } else return "Erro: insira uma query!"
+    }
+    if(grafico === 'linha') {
+        if(query != '') {
+            let labels
+            for (let i in res) {
+                if (i != 'unidade' && i != 'variavel') {
+                    labels = Object.keys(res[i])
+                    break
+                }
+            }
+            let inicio = [], final = [], cont = 0
+            const lista = []
+            for (let i in res){
+                if (i != 'unidade' && i != 'variavel') {
+                    let datapoints = []
+                    for (let i2 in res[i]) {
+                        datapoints.push(res[i][i2])
+                    }
+                    lista.push({
+                        label: i,
+                        data: datapoints,
+                        borderColor: `#${Math.floor(Math.random() * 100)}${Math.floor(Math.random() * 100)}${Math.floor(Math.random() * 100)}`,
+                        fill: false,
+                        tension: 0.4
+                    })
+                }
+            }
+            const data = {
+                labels: labels,
+                datasets: lista
+              }
+            const config = {
+                type: 'line',
+                data: data,
+                options: {
+                    responsive: true,
+                    plugins: {
+                    title: {
+                        display: true,
+                        text: res.variavel+' - '+res.unidade
+                    },
+                },
+                    interaction: {
+                        intersect: false,
+                    },
+                    scales: {
+                        x: {
+                            display: true,
+                            title: {
+                                display: true
+                            }
+                        },
+                        y: {
+                            display: true,
+                            title: {
+                                display: true,
+                                text: 'Value'
+                            },
+                            suggestedMin: parseInt(inicio.sort()[0]),
+                            suggestedMax: parseInt(final.sort()[final.length-1])
+                        }
+                    }
+                },
+              }
+            let canvas = document.createElement('canvas')
+            let div = document.querySelector(query)
+            div.appendChild(canvas)
+            const myChart = new Chart(canvas, config)
+        } else return "Erro: insira uma query!"
+    }
+}
+
 function pibBrasil(){
     const obj = {}
 
-    obj.pibDoBrasil = (tabela = false, querry = '', gini = false) => {
+    obj.pibDoBrasil = (query = '', grafico = '', tabela = false, gini = false) => {
         let variavel, agregado
         if (gini){
             agregado = 5939
@@ -16,47 +122,14 @@ function pibBrasil(){
             .then(json => {
                 res.variavel = json[0].variavel
                 res.unidade = json[0].unidade
-                res.pib = json[0].resultados[0].series[0].serie
+                res.Brasil = json[0].resultados[0].series[0].serie
 
-                if (tabela) {
-                    if (querry != '') {
-                        let div = document.querySelector(querry)
-                        let ano
-                        for (let i in res) {
-                            if (i != 'unidade' && i != 'variavel') {
-                                ano = Object.keys(res[i])
-                                break
-                            }
-                        }
-                        let cont = 0
-                        let html = '<table border="1" class="tabelaClass" id="tabelaId"><caption class="tituloClass" id="tituloId">'+res.variavel+' - '+res.unidade+'</caption><tr>'
-                        for (let i in ano) {
-                            if (cont === 0) {
-                                cont++
-                                html += '<th></th>'
-                            }
-                            html += '<th>'+ano[i]+'</th>'
-                        }
-                        cont = 0
-                        html += '</tr>'
-                        for (let i in res) {
-                            if (i != 'unidade' && i != 'variavel') {
-                                html += '<tr><th>'+i+'</th>'
-                                for (let i1 in res[i]) {
-                                    html += '<td>'+res[i][i1]+'</td>'
-                                }
-                                html += '</tr>'
-                            }
-                        }
-                        html += '</table>'
-                        div.innerHTML = html
-                    }
-                }
+                visualizar(query, grafico, tabela, res)
             });
         return res
     };
 
-    obj.pibPorEstado = (nome = '', tabela = false, querry = '', gini = false) => {
+    obj.pibPorEstado = (nome = '', query = '', grafico = '', tabela = false, gini = false) => {
         let variavel, agregado
         if (gini){
             agregado = 5939
@@ -85,45 +158,12 @@ function pibBrasil(){
                 res.variavel = json[0].variavel
                 json[0].resultados[0].series.map((d) => res[d.localidade.nome] = d.serie)
 
-                if (tabela) {
-                    if (querry != '') {
-                        let div = document.querySelector(querry)
-                        let ano
-                        for (let i in res) {
-                            if (i != 'unidade' && i != 'variavel') {
-                                ano = Object.keys(res[i])
-                                break
-                            }
-                        }
-                        let cont = 0
-                        let html = '<table border="1" class="tabelaClass" id="tabelaId"><caption class="tituloClass" id="tituloId">'+res.variavel+' - '+res.unidade+'</caption><tr>'
-                        for (let i in ano) {
-                            if (cont === 0) {
-                                cont++
-                                html += '<th></th>'
-                            }
-                            html += '<th>'+ano[i]+'</th>'
-                        }
-                        cont = 0
-                        html += '</tr>'
-                        for (let i in res) {
-                            if (i != 'unidade' && i != 'variavel') {
-                                html += '<tr><th>'+i+'</th>'
-                                for (let i1 in res[i]) {
-                                    html += '<td>'+res[i][i1]+'</td>'
-                                }
-                                html += '</tr>'
-                            }
-                        }
-                        html += '</table>'
-                        div.innerHTML = html
-                    }
-                }
+                visualizar(query, grafico, tabela, res)
             })
         return res
     }
 
-    obj.pibPorGrandeRegiao = (nome = '', tabela = false, querry = '', gini = false) => {
+    obj.pibPorGrandeRegiao = (nome = '', query = '', grafico = '', tabela = false, gini = false) => {
         let variavel, agregado
         if (gini){
             agregado = 5939
@@ -152,45 +192,12 @@ function pibBrasil(){
                 res.variavel = json[0].variavel
                 json[0].resultados[0].series.map((d) => res[d.localidade.nome] = d.serie)
 
-                if (tabela) {
-                    if (querry != '') {
-                        let div = document.querySelector(querry)
-                        let ano
-                        for (let i in res) {
-                            if (i != 'unidade' && i != 'variavel') {
-                                ano = Object.keys(res[i])
-                                break
-                            }
-                        }
-                        let cont = 0
-                        let html = '<table border="1" class="tabelaClass" id="tabelaId"><caption class="tituloClass" id="tituloId">'+res.variavel+' - '+res.unidade+'</caption><tr>'
-                        for (let i in ano) {
-                            if (cont === 0) {
-                                cont++
-                                html += '<th></th>'
-                            }
-                            html += '<th>'+ano[i]+'</th>'
-                        }
-                        cont = 0
-                        html += '</tr>'
-                        for (let i in res) {
-                            if (i != 'unidade' && i != 'variavel') {
-                                html += '<tr><th>'+i+'</th>'
-                                for (let i1 in res[i]) {
-                                    html += '<td>'+res[i][i1]+'</td>'
-                                }
-                                html += '</tr>'
-                            }
-                        }
-                        html += '</table>'
-                        div.innerHTML = html
-                    }
-                }
+                visualizar(query, grafico, tabela, res)
             })
         return res
     }
 
-    obj.pibPorMesorregiao = (nome = '', tabela = false, querry = '') => {
+    obj.pibPorMesorregiao = (nome = '', query = '', grafico = '', tabela = false) => {
         if (nome === '') return "Erro: digite um ou mais nomes de mesorregiões, exemplo: pibPorMesorregiao(nome='Marajó/Pa MetropolitanadeBelém/Pa')"
         let numeroRegioes = ''
         if (nome === 'all') {
@@ -220,45 +227,12 @@ function pibBrasil(){
                 res.variavel = json[0].variavel
                 json[0].resultados[0].series.map((d) => res[d.localidade.nome] = d.serie)
 
-                if (tabela) {
-                    if (querry != '') {
-                        let div = document.querySelector(querry)
-                        let ano
-                        for (let i in res) {
-                            if (i != 'unidade' && i != 'variavel') {
-                                ano = Object.keys(res[i])
-                                break
-                            }
-                        }
-                        let cont = 0
-                        let html = '<table border="1" class="tabelaClass" id="tabelaId"><caption class="tituloClass" id="tituloId">'+res.variavel+' - '+res.unidade+'</caption><tr>'
-                        for (let i in ano) {
-                            if (cont === 0) {
-                                cont++
-                                html += '<th></th>'
-                            }
-                            html += '<th>'+ano[i]+'</th>'
-                        }
-                        cont = 0
-                        html += '</tr>'
-                        for (let i in res) {
-                            if (i != 'unidade' && i != 'variavel') {
-                                html += '<tr><th>'+i+'</th>'
-                                for (let i1 in res[i]) {
-                                    html += '<td>'+res[i][i1]+'</td>'
-                                }
-                                html += '</tr>'
-                            }
-                        }
-                        html += '</table>'
-                        div.innerHTML = html
-                    }
-                }
+                visualizar(query, grafico, tabela, res)
             })
         return res
     }
 
-    obj.pibPorMicrorregiao = (nome = '', tabela = false, querry = '') => {
+    obj.pibPorMicrorregiao = (nome = '', query = '', grafico = '', tabela = false) => {
         if (nome === '') return "Erro: digite um ou mais nomes de microregiões, exemplo: pibPorMicrorregiao('Belém/Pa Castanhal/Pa')"
         let numeroRegioes = ''
         if (nome === 'all') {
@@ -288,45 +262,12 @@ function pibBrasil(){
                 res.variavel = json[0].variavel
                 json[0].resultados[0].series.map((d) => res[d.localidade.nome] = d.serie)
 
-                if (tabela) {
-                    if (querry != '') {
-                        let div = document.querySelector(querry)
-                        let ano
-                        for (let i in res) {
-                            if (i != 'unidade' && i != 'variavel') {
-                                ano = Object.keys(res[i])
-                                break
-                            }
-                        }
-                        let cont = 0
-                        let html = '<table border="1" class="tabelaClass" id="tabelaId"><caption class="tituloClass" id="tituloId">'+res.variavel+' - '+res.unidade+'</caption><tr>'
-                        for (let i in ano) {
-                            if (cont === 0) {
-                                cont++
-                                html += '<th></th>'
-                            }
-                            html += '<th>'+ano[i]+'</th>'
-                        }
-                        cont = 0
-                        html += '</tr>'
-                        for (let i in res) {
-                            if (i != 'unidade' && i != 'variavel') {
-                                html += '<tr><th>'+i+'</th>'
-                                for (let i1 in res[i]) {
-                                    html += '<td>'+res[i][i1]+'</td>'
-                                }
-                                html += '</tr>'
-                            }
-                        }
-                        html += '</table>'
-                        div.innerHTML = html
-                    }
-                }
+                visualizar(query, grafico, tabela, res)
             })
         return res
     }
 
-    obj.pibPorMunicipio = (nome = '', tabela = false, querry = '') => {
+    obj.pibPorMunicipio = (nome = '', query = '', grafico = '', tabela = false) => {
         if (nome === '') return "Erro: digite um ou mais nomes de municipio, exemplo: pibPorMunicipio('Belém/Pa BrasilNovo/Pa')"
         let numeroRegioes = ''
         if (nome === 'all') {
@@ -356,40 +297,7 @@ function pibBrasil(){
                 res.variavel = json[0].variavel
                 json[0].resultados[0].series.map((d) => res[d.localidade.nome] = d.serie)
 
-                if (tabela) {
-                    if (querry != '') {
-                        let div = document.querySelector(querry)
-                        let ano
-                        for (let i in res) {
-                            if (i != 'unidade' && i != 'variavel') {
-                                ano = Object.keys(res[i])
-                                break
-                            }
-                        }
-                        let cont = 0
-                        let html = '<table border="1" class="tabelaClass" id="tabelaId"><caption class="tituloClass" id="tituloId">'+res.variavel+' - '+res.unidade+'</caption><tr>'
-                        for (let i in ano) {
-                            if (cont === 0) {
-                                cont++
-                                html += '<th></th>'
-                            }
-                            html += '<th>'+ano[i]+'</th>'
-                        }
-                        cont = 0
-                        html += '</tr>'
-                        for (let i in res) {
-                            if (i != 'unidade' && i != 'variavel') {
-                                html += '<tr><th>'+i+'</th>'
-                                for (let i1 in res[i]) {
-                                    html += '<td>'+res[i][i1]+'</td>'
-                                }
-                                html += '</tr>'
-                            }
-                        }
-                        html += '</table>'
-                        div.innerHTML = html
-                    }
-                }
+                visualizar(query, grafico, tabela, res)
             })
         return res
     }

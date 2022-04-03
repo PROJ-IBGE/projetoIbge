@@ -1,6 +1,3 @@
-// <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-//import noticias from "./js/IBGE_noticias/ibgenoticias.js";
-
 function initIBGE() {
     /*
     const not = noticias()
@@ -20,24 +17,92 @@ function initIBGE() {
     */
 
     // funções sobre população
-    obj.populacaoDoBrasil = pop.populacaoDoBrasil
-    obj.populacaoPorGrandeRegiao = pop.populacaoPorGrandeRegiao
-    obj.populacaoPorEstado = pop.populacaoPorEstado
-    obj.populacaoPorMunicipio = pop.populacaoPorMunicipio
-    obj.esperancaDeVidaDoBrasil = pop.esperancaDeVidaDoBrasil
-    obj.esperancaDeVidaPorGrandeRegiao = pop.esperancaDeVidaPorGrandeRegiao
-    obj.esperancaDeVidaPorEstado = pop.esperancaDeVidaPorEstado
-    obj.densidadeDemograficaDoBrasil = pop.densidadeDemograficaDoBrasil
-    obj.densidadeDemograficaPorGrandeRegiao = pop.densidadeDemograficaPorGrandeRegiao
-    obj.densidadeDemograficaPorEstado =pop.densidadeDemograficaPorEstado
+    obj.populacaoDoBrasil = pop.populacaoDoBrasil //1
+    obj.populacaoPorGrandeRegiao = pop.populacaoPorGrandeRegiao //2
+    obj.populacaoPorEstado = pop.populacaoPorEstado //3
+    obj.populacaoPorMunicipio = pop.populacaoPorMunicipio //4
+    obj.esperancaDeVidaDoBrasil = pop.esperancaDeVidaDoBrasil //5
+    obj.esperancaDeVidaPorGrandeRegiao = pop.esperancaDeVidaPorGrandeRegiao //6
+    obj.esperancaDeVidaPorEstado = pop.esperancaDeVidaPorEstado //7
+    obj.densidadeDemograficaDoBrasil = pop.densidadeDemograficaDoBrasil //8
+    obj.densidadeDemograficaPorGrandeRegiao = pop.densidadeDemograficaPorGrandeRegiao //9
+    obj.densidadeDemograficaPorEstado =pop.densidadeDemograficaPorEstado //10
 
     // funções sobre o pib
-    obj.pibDoBrasil = pib.pibDoBrasil
-    obj.pibPorEstado = pib.pibPorEstado
-    obj.pibPorGrandeRegiao = pib.pibPorGrandeRegiao
-    obj.pibPorMesorregiao = pib.pibPorMesorregiao
-    obj.pibPorMicrorregiao = pib.pibPorMicrorregiao
-    obj.pibPorMunicipio = pib.pibPorMunicipio
+    obj.pibDoBrasil = pib.pibDoBrasil //11
+    obj.pibPorEstado = pib.pibPorEstado //12
+    obj.pibPorGrandeRegiao = pib.pibPorGrandeRegiao //13
+    obj.pibPorMesorregiao = pib.pibPorMesorregiao //14
+    obj.pibPorMicrorregiao = pib.pibPorMicrorregiao //15
+    obj.pibPorMunicipio = pib.pibPorMunicipio //16
 
     return obj
+}
+
+var ibge = initIBGE()
+/**
+ * {
+ *      op: numero,
+ *      local: string,
+ *      query: string,
+ *      grafico: string,
+ *      tabela: boolean,
+ *      gini: boolean
+ * }
+ */
+function IBGE(obj = null) {
+    if (obj != null) {
+        if (typeof obj.op === 'number') {
+            switch (obj.op) {
+                case 1:
+                    ibge.populacaoDoBrasil(obj.query, obj.grafico, obj.tabela)
+                    break
+                case 2:
+                    ibge.populacaoPorGrandeRegiao(obj.local, obj.query, obj.grafico, obj.tabela)
+                    break
+                case 3:
+                    ibge.populacaoPorEstado(obj.local, obj.query, obj.grafico, obj.tabela)
+                    break
+                case 4:
+                    ibge.populacaoPorMunicipio(obj.local, obj.query, obj.grafico, obj.tabela)
+                    break
+                case 5:
+                    ibge.esperancaDeVidaDoBrasil(obj.query, obj.grafico, obj.tabela)
+                    break
+                case 6:
+                    ibge.esperancaDeVidaPorGrandeRegiao(obj.local, obj.query, obj.grafico, obj.tabela)
+                    break
+                case 7:
+                    ibge.esperancaDeVidaPorEstado(obj.local, obj.query, obj.grafico, obj.tabela)
+                    break
+                case 8:
+                    ibge.densidadeDemograficaDoBrasil(obj.query, obj.grafico, obj.tabela)
+                    break
+                case 9:
+                    ibge.densidadeDemograficaPorGrandeRegiao(obj.local, obj.query, obj.grafico, obj.tabela)
+                    break
+                case 10:
+                    ibge.densidadeDemograficaPorEstado(obj.local, obj.query, obj.grafico, obj.tabela)
+                    break
+                case 11:
+                    ibge.pibDoBrasil(obj.query, obj.grafico, obj.tabela, obj.gini)
+                    break
+                case 12:
+                    ibge.pibPorEstado(obj.local, obj.query, obj.grafico, obj.tabela, obj.gini)
+                    break
+                case 13:
+                    ibge.pibPorGrandeRegiao(obj.local, obj.query, obj.grafico, obj.tabela, obj.gini)
+                    break
+                case 14:
+                    ibge.pibPorMesorregiao(obj.local, obj.query, obj.grafico, obj.tabela)
+                    break
+                case 15:
+                    ibge.pibPorMicrorregiao(obj.local, obj.query, obj.grafico, obj.tabela)
+                    break
+                case 16:
+                    ibge.pibPorMunicipio(obj.local, obj.query, obj.grafico, obj.tabela)
+                    break
+            }
+        } else return "Erro: insira um valor numérico de 1 a 16 na chave op!"
+    } else return "Erro: insira um objeto com os parâmetros!"
 }
