@@ -114,7 +114,7 @@ function populacao(){
             .then(json => {
                 res.variavel = json[0].variavel
                 res.unidade = json[0].unidade
-                res.brasil = json[0].resultados[0].series[0].serie
+                res.Brasil = json[0].resultados[0].series[0].serie
 
                 visualizar(query, grafico, tabela, res)
             })

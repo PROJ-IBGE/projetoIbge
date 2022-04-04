@@ -31,76 +31,80 @@ function visualizar(query = '', grafico = '', tabela = false, res) {
             }
             html += '</table>'
             div.innerHTML = html
-        } else return "Erro: insira uma query!"
+        } else console.log("Erro: insira uma query!")
     }
-    if(grafico === 'linha') {
-        if(query != '') {
-            let labels
-            for (let i in res) {
-                if (i != 'unidade' && i != 'variavel') {
-                    labels = Object.keys(res[i])
-                    break
-                }
-            }
-            let inicio = [], final = [], cont = 0
-            const lista = []
-            for (let i in res){
-                if (i != 'unidade' && i != 'variavel') {
-                    let datapoints = []
-                    for (let i2 in res[i]) {
-                        datapoints.push(res[i][i2])
+    switch(grafico) {
+        case 'linha':
+            if(query != '') {
+                let labels
+                for (let i in res) {
+                    if (i != 'unidade' && i != 'variavel') {
+                        labels = Object.keys(res[i])
+                        break
                     }
-                    lista.push({
-                        label: i,
-                        data: datapoints,
-                        borderColor: `#${Math.floor(Math.random() * 100)}${Math.floor(Math.random() * 100)}${Math.floor(Math.random() * 100)}`,
-                        fill: false,
-                        tension: 0.4
-                    })
                 }
-            }
-            const data = {
-                labels: labels,
-                datasets: lista
-              }
-            const config = {
-                type: 'line',
-                data: data,
-                options: {
-                    responsive: true,
-                    plugins: {
-                    title: {
-                        display: true,
-                        text: res.variavel+' - '+res.unidade
-                    },
-                },
-                    interaction: {
-                        intersect: false,
-                    },
-                    scales: {
-                        x: {
-                            display: true,
-                            title: {
-                                display: true
-                            }
-                        },
-                        y: {
-                            display: true,
-                            title: {
-                                display: true,
-                                text: 'Value'
-                            },
-                            suggestedMin: parseInt(inicio.sort()[0]),
-                            suggestedMax: parseInt(final.sort()[final.length-1])
+                let inicio = [], final = [], cont = 0
+                const lista = []
+                for (let i in res){
+                    if (i != 'unidade' && i != 'variavel') {
+                        let datapoints = []
+                        for (let i2 in res[i]) {
+                            datapoints.push(res[i][i2])
                         }
+                        lista.push({
+                            label: i,
+                            data: datapoints,
+                            borderColor: `#${Math.floor(Math.random() * 100)}${Math.floor(Math.random() * 100)}${Math.floor(Math.random() * 100)}`,
+                            fill: false,
+                            tension: 0.4
+                        })
                     }
-                },
-              }
-            let canvas = document.createElement('canvas')
-            let div = document.querySelector(query)
-            div.appendChild(canvas)
-            const myChart = new Chart(canvas, config)
-        } else return "Erro: insira uma query!"
+                }
+                const data = {
+                    labels: labels,
+                    datasets: lista
+                }
+                const config = {
+                    type: 'line',
+                    data: data,
+                    options: {
+                        responsive: true,
+                        plugins: {
+                        title: {
+                            display: true,
+                            text: res.variavel+' - '+res.unidade
+                        },
+                    },
+                        interaction: {
+                            intersect: false,
+                        },
+                        scales: {
+                            x: {
+                                display: true,
+                                title: {
+                                    display: true
+                                }
+                            },
+                            y: {
+                                display: true,
+                                title: {
+                                    display: true,
+                                    text: 'Value'
+                                },
+                                suggestedMin: parseInt(inicio.sort()[0]),
+                                suggestedMax: parseInt(final.sort()[final.length-1])
+                            }
+                        }
+                    },
+                }
+                let canvas = document.createElement('canvas')
+                let div = document.querySelector(query)
+                div.appendChild(canvas)
+                const myChart = new Chart(canvas, config)
+            } else console.log("Erro: insira uma query!")
+            break
+        default:
+            console.log(`Erro: gráfico = '${grafico}' não existe!`)
     }
 }
 
@@ -116,18 +120,18 @@ function pibBrasil(){
             agregado = 5938
             variavel = 37  
         }
-        const res = {};
+
+        const res = {}
         fetch(`https://servicodados.ibge.gov.br/api/v3/agregados/${agregado}/periodos/all/variaveis/${variavel}?localidades=N1[all]`)
             .then(data => data.json())
             .then(json => {
                 res.variavel = json[0].variavel
                 res.unidade = json[0].unidade
                 res.Brasil = json[0].resultados[0].series[0].serie
-
                 visualizar(query, grafico, tabela, res)
-            });
+            })
         return res
-    };
+    }
 
     obj.pibPorEstado = (nome = '', query = '', grafico = '', tabela = false, gini = false) => {
         let variavel, agregado
@@ -150,14 +154,13 @@ function pibBrasil(){
             })
         }
 
-        const res = {};
+        const res = {}
         fetch(`https://servicodados.ibge.gov.br/api/v3/agregados/${agregado}/periodos/all/variaveis/${variavel}?localidades=N3[${numeroEstado}]`)
             .then(data => data.json())
             .then(json => {
                 res.unidade = json[0].unidade
                 res.variavel = json[0].variavel
                 json[0].resultados[0].series.map((d) => res[d.localidade.nome] = d.serie)
-
                 visualizar(query, grafico, tabela, res)
             })
         return res
@@ -191,7 +194,6 @@ function pibBrasil(){
                 res.unidade = json[0].unidade
                 res.variavel = json[0].variavel
                 json[0].resultados[0].series.map((d) => res[d.localidade.nome] = d.serie)
-
                 visualizar(query, grafico, tabela, res)
             })
         return res
@@ -226,7 +228,6 @@ function pibBrasil(){
                 res.unidade = json[0].unidade
                 res.variavel = json[0].variavel
                 json[0].resultados[0].series.map((d) => res[d.localidade.nome] = d.serie)
-
                 visualizar(query, grafico, tabela, res)
             })
         return res
@@ -261,7 +262,6 @@ function pibBrasil(){
                 res.unidade = json[0].unidade
                 res.variavel = json[0].variavel
                 json[0].resultados[0].series.map((d) => res[d.localidade.nome] = d.serie)
-
                 visualizar(query, grafico, tabela, res)
             })
         return res
@@ -296,7 +296,6 @@ function pibBrasil(){
                 res.unidade = json[0].unidade
                 res.variavel = json[0].variavel
                 json[0].resultados[0].series.map((d) => res[d.localidade.nome] = d.serie)
-
                 visualizar(query, grafico, tabela, res)
             })
         return res

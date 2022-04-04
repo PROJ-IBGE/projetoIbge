@@ -43,16 +43,7 @@ function initIBGE() {
 }
 
 var ibge = initIBGE()
-/**
- * {
- *      op: numero,
- *      local: string,
- *      query: string,
- *      grafico: string,
- *      tabela: boolean,
- *      gini: boolean
- * }
- */
+
 function IBGE(obj = null) {
     if (obj != null) {
         if (typeof obj.op === 'number') {
