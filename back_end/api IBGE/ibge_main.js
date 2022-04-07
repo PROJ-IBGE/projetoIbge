@@ -47,10 +47,6 @@ var ibge = initIBGE()
 function IBGE(obj = null) {
     if (obj != null) {
         if (typeof obj.op === 'number') {
-            let canvas = document.querySelector('canvas')
-            if (canvas) {
-                canvas.remove()
-            }
             switch (obj.op) {
                 case 1:
                     ibge.populacaoDoBrasil(obj.query, obj.grafico, obj.tabela)

@@ -43,7 +43,7 @@ function visualizar(query = '', grafico = '', tabela = false, res) {
                         break
                     }
                 }
-                let inicio = [], final = [], cont = 0
+                let inicio = [], final = []
                 const lista = []
                 for (let i in res){
                     if (i != 'unidade' && i != 'variavel') {
@@ -97,10 +97,17 @@ function visualizar(query = '', grafico = '', tabela = false, res) {
                         }
                     },
                 }
-                let canvas = document.createElement('canvas')
                 let div = document.querySelector(query)
-                div.appendChild(canvas)
-                const myChart = new Chart(canvas, config)
+                if (div.firstElementChild != null) {
+                    div.removeChild(div.firstElementChild)
+                    let canvas = document.createElement('canvas')
+                    div.appendChild(canvas)
+                    const myChart = new Chart(canvas, config)
+                } else {
+                    let canvas = document.createElement('canvas')
+                    div.appendChild(canvas)
+                    const myChart = new Chart(canvas, config)
+                }
             } else console.log("Erro: insira uma query!")
             break
         default:
