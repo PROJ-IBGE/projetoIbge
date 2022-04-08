@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>PIDB - Protótipo</title>
+        <link rel="stylesheet" href="style.css">
+    </head>
+    <body>
+        <header>
+            <div class="img-ibge">
+                <img src="img/ibge.png" alt="IBGE">
+            </div>
+            <div class="search">
+                <input type="search" placeholder="Insira palavras chaves">
+                <img src="img/pesquisa.png" alt="pesquisar">
+            </div>
+        </header>
+
+        <div class="container">
+            <div class="pesquisa">
+                <h3>Pesquisa filtrada</h3>
+                <div>
+                    <br>
+                    <!-- Caixa de seleção que pede para o usuário selecionar um estado --> 
+                    <select name="slctEstados" id="slctEstados"></select>
+                    <!-- Caixa de seleção que pede para o usuário selecionar um município -->
+                    <select name="slctCidades" id="slctCidades"></select>
+                </div>
+
+                <div>
+                    <br>
+                    <!-- Caixa de seleção que pede para o usuário selecionar um ano -->
+                    <select name="slctAno" id="slctAno">
+                        <option>Selecione um ano</option>
+                        <option value="2001">2001</option>
+                        <option value="2002">2002</option>
+                        <option value="2003">2003</option>
+                        <option value="2004">2004</option>
+                        <option value="2005">2005</option>
+                        <option value="2006">2006</option>
+                        <option value="2007">2007</option>
+                        <option value="2008">2008</option>
+                        <option value="2009">2009</option>
+                        <option value="2010">2010</option>
+                        <option value="2011">2011</option>
+                        <option value="2012">2012</option>
+                        <option value="2013">2013</option>
+                        <option value="2014">2014</option>
+                        <option value="2015">2015</option>
+                        <option value="2016">2016</option>
+                        <option value="2017">2017</option>
+                        <option value="2018">2018</option>
+                        <option value="2019">2019</option>
+                        <option value="2020">2020</option>
+                        <option value="2021">2021</option>
+                    </select>
+                </div>
+
+                <div class="ckbox">
+                    <br>
+                    <label for="area_territorial">
+                        <input type="checkbox" id="slctAreaT"> Área Territorial
+                    </label>
+                    <label for="densidade_demografica">
+                        <input type="checkbox" id="slctDensidadeDmg"> Densidade Demográfica
+                    </label>
+                    <label for="populacao">
+                        <input type="checkbox" id="slctPopulacao"> População
+                    </label>
+                    <label for="escolaridade">
+                        <input type="checkbox" id="slctEscolarizacao"> Escolarização
+                    </label>
+                    <label for="pib">
+                        <input type="checkbox" id="slctPib"> PIB
+                    </label>
+                </div>
+
+                <!-- Botão de consulta -->
+                <button id="btnConsultar">Consultar</button>
+                
+            </div>
+
+            <!-- A div retorna as informações após btnConsutar ser clicado -->
+            <div id="resposta">
+                <h3>Resultado: </h3>
+                <h4 id="retNomeEstado"></h4>
+                <div id="retEstado">
+                    <div id="retMalhaE"></div>
+                    <div id="dadosE">
+                        <p id="retDensidadeDmgE"></p>
+                        <p id="retPopulacaoE"></p>
+                        <p id="retPibE"></p>
+                    </div>
+                </div>
+                <h4 id="retNomeCidade"></h4>
+                <div id="retCidade">
+                    <div id="retMalhaC"></div>
+                    <div id="dadosC">
+                        <p id="retareaTC"></p>
+                        <p id="retDensidadeDmgC"></p>
+                        <p id="retPopulacaoC"></p>
+                        <p id="retEscolarizacaoCT"></p>
+                        <p id="retEscolarizacaoCH"></p>
+                        <p id="retEscolarizacaoCM"></p>
+                        <p id="retPibC"></p>
+                        <!-- Caixa de seleção na qual o usuário pode fazer uma comparação da população com um outro ano -->
+                        <select name="slctAno2" id="slctAno2">
+                            <option>Compare com um outro ano</option>
+                            <option value="2001">2001</option>
+                            <option value="2002">2002</option>
+                            <option value="2003">2003</option>
+                            <option value="2004">2004</option>
+                            <option value="2005">2005</option>
+                            <option value="2006">2006</option>
+                            <option value="2007">2007</option>
+                            <option value="2008">2008</option>
+                            <option value="2009">2009</option>
+                            <option value="2010">2010</option>
+                            <option value="2011">2011</option>
+                            <option value="2012">2012</option>
+                            <option value="2013">2013</option>
+                            <option value="2014">2014</option>
+                            <option value="2015">2015</option>
+                            <option value="2016">2016</option>
+                            <option value="2017">2017</option>
+                            <option value="2018">2018</option>
+                            <option value="2019">2019</option>
+                            <option value="2020">2020</option>
+                            <option value="2021">2021</option>
+                        </select>
+                        
+                        <div id="compPopulacao">
+                            <canvas id="garficoPopulacaoAno"></canvas>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <footer>
+            <div>
+                <h3>Isso é apenas um protótipo.</h3>
+                <h3>Não representa a versão final.</h3>
+            </div>
+            <span>Ainda em desenvolvimento</span> <br>
+            <span>Projeto que utiliza as API's do IBGE</span>
+            <br>
+            <span>Desenvolvido por alunos da UNAMA</span>
+        </footer>
+
+        <!-- Biblioteca jquery do javascript para facilitar a conexão com as api's -->
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+        <!-- Biblioteca chart.js do javascript para trabalhar com gráficos -->
+        <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+        <script src="api.js"></script>
+    </body>
+</html>

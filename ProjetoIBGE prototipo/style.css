@@ -1,0 +1,254 @@
+/* Estilo baseado em telas de 375px */
+*{
+    margin: 0;
+    padding: 0;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+body{
+    display: flex;
+    flex-direction: column;
+    justify-items: center;
+    align-items: center;
+    background-color: #d9d9d9;
+}
+
+header{
+    width: 100%;
+    display: flex;
+}
+
+.img-ibge{
+    width: 45%;
+    padding: 5px;
+}
+
+.img-ibge img{
+    width: 70%;
+}
+
+.search{
+    display: flex;
+    width: 55%;
+    padding: 5px;
+}
+
+.search img{
+    width: 50%;
+}
+
+.container{
+    display: flex;
+    flex-direction: column;
+    justify-items: center;
+    align-items: center;
+    width: 100%;
+    margin-top: 5px;
+}
+
+.container .pesquisa{
+    display: flex;
+    flex-direction: column;
+    border-radius: 10px;
+    padding: 10px;
+    background-color: #ffffff;
+}
+
+.container h1{
+    font-size: 25px;
+}
+
+.container label{
+    padding: 5px;
+}
+
+.ckbox {
+    display: flex;
+    flex-direction: column;
+}
+
+#btnConsultar{
+    margin-top: 5px;
+    width: 70px;
+    padding: 5px;
+}
+
+#btnConsultar:hover{
+    cursor: pointer;
+}
+
+
+.container select{
+    padding: 3px;
+}
+
+#resposta{
+    display: none;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin-top: 10px;
+    border-radius: 10px;
+    padding: 5px;
+    background-color: #ffffff;
+}
+
+#slctAno2{
+    display: none;
+}
+
+#retMalhaE{
+    display: none;
+    align-items: center;
+    justify-content: center;
+}
+
+#retMalhaE img{
+    width: 30%;
+}
+
+#retMalhaC{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+#retMalhaC img{
+    width: 30%;
+}
+
+#compPopulacao{
+    display: none;
+}
+
+footer{
+    margin-top: 7px;
+}
+
+@media screen and (min-width: 412px){
+    .img-ibge{
+        width: 50%;
+        padding: 5px;
+    }
+    
+    .img-ibge img{
+        width: 50%;
+    }
+    
+    .search{
+        display: flex;
+        width: 50%;
+        padding: 5px;
+    }
+    
+    .search img{
+        width: 15%;
+    }
+}
+
+@media screen and (min-width: 800px) {
+    .img-ibge{
+        width: 75%;
+        padding: 5px;
+    }
+    
+    .img-ibge img{
+        width: 20%;
+    }
+    
+    .search{
+        display: flex;
+        width: 25%;
+        padding: 5px;
+    }
+    
+    .search img{
+        width: 15%;
+    }
+
+    .container{
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .container .pesquisa{
+        margin: 10px;
+        width: 50%;
+    }
+
+    .container #resposta{
+        margin: 10px;
+        width: 50%;
+    }
+
+    #resposta #retEstado{
+        display: flex;
+    }
+
+    #resposta #retMalhaE{
+        width: 30%;
+    }
+
+    #retMalhaE img{
+        width: 100%;
+    }
+
+    #dadosE{
+        margin-left: 10px;
+    }
+
+    #resposta #retCidade{
+        display: flex;
+    }
+
+    #resposta #retMalhaC{
+        width: 30%;
+    }
+
+    #retMalhaC img{
+        width: 100%;
+    }
+
+    #dadosC{
+        margin-left: 10px;
+    }
+
+    footer div{
+        display: flex;
+    }
+    
+    footer h3{
+        margin-right: 4px;
+    }
+}
+
+@media screen and (min-width: 810px) {
+    .img-ibge{
+        width: 75%;
+        padding: 5px;
+    }
+    
+    .img-ibge img{
+        width: 20%;
+    }
+    
+    .search{
+        display: flex;
+        width: 25%;
+        padding: 5px;
+    }
+    
+    .search img{
+        width: 15%;
+    }
+
+    footer div{
+        display: flex;
+    }
+    
+    footer h3{
+        margin-right: 4px;
+    }
+}
