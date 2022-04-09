@@ -1,9 +1,18 @@
 function populacao(){
     const obj ={};
 
-    obj.populacaoDoBrasil = (query = '', grafico = '', tabela = false) => {
+    obj.populacaoDoBrasil = (query = '', anos = 'all', grafico = '', tabela = false) => {
         const res = {}
-        fetch('https://servicodados.ibge.gov.br/api/v3/agregados/6579/periodos/all/variaveis/9324?localidades=N1[all]')
+        let anosres = ''
+        if (anos === 'all') {
+            anosres += 'all'
+        } else {
+            anos.split(' ').map(ano => {
+                if (anosres === '') anosres += ano
+                else anosres += `|${ano}`
+            })
+        }
+        fetch(`https://servicodados.ibge.gov.br/api/v3/agregados/6579/periodos/${anosres}/variaveis/9324?localidades=N1[all]`)
             .then(data => data.json())
             .then(json => {
                 res.variavel = json[0].variavel
@@ -15,9 +24,17 @@ function populacao(){
         return res
     }
 
-    obj.populacaoPorGrandeRegiao = (nome = '', query = '', grafico = '', tabela = false) => {
+    obj.populacaoPorGrandeRegiao = (nome = '', query = '', anos = 'all', grafico = '', tabela = false) => {
         if(nome === "") return "Erro: digite um ou mais nomes de grandes regiões, exemplo: populacaoPorGrandeRegiao('Norte Nordeste')"
-        let numeroRegioes = '';
+        let numeroRegioes = '', anosres = ''
+        if (anos === 'all') {
+            anosres += 'all'
+        } else {
+            anos.split(' ').map(ano => {
+                if (anosres === '') anosres += ano
+                else anosres += `|${ano}`
+            })
+        }
         if (nome === 'all') {
             numeroRegioes += 'all'
         } else {
@@ -28,7 +45,7 @@ function populacao(){
             })
         }
         const res = {}
-        fetch(`https://servicodados.ibge.gov.br/api/v3/agregados/6579/periodos/all/variaveis/9324?localidades=N2[${numeroRegioes}]`)
+        fetch(`https://servicodados.ibge.gov.br/api/v3/agregados/6579/periodos/${anosres}/variaveis/9324?localidades=N2[${numeroRegioes}]`)
             .then(data => data.json())
             .then(json => {
                 res.variavel = json[0].variavel
@@ -40,9 +57,17 @@ function populacao(){
         return res
     }
 
-    obj.populacaoPorEstado = (nome = '', query = '', grafico = '', tabela = false) => {
+    obj.populacaoPorEstado = (nome = '', query = '', anos = 'all', grafico = '', tabela = false) => {
         if(nome === "") return "Erro: digite um ou mais nomes de estados, exemplo: populacaoPorEstado('Pará RioGrandeDoSul')"
-        let numeroEstado = ''
+        let numeroEstado = '', anosres = ''
+        if (anos === 'all') {
+            anosres += 'all'
+        } else {
+            anos.split(' ').map(ano => {
+                if (anosres === '') anosres += ano
+                else anosres += `|${ano}`
+            })
+        }
         if (nome === 'all') {
             numeroEstado = 'all'
         } else {
@@ -54,7 +79,7 @@ function populacao(){
         }
         
         const res = {}
-        fetch(`https://servicodados.ibge.gov.br/api/v3/agregados/6579/periodos/all/variaveis/9324?localidades=N3[${numeroEstado}]`)
+        fetch(`https://servicodados.ibge.gov.br/api/v3/agregados/6579/periodos/${anosres}/variaveis/9324?localidades=N3[${numeroEstado}]`)
             .then(data => data.json())
             .then(json => {
                 res.variavel = json[0].variavel
@@ -66,9 +91,17 @@ function populacao(){
         return res
     }
 
-    obj.populacaoPorMunicipio = (nome = '', query = '', grafico = '', tabela = false) => {
+    obj.populacaoPorMunicipio = (nome = '', query = '', anos = 'all', grafico = '', tabela = false) => {
         if(nome === '') return "Erro: digite um ou mais nomes de municipios, exemplo: populacaoPorMunicipio('Belém/Pa BrasilNovo/Pa')"
-        let numeroMunicipio = '';
+        let numeroMunicipio = '', anosres = ''
+        if (anos === 'all') {
+            anosres += 'all'
+        } else {
+            anos.split(' ').map(ano => {
+                if (anosres === '') anosres += ano
+                else anosres += `|${ano}`
+            })
+        }
         if (nome === 'all') {
             return 'Erro: não retorna todos os municipios!'
         } else {
@@ -89,7 +122,7 @@ function populacao(){
         }
         
         const res = {}
-        fetch(`https://servicodados.ibge.gov.br/api/v3/agregados/6579/periodos/all/variaveis/9324?localidades=N6[${numeroMunicipio}]`)
+        fetch(`https://servicodados.ibge.gov.br/api/v3/agregados/6579/periodos/${anosres}/variaveis/9324?localidades=N6[${numeroMunicipio}]`)
             .then(data => data.json())
             .then(json => {
                 res.variavel = json[0].variavel
@@ -101,9 +134,18 @@ function populacao(){
         return res
     }
 
-    obj.esperancaDeVidaDoBrasil = (query = '', grafico = '', tabela = false) => {
+    obj.esperancaDeVidaDoBrasil = (query = '', anos = 'all', grafico = '', tabela = false) => {
         const res = {}
-        fetch('https://servicodados.ibge.gov.br/api/v3/agregados/1174/periodos/all/variaveis/2503?localidades=N1[all]')
+        let anosres = ''
+        if (anos === 'all') {
+            anosres += 'all'
+        } else {
+            anos.split(' ').map(ano => {
+                if (anosres === '') anosres += ano
+                else anosres += `|${ano}`
+            })
+        }
+        fetch(`https://servicodados.ibge.gov.br/api/v3/agregados/1174/periodos/${anosres}/variaveis/2503?localidades=N1[all]`)
         .then(data => data.json())
         .then(json => {
             res.variavel = json[0].variavel
@@ -115,9 +157,17 @@ function populacao(){
         return res
     }
 
-    obj.esperancaDeVidaPorGrandeRegiao = (nome = '', query = '', grafico = '', tabela = false) => {
+    obj.esperancaDeVidaPorGrandeRegiao = (nome = '', query = '', anos = 'all', grafico = '', tabela = false) => {
         if (nome === '') return "Erro: digite um ou mais nomes de grandes regiões, exemplo: esperancaDeVidaPorGrandeRegiao('Norte Nordeste')"
-        let numeroRegioes = ''
+        let numeroRegioes = '', anosres = ''
+        if (anos === 'all') {
+            anosres += 'all'
+        } else {
+            anos.split(' ').map(ano => {
+                if (anosres === '') anosres += ano
+                else anosres += `|${ano}`
+            })
+        }
         if (nome === 'all') {
             numeroRegioes += 'all'
         } else {
@@ -128,7 +178,7 @@ function populacao(){
             })
         }
         const res = {}
-        fetch(`https://servicodados.ibge.gov.br/api/v3/agregados/1174/periodos/all/variaveis/2503?localidades=N2[${numeroRegioes}]`)
+        fetch(`https://servicodados.ibge.gov.br/api/v3/agregados/1174/periodos/${anosres}/variaveis/2503?localidades=N2[${numeroRegioes}]`)
             .then(data => data.json())
             .then(json => {
                 res.variavel = json[0].variavel
@@ -140,9 +190,17 @@ function populacao(){
         return res
     }
 
-    obj.esperancaDeVidaPorEstado = (nome = '', query = '', grafico = '', tabela = false,) => {
+    obj.esperancaDeVidaPorEstado = (nome = '', query = '', anos = 'all', grafico = '', tabela = false,) => {
         if(nome === "") return "Erro: digite um ou mais nomes de estados, exemplo: esperancaDeVidaPorEstado('Pará RioGrandeDoSul')"
-        let numeroEstado = ''
+        let numeroEstado = '', anosres = ''
+        if (anos === 'all') {
+            anosres += 'all'
+        } else {
+            anos.split(' ').map(ano => {
+                if (anosres === '') anosres += ano
+                else anosres += `|${ano}`
+            })
+        }
         if (nome === 'all') {
             numeroEstado += 'all'
         } else {
@@ -154,7 +212,7 @@ function populacao(){
         }
 
         const res = {}
-        fetch(`https://servicodados.ibge.gov.br/api/v3/agregados/1174/periodos/all/variaveis/2503?localidades=N3[${numeroEstado}]`)
+        fetch(`https://servicodados.ibge.gov.br/api/v3/agregados/1174/periodos/${anosres}/variaveis/2503?localidades=N3[${numeroEstado}]`)
             .then(data => data.json())
             .then(json => {
                 res.variavel = json[0].variavel
@@ -166,13 +224,21 @@ function populacao(){
         return res
     }
 
-    obj.densidadeDemograficaDoBrasil = (query = '', grafico = '', tabela = false) => {
+    obj.densidadeDemograficaDoBrasil = (query = '', anos = 'all', grafico = '', tabela = false) => {
         const res = {}
+        let anosres = ''
         /*
         res["Área de estados por quilômetro quadrado"] = {'Rondônia': 237765.347, 'Acre': 164173.431, 'Amazonas': 1559167.879, 'Roraima': 223644.527, 'Pará': 1245870.707, 'Amapá': 142470.762, 'Tocantins': 277423.63, 'Maranhão': 329651.495, 'Piauí': 251755.484, 'Ceará': 148894.441, 'Rio Grande do Norte': 52809.601, 'Paraíba': 56467.242, 'Pernambuco': 98067.879, 'Alagoas': 27830.657, 'Sergipe': 21938.185, 'Bahia': 564760.427, 'Minas Gerais': 586513.993, 'Espirito Santo': 46074.447, 'Rio de Janeiro': 43750.426, 'São Paulo': 248219.481, 'Paraná': 199298.982, 'Santa Catarina': 95730.685, 'Rio Grande do Sul': 281707.148, 'Mato Grosso do Sul': 357147.994, 'Mato Grosso': 903207.047, 'Goiás': 340242.859, 'Distrito Federal': 5760.784}
         */
-
-        fetch('https://servicodados.ibge.gov.br/api/v3/agregados/1298/periodos/all/variaveis/614?localidades=N1[all]')
+        if (anos === 'all') {
+            anosres += 'all'
+        } else {
+            anos.split(' ').map(ano => {
+                if (anosres === '') anosres += ano
+                else anosres += `|${ano}`
+            })
+        }
+        fetch(`https://servicodados.ibge.gov.br/api/v3/agregados/1298/periodos/${anosres}/variaveis/614?localidades=N1[all]`)
         .then(data => data.json())
         .then(json => {
             res.variavel = json[0].variavel
@@ -184,9 +250,17 @@ function populacao(){
         return res
     }
 
-    obj.densidadeDemograficaPorGrandeRegiao = (nome = '',  query = '', grafico = '', tabela = false) => {
+    obj.densidadeDemograficaPorGrandeRegiao = (nome = '',  query = '', anos = 'all', grafico = '', tabela = false) => {
         if (nome === '') return "Erro: digite um ou mais nomes de grandes regiões, exemplo: densidadeDemograficaPorGrandeRegiao('Norte Nordeste')"
-        let numeroRegioes = ''
+        let numeroRegioes = '', anosres = ''
+        if (anos === 'all') {
+            anosres += 'all'
+        } else {
+            anos.split(' ').map(ano => {
+                if (anosres === '') anosres += ano
+                else anosres += `|${ano}`
+            })
+        }
         if (nome === 'all') {
             numeroRegioes += 'all'
         } else {
@@ -197,7 +271,7 @@ function populacao(){
             })
         }
         const res = {}
-        fetch(`https://servicodados.ibge.gov.br/api/v3/agregados/1298/periodos/all/variaveis/614?localidades=N2[${numeroRegioes}]`)
+        fetch(`https://servicodados.ibge.gov.br/api/v3/agregados/1298/periodos/${anosres}/variaveis/614?localidades=N2[${numeroRegioes}]`)
             .then(data => data.json())
             .then(json => {
                 res.variavel = json[0].variavel
@@ -209,9 +283,17 @@ function populacao(){
         return res
     }
 
-    obj.densidadeDemograficaPorEstado = (nome = '', query = '', grafico = '', tabela = false) => {
+    obj.densidadeDemograficaPorEstado = (nome = '', query = '', anos = 'all', grafico = '', tabela = false) => {
         if(nome === "") return "Erro: digite um ou mais nomes de estados, exemplo: densidadeDemograficaPorEstado('Pará RioGrandeDoSul')"
-        let numeroEstado = ''
+        let numeroEstado = '', anosres = ''
+        if (anos === 'all') {
+            anosres += 'all'
+        } else {
+            anos.split(' ').map(ano => {
+                if (anosres === '') anosres += ano
+                else anosres += `|${ano}`
+            })
+        }
         if (nome === 'all') {
             numeroEstado += 'all'
         } else {
@@ -223,7 +305,7 @@ function populacao(){
         }
 
         const res = {}
-        fetch(`https://servicodados.ibge.gov.br/api/v3/agregados/1298/periodos/all/variaveis/614?localidades=N3[${numeroEstado}]`)
+        fetch(`https://servicodados.ibge.gov.br/api/v3/agregados/1298/periodos/${anosres}/variaveis/614?localidades=N3[${numeroEstado}]`)
             .then(data => data.json())
             .then(json => {
                 res.variavel = json[0].variavel
@@ -235,9 +317,18 @@ function populacao(){
         return res
     }
 
-    obj.populacaoAssalariadaDoBrasil = (query = '', grafico = '', tabela = false) => {
+    obj.populacaoAssalariadaDoBrasil = (query = '', anos = 'all', grafico = '', tabela = false) => {
         const res = {}
-        fetch(`https://servicodados.ibge.gov.br/api/v3/agregados/2722/periodos/all/variaveis/484?localidades=N1[all]&classificacao=12762[117897]`)
+        let anosres = ''
+        if (anos === 'all') {
+            anosres += 'all'
+        } else {
+            anos.split(' ').map(ano => {
+                if (anosres === '') anosres += ano
+                else anosres += `|${ano}`
+            })
+        }
+        fetch(`https://servicodados.ibge.gov.br/api/v3/agregados/2722/periodos/${anosres}/variaveis/484?localidades=N1[all]&classificacao=12762[117897]`)
             .then(data => data.json())
             .then(json => {
                 res.variavel = json[0].variavel
@@ -249,9 +340,17 @@ function populacao(){
         return res
     }
 
-    obj.populacaoAssalariadaPorGrandeRegiao = (nome = '',  query = '', grafico = '', tabela = false) => {
+    obj.populacaoAssalariadaPorGrandeRegiao = (nome = '',  query = '', anos = 'all', grafico = '', tabela = false) => {
         if (nome === '') return "Erro: digite um ou mais nomes de grandes regiões, exemplo: populacaoAssalariadaPorGrandeRegiao('Norte Nordeste')"
-        let numeroRegioes = ''
+        let numeroRegioes = '', anosres = ''
+        if (anos === 'all') {
+            anosres += 'all'
+        } else {
+            anos.split(' ').map(ano => {
+                if (anosres === '') anosres += ano
+                else anosres += `|${ano}`
+            })
+        }
         if (nome === 'all') {
             numeroRegioes += 'all'
         } else {
@@ -263,7 +362,7 @@ function populacao(){
         }
         
         const res = {}
-        fetch(`https://servicodados.ibge.gov.br/api/v3/agregados/2722/periodos/all/variaveis/484?localidades=N2[${numeroRegioes}]&classificacao=12762[117897]`)
+        fetch(`https://servicodados.ibge.gov.br/api/v3/agregados/2722/periodos/${anosres}/variaveis/484?localidades=N2[${numeroRegioes}]&classificacao=12762[117897]`)
             .then(data => data.json())
             .then(json => {
                 res.variavel = json[0].variavel
@@ -275,9 +374,17 @@ function populacao(){
         return res
     }
 
-    obj.populacaoAssalariadaPorEstado = (nome = '', query = '', grafico = '', tabela = false) => {
+    obj.populacaoAssalariadaPorEstado = (nome = '', query = '', anos = 'all', grafico = '', tabela = false) => {
         if(nome === "") return "Erro: digite um ou mais nomes de estados, exemplo: populacaoAssalariadaPorEstado('Pará RioGrandeDoSul')"
-        let numeroEstado = ''
+        let numeroEstado = '', anosres = ''
+        if (anos === 'all') {
+            anosres += 'all'
+        } else {
+            anos.split(' ').map(ano => {
+                if (anosres === '') anosres += ano
+                else anosres += `|${ano}`
+            })
+        }
         if (nome === 'all') {
             numeroEstado += 'all'
         } else {
@@ -289,7 +396,7 @@ function populacao(){
         }
 
         const res = {}
-        fetch(`https://servicodados.ibge.gov.br/api/v3/agregados/2722/periodos/all/variaveis/484?localidades=N3[${numeroEstado}]&classificacao=12762[117897]`)
+        fetch(`https://servicodados.ibge.gov.br/api/v3/agregados/2722/periodos/${anosres}/variaveis/484?localidades=N3[${numeroEstado}]&classificacao=12762[117897]`)
             .then(data => data.json())
             .then(json => {
                 res.variavel = json[0].variavel

@@ -1,7 +1,6 @@
 function visualizar(query = '', grafico = '', tabela = false, res) {
     if (tabela) {
         if (query != '') {
-            let div = document.querySelector(query)
             let ano
             for (let i in res) {
                 if (i != 'unidade' && i != 'variavel') {
@@ -30,87 +29,93 @@ function visualizar(query = '', grafico = '', tabela = false, res) {
                 }
             }
             html += '</table>'
-            div.innerHTML = html
+            let div = document.querySelector(query)
+            if (div.firstElementChild != null) {
+                div.removeChild(div.firstElementChild)
+                div.innerHTML = html
+            } else div.innerHTML = html
         } else return "Erro: insira uma query!"
     }
-    switch(grafico) {
-        case 'linha':
-            if(query != '') {
-                let labels
-                for (let i in res) {
-                    if (i != 'unidade' && i != 'variavel') {
-                        labels = Object.keys(res[i])
-                        break
-                    }
-                }
-                let inicio = [], final = []
-                const lista = []
-                for (let i in res){
-                    if (i != 'unidade' && i != 'variavel') {
-                        let datapoints = []
-                        for (let i2 in res[i]) {
-                            datapoints.push(res[i][i2])
+    if (grafico != '') {
+        switch(grafico) {
+            case 'linha':
+                if(query != '') {
+                    let labels
+                    for (let i in res) {
+                        if (i != 'unidade' && i != 'variavel') {
+                            labels = Object.keys(res[i])
+                            break
                         }
-                        lista.push({
-                            label: i,
-                            data: datapoints,
-                            borderColor: `#${Math.floor(Math.random() * 100)}${Math.floor(Math.random() * 100)}${Math.floor(Math.random() * 100)}`,
-                            fill: false,
-                            tension: 0.4
-                        })
                     }
-                }
-                const data = {
-                    labels: labels,
-                    datasets: lista
-                }
-                const config = {
-                    type: 'line',
-                    data: data,
-                    options: {
-                        responsive: true,
-                        plugins: {
-                        title: {
-                            display: true,
-                            text: res.variavel+' - '+res.unidade
-                        },
-                    },
-                        interaction: {
-                            intersect: false,
-                        },
-                        scales: {
-                            x: {
-                                display: true,
-                                title: {
-                                    display: true
-                                }
-                            },
-                            y: {
-                                display: true,
-                                title: {
-                                    display: true,
-                                    text: 'Value'
-                                },
-                                suggestedMin: parseInt(inicio.sort()[0]),
-                                suggestedMax: parseInt(final.sort()[final.length-1])
+                    let inicio = [], final = []
+                    const lista = []
+                    for (let i in res){
+                        if (i != 'unidade' && i != 'variavel') {
+                            let datapoints = []
+                            for (let i2 in res[i]) {
+                                datapoints.push(res[i][i2])
                             }
+                            lista.push({
+                                label: i,
+                                data: datapoints,
+                                borderColor: `#${Math.floor(Math.random() * 100)}${Math.floor(Math.random() * 100)}${Math.floor(Math.random() * 100)}`,
+                                fill: false,
+                                tension: 0.4
+                            })
                         }
-                    },
-                }
-                let div = document.querySelector(query)
-                if (div.firstElementChild != null) {
-                    div.removeChild(div.firstElementChild)
-                    let canvas = document.createElement('canvas')
-                    div.appendChild(canvas)
-                    const myChart = new Chart(canvas, config)
-                } else {
-                    let canvas = document.createElement('canvas')
-                    div.appendChild(canvas)
-                    const myChart = new Chart(canvas, config)
-                }
-            } else return "Erro: insira uma query!"
-            break
-        default:
-            console.log(`Erro: gráfico = '${grafico}' não existe!`)
+                    }
+                    const data = {
+                        labels: labels,
+                        datasets: lista
+                    }
+                    const config = {
+                        type: 'line',
+                        data: data,
+                        options: {
+                            responsive: true,
+                            plugins: {
+                            title: {
+                                display: true,
+                                text: res.variavel+' - '+res.unidade
+                            },
+                        },
+                            interaction: {
+                                intersect: false,
+                            },
+                            scales: {
+                                x: {
+                                    display: true,
+                                    title: {
+                                        display: true
+                                    }
+                                },
+                                y: {
+                                    display: true,
+                                    title: {
+                                        display: true,
+                                        text: 'Value'
+                                    },
+                                    suggestedMin: parseInt(inicio.sort()[0]),
+                                    suggestedMax: parseInt(final.sort()[final.length-1])
+                                }
+                            }
+                        },
+                    }
+                    let div = document.querySelector(query)
+                    if (div.firstElementChild != null) {
+                        div.removeChild(div.firstElementChild)
+                        let canvas = document.createElement('canvas')
+                        div.appendChild(canvas)
+                        const myChart = new Chart(canvas, config)
+                    } else {
+                        let canvas = document.createElement('canvas')
+                        div.appendChild(canvas)
+                        const myChart = new Chart(canvas, config)
+                    }
+                } else return "Erro: insira uma query!"
+                break
+            default:
+                console.log(`Erro: gráfico = '${grafico}' não existe!`)
+        }
     }
 }
