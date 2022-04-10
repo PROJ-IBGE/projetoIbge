@@ -30,6 +30,9 @@ function initIBGE() {
     obj.populacaoAssalariadaDoBrasil = pop.populacaoAssalariadaDoBrasil //17
     obj.populacaoAssalariadaPorGrandeRegiao = pop.populacaoAssalariadaPorGrandeRegiao //18
     obj.populacaoAssalariadaPorEstado = pop.populacaoAssalariadaPorEstado //19
+    obj.projecaoDeDadosNoBrasil = pop.projecaoDeDadosNoBrasil // 20
+    obj.projecaoDeDadosPorGrandeRegiao = pop.projecaoDeDadosPorGrandeRegiao // 21
+    obj.projecaoDeDadosPorEstado = pop.projecaoDeDadosPorEstado //22
 
     // funções sobre o pib
     obj.pibDoBrasil = pib.pibDoBrasil //11
@@ -104,6 +107,15 @@ function IBGE(obj = null) {
                     break
                 case 19:
                     ibge.populacaoAssalariadaPorEstado(obj.local, obj.query, obj.ano, obj.grafico, obj.tabela)
+                    break
+                case 20:
+                    ibge.projecaoDeDadosNoBrasil(obj.variavel, obj.ano, obj.query, obj.grafico, obj.tabela)
+                    break
+                case 21:
+                    ibge.projecaoDeDadosPorGrandeRegiao(obj.local, obj.variavel,  obj.query, obj.ano, obj.grafico, obj.tabela)
+                    break
+                case 22:
+                    ibge.projecaoDeDadosPorEstado(obj.local, obj.variavel, obj.query, obj.ano, obj.grafico, obj.tabela)
                     break
                 default:
                     console.log(`Erro: op = ${obj.op} não existe`)

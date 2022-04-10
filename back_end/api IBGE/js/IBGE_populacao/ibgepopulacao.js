@@ -406,6 +406,313 @@ function populacao(){
                 visualizar(query, grafico, tabela, res)
             })
     }
-    
+
+    obj.projecaoDeDadosNoBrasil = (variavel = 'populacao', anos = 'all', query = '', grafico = '', tabela = false) => {
+        let agregado, va, classificacao, anosres = ''
+        if (anos === 'all') {
+            anosres += 'all'
+        } else {
+            const listaAno = {'2000': '116338', '2001': '116336', '2002': '116335', '2003': '116334', '2004': '116332', '2005': '116331', '2006': '116330', '2007': '116329', '2008': '116327', '2009': '119270', '2010': '4336', '2011': '12037', '2012': '13242', '2013': '49029', '2014': '49030', '2015': '49031', '2016': '49032', '2017': '49033', '2018': '49034', '2019': '49035', '2020': '49036', '2021': '49037', '2022': '49038', '2023': '49039', '2024': '49040', '2025': '49041', '2026': '49042', '2027': '49043', '2028': '49044', '2029': '49045', '2030': '49046', '2031': '49047', '2032': '49048', '2033': '49049', '2034': '49050', '2035': '49051', '2036': '49052', '2037': '49053', '2038': '49054', '2039': '49055', '2040': '49056', '2041': '49057', '2042': '49058', '2043': '49059', '2044': '49060', '2045': '49061', '2046': '49062', '2047': '49063', '2048': '49064', '2049': '49065', '2050': '49066', '2051': '49067', '2052': '49068', '2053': '49069', '2054': '49070', '2055': '49071', '2056': '49072', '2057': '49073', '2058': '49074', '2059': '49075', '2060': '49076'}
+            anos.split(' ').map(ano => {
+                if (anosres === '') anosres += listaAno[ano]
+                else anosres += `,${listaAno[ano]}`
+            })
+        }
+        if (variavel != '') {
+            switch(variavel){
+                case 'esperanca de vida':
+                    agregado = 7362
+                    va = 2503
+                    classificacao = `classificacao=2[6794]|1933[${anosres}]`
+                    break
+                case 'taxa de mortalidade':
+                    agregado = 7362
+                    va = 1940
+                    classificacao = `classificacao=2[6794]|1933[${anosres}]`
+                    break
+                case 'nascimentos':
+                    agregado = 7360
+                    va = 10600
+                    classificacao = `classificacao=1933[${anosres}]`
+                    break
+                case 'obitos':
+                    agregado = 7360
+                    va = 10601
+                    classificacao = `classificacao=1933[${anosres}]`
+                    break
+                case 'populacao':
+                    agregado = 7358
+                    va = 606
+                    classificacao = `classificacao=2[6794]|287[100362]|1933[${anosres}]`
+                    break
+                default:
+                    return `Erro: variavel=${variavel} não existe!`
+            }
+        }
+        const res = {}
+        if (variavel === 'esperanca de vida' || variavel === 'taxa de mortalidade') {
+            fetch(`https://servicodados.ibge.gov.br/api/v3/agregados/${agregado}/periodos/2018/variaveis/${va}?localidades=N1[all]&${classificacao}`)
+                .then(data => data.json())
+                .then(json => {
+                    res.variavel = json[0].variavel
+                    res.unidade = json[0].unidade
+                    res.Brasil = {}
+                    json[0].resultados.map(d => {
+                        for (let i in d.classificacoes[1].categoria) {
+                            res.Brasil[d.classificacoes[1].categoria[i]] = d.series[0].serie['2018']
+                        }
+                    })
+
+                    visualizar(query, grafico, tabela, res)
+                })
+        } else if (variavel === 'nascimentos' || variavel === 'obitos') {
+            fetch(`https://servicodados.ibge.gov.br/api/v3/agregados/${agregado}/periodos/2018/variaveis/${va}?localidades=N1[all]&${classificacao}`)
+                .then(data => data.json())
+                .then(json => {
+                    res.variavel = json[0].variavel
+                    res.unidade = json[0].unidade
+                    res.Brasil = {}
+                    json[0].resultados.map(d => {
+                        for (let i in d.classificacoes[0].categoria) {
+                            res.Brasil[d.classificacoes[0].categoria[i]] = d.series[0].serie['2018']
+                        }
+                    })
+
+                    visualizar(query, grafico, tabela, res)
+                })
+        } else if (variavel === 'populacao') {
+            fetch(`https://servicodados.ibge.gov.br/api/v3/agregados/${agregado}/periodos/2018/variaveis/${va}?localidades=N1[all]&${classificacao}`)
+                .then(data => data.json())
+                .then(json => {
+                    res.variavel = json[0].variavel
+                    res.unidade = json[0].unidade
+                    res.Brasil = {}
+                    json[0].resultados.map(d => {
+                        for (let i in d.classificacoes[2].categoria) {
+                            res.Brasil[d.classificacoes[2].categoria[i]] = d.series[0].serie['2018']
+                        }
+                    })
+
+                    visualizar(query, grafico, tabela, res)
+                })
+        }
+        return res
+    }
+
+    obj.projecaoDeDadosPorGrandeRegiao = (nome = 'all', variavel = 'populacao',  query = '', anos = 'all', grafico = '', tabela = false) => {
+        if (nome === '') return "Erro: digite um ou mais nomes de grandes regiões, exemplo: projecaoDeDadosPorGrandeRegiao('Norte Nordeste')"
+        let numeroRegioes = '', anosres = ''
+        if (nome === 'all') {
+            numeroRegioes += 'all'
+        } else {
+            const listaRegioes = {'Norte':'1', 'Nordeste':'2', 'Sudeste':'3', 'Sul':'4', 'CentroOeste':'5'}
+            nome.split(' ').map(regiao => {
+                if(numeroRegioes === '') numeroRegioes += listaRegioes[regiao]
+                else numeroRegioes += `,${listaRegioes[regiao]}`
+            })
+        }
+        if (anos === 'all') {
+            anosres += 'all'
+        } else {
+            const listaAno = {'2000': '116338', '2001': '116336', '2002': '116335', '2003': '116334', '2004': '116332', '2005': '116331', '2006': '116330', '2007': '116329', '2008': '116327', '2009': '119270', '2010': '4336', '2011': '12037', '2012': '13242', '2013': '49029', '2014': '49030', '2015': '49031', '2016': '49032', '2017': '49033', '2018': '49034', '2019': '49035', '2020': '49036', '2021': '49037', '2022': '49038', '2023': '49039', '2024': '49040', '2025': '49041', '2026': '49042', '2027': '49043', '2028': '49044', '2029': '49045', '2030': '49046', '2031': '49047', '2032': '49048', '2033': '49049', '2034': '49050', '2035': '49051', '2036': '49052', '2037': '49053', '2038': '49054', '2039': '49055', '2040': '49056', '2041': '49057', '2042': '49058', '2043': '49059', '2044': '49060', '2045': '49061', '2046': '49062', '2047': '49063', '2048': '49064', '2049': '49065', '2050': '49066', '2051': '49067', '2052': '49068', '2053': '49069', '2054': '49070', '2055': '49071', '2056': '49072', '2057': '49073', '2058': '49074', '2059': '49075', '2060': '49076'}
+            anos.split(' ').map(ano => {
+                if (anosres === '') anosres += listaAno[ano]
+                else anosres += `,${listaAno[ano]}`
+            })
+        }
+        if (variavel != '') {
+            switch(variavel){
+                case 'esperanca de vida':
+                    agregado = 7362
+                    va = 2503
+                    classificacao = `classificacao=2[6794]|1933[${anosres}]`
+                    break
+                case 'taxa de mortalidade':
+                    agregado = 7362
+                    va = 1940
+                    classificacao = `classificacao=2[6794]|1933[${anosres}]`
+                    break
+                case 'nascimentos':
+                    agregado = 7360
+                    va = 10600
+                    classificacao = `classificacao=1933[${anosres}]`
+                    break
+                case 'obitos':
+                    agregado = 7360
+                    va = 10601
+                    classificacao = `classificacao=1933[${anosres}]`
+                    break
+                case 'populacao':
+                    agregado = 7358
+                    va = 606
+                    classificacao = `classificacao=2[6794]|287[100362]|1933[${anosres}]`
+                    break
+                default:
+                    return `Erro: variavel=${variavel} não existe!`
+            }
+        }
+        const res = {}
+        if (variavel === 'esperanca de vida' || variavel === 'taxa de mortalidade') {
+            fetch(`https://servicodados.ibge.gov.br/api/v3/agregados/${agregado}/periodos/2018/variaveis/${va}?localidades=N2[${numeroRegioes}]&${classificacao}`)
+                .then(data => data.json())
+                .then(json => {
+                    res.variavel = json[0].variavel
+                    res.unidade = json[0].unidade
+                    json[0].resultados[0].series.map(d => res[d.localidade.nome] = {})
+                    json[0].resultados.map(d => {
+                        let ano
+                        for (let i in d.classificacoes[1].categoria) {
+                            ano = d.classificacoes[1].categoria[i]
+                        }
+                        d.series.map(d2 => res[d2.localidade.nome][ano] = d2.serie['2018'])
+                    })
+
+                    visualizar(query, grafico, tabela, res)
+                })
+        } else if (variavel === 'nascimentos' || variavel === 'obitos') {
+            fetch(`https://servicodados.ibge.gov.br/api/v3/agregados/${agregado}/periodos/2018/variaveis/${va}?localidades=N2[${numeroRegioes}]&${classificacao}`)
+                .then(data => data.json())
+                .then(json => {
+                    res.variavel = json[0].variavel
+                    res.unidade = json[0].unidade
+                    json[0].resultados[0].series.map(d => res[d.localidade.nome] = {})
+                    json[0].resultados.map(d => {
+                        let ano
+                        for (let i in d.classificacoes[0].categoria) {
+                            ano = d.classificacoes[0].categoria[i]
+                        }
+                        d.series.map(d2 => res[d2.localidade.nome][ano] = d2.serie['2018'])
+                    })
+
+                    visualizar(query, grafico, tabela, res)
+                })
+        } else if (variavel === 'populacao') {
+            fetch(`https://servicodados.ibge.gov.br/api/v3/agregados/${agregado}/periodos/2018/variaveis/${va}?localidades=N2[${numeroRegioes}]&${classificacao}`)
+                .then(data => data.json())
+                .then(json => {
+                    res.variavel = json[0].variavel
+                    res.unidade = json[0].unidade
+                    json[0].resultados[0].series.map(d => res[d.localidade.nome] = {})
+                    json[0].resultados.map(d => {
+                        let ano 
+                        for (let i in d.classificacoes[2].categoria) {
+                            ano = d.classificacoes[2].categoria[i]
+                        }
+                        d.series.map(d2 => res[d2.localidade.nome][ano] = d2.serie['2018'])
+                    })
+
+                    visualizar(query, grafico, tabela, res)
+                })
+        }
+        return res
+    }
+
+    obj.projecaoDeDadosPorEstado = (nome = '', variavel = 'populacao', query = '', anos = 'all', grafico = '', tabela = false) => {
+        if(nome === "") return "Erro: digite um ou mais nomes de estados, exemplo: projecaoDeDadosPorEstado('Pará RioGrandeDoSul')"
+        let numeroEstado = '', anosres = '', agregado, va, classificacao
+        if (nome === 'all') {
+            numeroEstado += 'all'
+        } else {
+            const listaEstados = {'Rondônia': '11', 'Acre': '12', 'Amazonas': '13', 'Roraima': '14', 'Pará': '15', 'Amapá': '16', 'Tocantins': '17', 'Maranhão': '21', 'Piauí': '22', 'Ceará': '24', 'RioGrandeDoNorte': '24', 'Paraíba': '25', 'Pernambuco': '26', 'Alagoas': '27', 'Sergipe': '28', 'Bahia': '29', 'MinasGerais': '31', 'EspíritoSanto': '32', 'RioDeRaneiro': '33', 'SãoPaulo': '35', 'Paraná': '41', 'SantaCatarina': '42', 'RioGrandeDoSul': '43', 'MatoGrossoDoSul': '50', 'MatoGrosso': '51', 'Goiás': '52', 'DistritoFederal': '53'}
+            nome.split(' ').map(estado => {
+                if(numeroEstado === '') numeroEstado += listaEstados[estado]
+                else numeroEstado += `,${listaEstados[estado]}`
+            })
+        }
+        if (anos === 'all') {
+            anosres += 'all'
+        } else {
+            const listaAno = {'2000': '116338', '2001': '116336', '2002': '116335', '2003': '116334', '2004': '116332', '2005': '116331', '2006': '116330', '2007': '116329', '2008': '116327', '2009': '119270', '2010': '4336', '2011': '12037', '2012': '13242', '2013': '49029', '2014': '49030', '2015': '49031', '2016': '49032', '2017': '49033', '2018': '49034', '2019': '49035', '2020': '49036', '2021': '49037', '2022': '49038', '2023': '49039', '2024': '49040', '2025': '49041', '2026': '49042', '2027': '49043', '2028': '49044', '2029': '49045', '2030': '49046', '2031': '49047', '2032': '49048', '2033': '49049', '2034': '49050', '2035': '49051', '2036': '49052', '2037': '49053', '2038': '49054', '2039': '49055', '2040': '49056', '2041': '49057', '2042': '49058', '2043': '49059', '2044': '49060', '2045': '49061', '2046': '49062', '2047': '49063', '2048': '49064', '2049': '49065', '2050': '49066', '2051': '49067', '2052': '49068', '2053': '49069', '2054': '49070', '2055': '49071', '2056': '49072', '2057': '49073', '2058': '49074', '2059': '49075', '2060': '49076'}
+            anos.split(' ').map(ano => {
+                if (anosres === '') anosres += listaAno[ano]
+                else anosres += `,${listaAno[ano]}`
+            })
+        }
+        if (variavel != '') {
+            switch(variavel){
+                case 'esperanca de vida':
+                    agregado = 7362
+                    va = 2503
+                    classificacao = `classificacao=2[6794]|1933[${anosres}]`
+                    break
+                case 'taxa de mortalidade':
+                    agregado = 7362
+                    va = 1940
+                    classificacao = `classificacao=2[6794]|1933[${anosres}]`
+                    break
+                case 'nascimentos':
+                    agregado = 7360
+                    va = 10600
+                    classificacao = `classificacao=1933[${anosres}]`
+                    break
+                case 'obitos':
+                    agregado = 7360
+                    va = 10601
+                    classificacao = `classificacao=1933[${anosres}]`
+                    break
+                case 'populacao':
+                    agregado = 7358
+                    va = 606
+                    classificacao = `classificacao=2[6794]|287[100362]|1933[${anosres}]`
+                    break
+                default:
+                    return `Erro: variavel=${variavel} não existe!`
+            }
+        }
+        const res = {}
+        if (variavel === 'esperanca de vida' || variavel === 'taxa de mortalidade') {
+            fetch(`https://servicodados.ibge.gov.br/api/v3/agregados/${agregado}/periodos/2018/variaveis/${va}?localidades=N3[${numeroEstado}]&${classificacao}`)
+                .then(data => data.json())
+                .then(json => {
+                    res.variavel = json[0].variavel
+                    res.unidade = json[0].unidade
+                    json[0].resultados[0].series.map(d => res[d.localidade.nome] = {})
+                    json[0].resultados.map(d => {
+                        let ano
+                        for (let i in d.classificacoes[1].categoria) {
+                            ano = d.classificacoes[1].categoria[i]
+                        }
+                        d.series.map(d2 => res[d2.localidade.nome][ano] = d2.serie['2018'])
+                    })
+
+                    visualizar(query, grafico, tabela, res)
+                })
+        } else if (variavel === 'nascimentos' || variavel === 'obitos') {
+            fetch(`https://servicodados.ibge.gov.br/api/v3/agregados/${agregado}/periodos/2018/variaveis/${va}?localidades=N3[${numeroEstado}]&${classificacao}`)
+                .then(data => data.json())
+                .then(json => {
+                    res.variavel = json[0].variavel
+                    res.unidade = json[0].unidade
+                    json[0].resultados[0].series.map(d => res[d.localidade.nome] = {})
+                    json[0].resultados.map(d => {
+                        let ano
+                        for (let i in d.classificacoes[0].categoria) {
+                            ano = d.classificacoes[0].categoria[i]
+                        }
+                        d.series.map(d2 => res[d2.localidade.nome][ano] = d2.serie['2018'])
+                    })
+
+                    visualizar(query, grafico, tabela, res)
+                })
+        } else if (variavel === 'populacao') {
+            fetch(`https://servicodados.ibge.gov.br/api/v3/agregados/${agregado}/periodos/2018/variaveis/${va}?localidades=N3[${numeroEstado}]&${classificacao}`)
+                .then(data => data.json())
+                .then(json => {
+                    res.variavel = json[0].variavel
+                    res.unidade = json[0].unidade
+                    json[0].resultados[0].series.map(d => res[d.localidade.nome] = {})
+                    json[0].resultados.map(d => {
+                        let ano
+                        for (let i in d.classificacoes[2].categoria) {
+                            ano = d.classificacoes[2].categoria[i]
+                        }
+                        d.series.map(d2 => res[d2.localidade.nome][ano] = d2.serie['2018'])
+                    })
+
+                    visualizar(query, grafico, tabela, res)
+                })
+        }
+        return res
+    }
      return obj
 }

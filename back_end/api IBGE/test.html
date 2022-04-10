@@ -39,6 +39,27 @@
       17: população assalariada no Brasil
       18: população assalariada nas grandes regiões
       19: população assalariada nos estados
+      20: projeção de dados do Brasil até 2060
+      21: projeção de dados das grandes regiões até 2060
+      22: projeção de dados dos estados até 2060
+
+                variavel
+      especifica quais dados retornar para as funções 20, 21 e 22.
+      no momento existem 5 dados diferentes que são:
+        - esperança de vida ao nascer:
+          variavel: 'esperanca de vida'
+
+        - taxa de mortalidade infantil:
+          variavel: 'taxa de mortalidade'
+
+        - nascimentos:
+          variavel: 'nascimentos'
+        
+        - óbitos:
+          variavel: 'obitos'
+
+        - população:
+          variavel: 'populacao'
 
               localidade (local)
       escrever o nome da localidade com as primeiras letras maiúsculas de cada palavra e com acentuação
@@ -54,9 +75,10 @@
       exemplo de grandes regiões: "Norte Nordeste CentroOeste"
 */
       var conf = {
-        op: 6,
-        local: 'all',
-        ano: '2000 2007 2014', // inserir o ano separado por espaço, se quiser retornar todos os anos insira a palavra "all" ou não escreva o parâmetro (ano)
+        op: 21,
+        local: 'Norte Nordeste',
+        ano: 'all', // inserir o ano separado por espaço, se quiser retornar todos os anos insira a palavra "all"
+        variavel: 'nascimentos',
         query: 'div#myId',
         grafico: 'linha', // por enquanto só existe gráfico de linha
         tabela: false,
