@@ -114,8 +114,9 @@ form {
     margin-top: 18%;
     margin-left: 2%;
     font-size: 1rem;
-    color:#ffffff;
-    background:#1568db;
+    -webkit-text-stroke: 1.3px rgb(0, 0, 0);
+    color: #000000;
+    background: #F28705;
     border:0px none #ffffff;
     box-shadow:2px 2px 5px #000000;
     -moz-box-shadow:2px 2px 5px #000000;
