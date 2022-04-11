@@ -16,10 +16,12 @@
 
     <nav class="navbar">
       <picture>
-        <source srcset="imgs/ibge_logo2_2.png" media="(max-width: 320px)" width="40%">
-        <source srcset="imgs/ibge_logo2_2.png" media="(max-width: 425px)" width="40%">
-        <source srcset="imgs/ibge_logo2_2.png" media="(max-width: 648px)" width="25%">
-        <img src="imgs/ibge_logo2_2.png" width="15%">
+        <div class="logo">
+          <source srcset="imgs/ibge_logo2_2.png" media="(max-width: 320px)" width="40%">
+          <source srcset="imgs/ibge_logo2_2.png" media="(max-width: 425px)" width="40%">
+          <source srcset="imgs/ibge_logo2_2.png" media="(max-width: 648px)" width="25%">
+          <img src="imgs/logo_PIDB_jnt4.png" width="103%">
+        </div>
       </picture>
       
       
@@ -28,7 +30,7 @@
     <div class="container">
 
       <div class="box-search">
-        <div  class="title-search" type="text">
+        <div  class="texts" id="title-search" type="text">
           <p>BUSCA</p>
         </div>
           <div class="formulario">
@@ -69,35 +71,30 @@
             </div>
 
             <form>
-              <p>
-                <label>
-                  <input type="checkbox" id="slctAreaT"> ÁREA TERRITORIAL
-                </label>
-              </p>
+              <div class="slctAreaT" id="checkbox">
+                <input  type="checkbox" id="slctAreaT"> 
+                <label class="texts">ÁREA TERRITORIAL</label>
+              </div>
 
-              <p>
-                <label>
-                  <input type="checkbox" id="slctDensidadeDmg"> DENSIDADE DEMOGRÁFICA
-                </label>
-              </p>
+              <div class="slctDensidadeDmg" id="checkbox">
+                <input type="checkbox" id="slctDensidadeDmg">
+                <label class="texts">DENSIDADE DEMOGRÁFICA</label>
+              </div>
 
-              <p>
-                <label>
-                  <input type="checkbox" id="slctPopulacao"> POPULAÇÃO
-                </label>
-              </p>
+              <div class="slctPopulacao" id="checkbox">
+                <input type="checkbox" id="slctPopulacao">
+                <label class="texts">POPULAÇÃO</label>
+              </div>
 
-              <p>
-                <label>
-                  <input type="checkbox" id="slctEscolarizacao"> ESCOLARIZAÇÃO
-                </label>
-              </p>
+              <div class="slctEscolarizacao" id="checkbox">
+                <input type="checkbox" id="slctEscolarizacao">
+                <label class="texts">ESCOLARIZAÇÃO</label>
+              </div>
 
-              <p>
-                <label>
-                  <input type="checkbox" id="slctPib"> PIB
-                </label>
-              </p> 
+              <div class="slctPib" id="checkbox">
+                <input type="checkbox" id="slctPib">
+                <label class="texts">PIB</label>
+             </div> 
             </form>
 
             <!-- Botão de consulta -->
@@ -116,11 +113,11 @@
            
             <section class="grid">
               <div class="retMunicipio">
-                <p id="retMunicipio"></p>
+                <p class="textResp" id="retMunicipio"></p>
               </div>
                
               <div class="retEstado">
-                <p id="retEstado"></p>
+                <p  class="textResp" id="retEstado"></p>
               </div>
               <!--
               <div class="retDensidadeDmgE">
@@ -136,31 +133,31 @@
               </div>
               -->
               <div class="retareaTM">
-                <p id="retareaTM"></p>
+                <p class="textResp" id="retareaTM"></p>
               </div>
               
               <div class="retDensidadeDmgM">
-                <p id="retDensidadeDmgM"></p>
+                <p class="textResp" id="retDensidadeDmgM"></p>
               </div>
               
               <div class="retPopulacaoM">
-                <p id="retPopulacaoM"></p>
+                <p class="textResp" id="retPopulacaoM"></p>
               </div>
 
               <div class="retEscolarizacaoMT">
-                <p id="retEscolarizacaoMT"></p>
+                <p class="textResp" id="retEscolarizacaoMT"></p>
               </div>
 
               <div class="retEscolarizacaoMH">
-                <p id="retEscolarizacaoMH"></p>
+                <p class="textResp" id="retEscolarizacaoMH"></p>
               </div>
               
               <div class="retEscolarizacaoMM">
-                <p id="retEscolarizacaoMM"></p>
+                <p class="textResp" id="retEscolarizacaoMM"></p>
               </div>
 
               <div class="retPibM">
-                <p id="retPibM"></p>
+                <p class="textResp" id="retPibM"></p>
               </div>
               <!-- Caixa de seleção na qual o usuário pode fazer uma comparação da população com um outro ano -->
               <div class="comparaAno">
@@ -204,6 +201,15 @@
         
     </div>
 
+    <footer>
+      <div class="img_footer">
+        <picture>
+          <img src="imgs/logo_PIDB_rodape.png" width="50%">
+        </picture>
+      </div>
+    </footer>
+
+    
 
 
 <!---->
