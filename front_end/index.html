@@ -5,6 +5,11 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" type="text/css" href="style.css">
+    <!-- Biblioteca jquery do javascript para facilitar a conexão com as api's -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <!-- Biblioteca chart.js do javascript para trabalhar com gráficos -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="api_busca.js"></script>
     <title>Pesquisa IBGE</title>
 </head>
 <body>
@@ -25,46 +30,175 @@
       <div class="box-search">
         <div  class="title-search" type="text">
           <p>BUSCA</p>
+        </div>
           <div class="formulario">
-            <form >
-
-              <div class="check-box pib">
-                <input type="checkbox" id="pib" name="pib">
-                <label for="pib">PIB</label>
-              </div>
-
-              <div class="check-box territorio">
-                <input type="checkbox" id="territorio" name="territorio">
-                <label for="territorio">Área territorial</label>
-              </div>
-
-              <div class="check-box populacao">
-                <input type="checkbox" id="populacao" name="populacao">
-                <label for="populacao">População</label>
-              </div>
-
-              <div class="check-box mortalidade">
-                <input type="checkbox" id="mortalidade" name="mortalidade">
-                <label for="mortalidade">Mortalidade</label>
-              </div>
-
-              <div class="check-box natalidade">
-                <input type="checkbox" id="natalidade" name="natalidade">
-                <label for="natalidade">Natalidade</label>
-              </div>
-            
-
-              <div class="buttonSearch">
-                <button class="button_search" name="button">BUSCAR</button>
-              </div>
+            <div class="estado_cidade">
               
+              <!-- Caixa de seleção que pede para o usuário selecionar um estado --> 
+              <select name="slctEstados" id="slctEstados"></select>
+              <!-- Caixa de seleção que pede para o usuário selecionar um município -->
+              <select name="slctMunicipios" id="slctMunicipios"></select>
+            </div>
+
+            <div class="sltAno">
+              <!-- Caixa de seleção que pede para o usuário selecionar um ano -->
+              <select name="slctAno" id="slctAno">
+                  <option>Ano</option>
+                  <option value="2001">2001</option>
+                  <option value="2002">2002</option>
+                  <option value="2003">2003</option>
+                  <option value="2004">2004</option>
+                  <option value="2005">2005</option>
+                  <option value="2006">2006</option>
+                  <option value="2007">2007</option>
+                  <option value="2008">2008</option>
+                  <option value="2009">2009</option>
+                  <option value="2010">2010</option>
+                  <option value="2011">2011</option>
+                  <option value="2012">2012</option>
+                  <option value="2013">2013</option>
+                  <option value="2014">2014</option>
+                  <option value="2015">2015</option>
+                  <option value="2016">2016</option>
+                  <option value="2017">2017</option>
+                  <option value="2018">2018</option>
+                  <option value="2019">2019</option>
+                  <option value="2020">2020</option>
+                  <option value="2021">2021</option>
+              </select>
+            </div>
+
+            <form>
+              <p>
+                <label>
+                  <input type="checkbox" id="slctAreaT"> ÁREA TERRITORIAL
+                </label>
+              </p>
+
+              <p>
+                <label>
+                  <input type="checkbox" id="slctDensidadeDmg"> DENSIDADE DEMOGRÁFICA
+                </label>
+              </p>
+
+              <p>
+                <label>
+                  <input type="checkbox" id="slctPopulacao"> POPULAÇÃO
+                </label>
+              </p>
+
+              <p>
+                <label>
+                  <input type="checkbox" id="slctEscolarizacao"> ESCOLARIZAÇÃO
+                </label>
+              </p>
+
+              <p>
+                <label>
+                  <input type="checkbox" id="slctPib"> PIB
+                </label>
+              </p> 
             </form>
+
+            <!-- Botão de consulta -->
+            <div class="btnConsultar">
+              <button id="btnConsultar">CONSULTAR</button>
+            </div>
+
           </div>
 
-        </div>
+        
       </div>
       
       <div class="box-print">
+                    <!-- A div retorna as informações após btnConsutar ser clicado -->
+          <div id="resposta">
+           
+            <section class="grid">
+              <div class="retMunicipio">
+                <p id="retMunicipio"></p>
+              </div>
+               
+              <div class="retEstado">
+                <p id="retEstado"></p>
+              </div>
+              <!--
+              <div class="retDensidadeDmgE">
+                <p id="retDensidadeDmgE"></p>
+              </div>
+              
+              <div class="retPopulacaoE">
+                <p id="retPopulacaoE"></p>
+              </div>
+              
+              <div class="retPibE">
+                <p id="retPibE"></p>
+              </div>
+              -->
+              <div class="retareaTM">
+                <p id="retareaTM"></p>
+              </div>
+              
+              <div class="retDensidadeDmgM">
+                <p id="retDensidadeDmgM"></p>
+              </div>
+              
+              <div class="retPopulacaoM">
+                <p id="retPopulacaoM"></p>
+              </div>
+
+              <div class="retEscolarizacaoMT">
+                <p id="retEscolarizacaoMT"></p>
+              </div>
+
+              <div class="retEscolarizacaoMH">
+                <p id="retEscolarizacaoMH"></p>
+              </div>
+              
+              <div class="retEscolarizacaoMM">
+                <p id="retEscolarizacaoMM"></p>
+              </div>
+
+              <div class="retPibM">
+                <p id="retPibM"></p>
+              </div>
+              <!-- Caixa de seleção na qual o usuário pode fazer uma comparação da população com um outro ano -->
+              <div class="comparaAno">
+                <select name="slctAno2" id="slctAno2">
+                  <option>COMPARE COM UM OUTRO ANO</option>
+                  <option value="2001">2001</option>
+                  <option value="2002">2002</option>
+                  <option value="2003">2003</option>
+                  <option value="2004">2004</option>
+                  <option value="2005">2005</option>
+                  <option value="2006">2006</option>
+                  <option value="2007">2007</option>
+                  <option value="2008">2008</option>
+                  <option value="2009">2009</option>
+                  <option value="2010">2010</option>
+                  <option value="2011">2011</option>
+                  <option value="2012">2012</option>
+                  <option value="2013">2013</option>
+                  <option value="2014">2014</option>
+                  <option value="2015">2015</option>
+                  <option value="2016">2016</option>
+                  <option value="2017">2017</option>
+                  <option value="2018">2018</option>
+                  <option value="2019">2019</option>
+                  <option value="2020">2020</option>
+                  <option value="2021">2021</option>
+                </select>
+              </div>
+                    
+              <div id="compPopulacao">
+                    <canvas id="garficoPopulacaoAno"></canvas>
+              </div>
+              
+            </section> 
+            
+      
+
+          </div>
 
       </div>
         
