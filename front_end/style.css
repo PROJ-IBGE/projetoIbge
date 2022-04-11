@@ -6,7 +6,6 @@ body {
 }
 
 
-
 /* REFERENTE AO TOP DA PAGINA */
 .navbar {
     margin: 0%;
@@ -47,53 +46,104 @@ body {
 }
 
 .formulario {
+    padding-left: 4%;
     width: 100%;
     font-size: 60%;
+    margin-left: 2%;
+    font-weight: bolder;
+   
 }
 
-.check-box {
-    float: left;
-    grid-column: calc(1);
+.estado_cidade{
+    margin-bottom: 4%;
+}
+
+#slctEstados{
+    width: 13vh;
     
 }
-
-.buttonSearch {
-    margin-top: 118%;
-    float: left;
+#slctMunicipios{
+    width: 13vh;
+    margin-left: 2%;
 }
 
- .button_search {
-    background: #3498db;
-    background-image: -webkit-linear-gradient(top, #3498db, #2980b9);
-    background-image: -moz-linear-gradient(top, #3498db, #2980b9);
-    background-image: -ms-linear-gradient(top, #3498db, #2980b9);
-    background-image: -o-linear-gradient(top, #3498db, #2980b9);
-    background-image: linear-gradient(to bottom, #3498db, #2980b9);
-    -webkit-border-radius: 10;
-    -moz-border-radius: 10;
-    border-radius: 10px;
-    color: #ffffff;
-    font-size: 20px;
-    background: #3498db;
-    padding: 10px 20px 10px 19px;
-    text-decoration: none;
-  }
-  
-  .button_search:hover {
-    text-decoration: none;
-  }
+.sltAno{
+    margin-bottom: 4%;
+}
+
+#slctAno{
+    width: 13vh;
+    
+
+}
+
+form {
+    font-size: 0.8rem;
+}
+
+#btnConsultar {
+    width: 40%;
+    height: 6vh;
+    margin-top: 26%;
+    margin-left: 2%;
+    font-size: 1rem;
+    color:#ffffff;
+    background:#1568db;
+    border:0px none #ffffff;
+    box-shadow:2px 2px 5px #000000;
+    -moz-box-shadow:2px 2px 5px #000000;
+    -webkit-box-shadow:2px 2px 5px #000000;
+    border-radius:0px 10px 10px 10px;
+    -moz-border-radius:0px 10px 10px 10px;
+    -webkit-border-radius:0px 10px 10px 10px;
+}
 
 
 /* REFERENHTE A BOX PRINT */
 
 .box-print {
     margin-left: 2%;
-    width: 70%;
-    height: 80vh;
-    background-color: rgb(229, 255, 0);
+    width: 136vh;
+    height: 76vh;
+    background-color: rgb(0, 255, 255);
     border-radius: 1%;
     float: left;
+    padding-left: 4%;
+    padding-top: 2%;
+    overflow: auto;
+    font-weight: bolder;
+}
 
+.grid {
+    display: grid;
+    grid-template-columns: auto;
+    grid-template-rows: auto;
+}
+
+.retMunicipio{
+    width: max-content;
+    height: 8vh;
+}
+#retMunicipio {
+    margin-top: 0%;
+    font-size: 3rem;
+}
+
+.retEstado{
+    margin-top: 0%;
+}
+
+#retEstado {
+    margin-top: 0%;
+    font-size: 1.5rem;
+}
+
+.retDensidadeDmgE {
+   
+}
+
+.retPopulacaoE {
+   
 }
 
 /* PARA TABLET ( HORIZONTAL ) */
@@ -103,7 +153,6 @@ body {
     .box-search {
         width: 98%;
         height: 30vh;
-        background-color: rgb(0, 255, 255);
         border-radius: 1%;
 
     }
@@ -134,7 +183,6 @@ body {
         margin-left: auto;
         width: 98%;
         height: 60vh;
-        background-color: rgb(229, 255, 0);
         border-radius: 1%;
 
     }
@@ -195,7 +243,6 @@ body {
         margin-left: auto;
         width: 98%;
         height: 60vh;
-        background-color: rgb(229, 255, 0);
         border-radius: 1%;
 
     }
