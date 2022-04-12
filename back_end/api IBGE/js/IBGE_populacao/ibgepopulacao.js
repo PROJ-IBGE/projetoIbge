@@ -1,7 +1,7 @@
 function populacao(){
     const obj ={};
 
-    obj.populacaoDoBrasil = (query = '', anos = 'all', grafico = '', tabela = false) => {
+    obj.populacaoDoBrasil = (query = '', anos, grafico, tabela) => {
         const res = {}
         let anosres = ''
         if (anos === 'all') {
@@ -24,8 +24,7 @@ function populacao(){
         return res
     }
 
-    obj.populacaoPorGrandeRegiao = (nome = '', query = '', anos = 'all', grafico = '', tabela = false) => {
-        if(nome === "") return "Erro: digite um ou mais nomes de grandes regiões, exemplo: populacaoPorGrandeRegiao('Norte Nordeste')"
+    obj.populacaoPorGrandeRegiao = (nome, query = '', anos, grafico, tabela) => {
         let numeroRegioes = '', anosres = ''
         if (anos === 'all') {
             anosres += 'all'
@@ -57,8 +56,7 @@ function populacao(){
         return res
     }
 
-    obj.populacaoPorEstado = (nome = '', query = '', anos = 'all', grafico = '', tabela = false) => {
-        if(nome === "") return "Erro: digite um ou mais nomes de estados, exemplo: populacaoPorEstado('Pará RioGrandeDoSul')"
+    obj.populacaoPorEstado = (nome, query = '', anos, grafico, tabela) => {
         let numeroEstado = '', anosres = ''
         if (anos === 'all') {
             anosres += 'all'
@@ -91,8 +89,7 @@ function populacao(){
         return res
     }
 
-    obj.populacaoPorMunicipio = (nome = '', query = '', anos = 'all', grafico = '', tabela = false) => {
-        if(nome === '') return "Erro: digite um ou mais nomes de municipios, exemplo: populacaoPorMunicipio('Belém/Pa BrasilNovo/Pa')"
+    obj.populacaoPorMunicipio = (nome, query = '', anos, grafico, tabela) => {
         let numeroMunicipio = '', anosres = ''
         if (anos === 'all') {
             anosres += 'all'
@@ -134,7 +131,7 @@ function populacao(){
         return res
     }
 
-    obj.esperancaDeVidaDoBrasil = (query = '', anos = 'all', grafico = '', tabela = false) => {
+    obj.esperancaDeVidaDoBrasil = (query = '', anos, grafico, tabela) => {
         const res = {}
         let anosres = ''
         if (anos === 'all') {
@@ -157,8 +154,7 @@ function populacao(){
         return res
     }
 
-    obj.esperancaDeVidaPorGrandeRegiao = (nome = '', query = '', anos = 'all', grafico = '', tabela = false) => {
-        if (nome === '') return "Erro: digite um ou mais nomes de grandes regiões, exemplo: esperancaDeVidaPorGrandeRegiao('Norte Nordeste')"
+    obj.esperancaDeVidaPorGrandeRegiao = (nome, query = '', anos, grafico, tabela) => {
         let numeroRegioes = '', anosres = ''
         if (anos === 'all') {
             anosres += 'all'
@@ -190,8 +186,7 @@ function populacao(){
         return res
     }
 
-    obj.esperancaDeVidaPorEstado = (nome = '', query = '', anos = 'all', grafico = '', tabela = false,) => {
-        if(nome === "") return "Erro: digite um ou mais nomes de estados, exemplo: esperancaDeVidaPorEstado('Pará RioGrandeDoSul')"
+    obj.esperancaDeVidaPorEstado = (nome, query = '', anos, grafico, tabela) => {
         let numeroEstado = '', anosres = ''
         if (anos === 'all') {
             anosres += 'all'
@@ -224,7 +219,7 @@ function populacao(){
         return res
     }
 
-    obj.densidadeDemograficaDoBrasil = (query = '', anos = 'all', grafico = '', tabela = false) => {
+    obj.densidadeDemograficaDoBrasil = (query = '', anos, grafico, tabela) => {
         const res = {}
         let anosres = ''
         /*
@@ -250,8 +245,7 @@ function populacao(){
         return res
     }
 
-    obj.densidadeDemograficaPorGrandeRegiao = (nome = '',  query = '', anos = 'all', grafico = '', tabela = false) => {
-        if (nome === '') return "Erro: digite um ou mais nomes de grandes regiões, exemplo: densidadeDemograficaPorGrandeRegiao('Norte Nordeste')"
+    obj.densidadeDemograficaPorGrandeRegiao = (nome,  query = '', anos, grafico, tabela) => {
         let numeroRegioes = '', anosres = ''
         if (anos === 'all') {
             anosres += 'all'
@@ -283,8 +277,7 @@ function populacao(){
         return res
     }
 
-    obj.densidadeDemograficaPorEstado = (nome = '', query = '', anos = 'all', grafico = '', tabela = false) => {
-        if(nome === "") return "Erro: digite um ou mais nomes de estados, exemplo: densidadeDemograficaPorEstado('Pará RioGrandeDoSul')"
+    obj.densidadeDemograficaPorEstado = (nome, query = '', anos, grafico, tabela) => {
         let numeroEstado = '', anosres = ''
         if (anos === 'all') {
             anosres += 'all'
@@ -317,7 +310,7 @@ function populacao(){
         return res
     }
 
-    obj.populacaoAssalariadaDoBrasil = (query = '', anos = 'all', grafico = '', tabela = false) => {
+    obj.populacaoAssalariadaDoBrasil = (query = '', anos, grafico, tabela) => {
         const res = {}
         let anosres = ''
         if (anos === 'all') {
@@ -340,8 +333,7 @@ function populacao(){
         return res
     }
 
-    obj.populacaoAssalariadaPorGrandeRegiao = (nome = '',  query = '', anos = 'all', grafico = '', tabela = false) => {
-        if (nome === '') return "Erro: digite um ou mais nomes de grandes regiões, exemplo: populacaoAssalariadaPorGrandeRegiao('Norte Nordeste')"
+    obj.populacaoAssalariadaPorGrandeRegiao = (nome,  query = '', anos, grafico, tabela) => {
         let numeroRegioes = '', anosres = ''
         if (anos === 'all') {
             anosres += 'all'
@@ -374,8 +366,7 @@ function populacao(){
         return res
     }
 
-    obj.populacaoAssalariadaPorEstado = (nome = '', query = '', anos = 'all', grafico = '', tabela = false) => {
-        if(nome === "") return "Erro: digite um ou mais nomes de estados, exemplo: populacaoAssalariadaPorEstado('Pará RioGrandeDoSul')"
+    obj.populacaoAssalariadaPorEstado = (nome, query = '', anos, grafico, tabela) => {
         let numeroEstado = '', anosres = ''
         if (anos === 'all') {
             anosres += 'all'
@@ -407,7 +398,7 @@ function populacao(){
             })
     }
 
-    obj.projecaoDeDadosNoBrasil = (variavel = 'populacao', anos = 'all', query = '', grafico = '', tabela = false) => {
+    obj.projecaoDeDadosNoBrasil = (variavel, anos, query = '', grafico, tabela) => {
         let agregado, va, classificacao, anosres = ''
         if (anos === 'all') {
             anosres += 'all'
@@ -499,8 +490,7 @@ function populacao(){
         return res
     }
 
-    obj.projecaoDeDadosPorGrandeRegiao = (nome = 'all', variavel = 'populacao',  query = '', anos = 'all', grafico = '', tabela = false) => {
-        if (nome === '') return "Erro: digite um ou mais nomes de grandes regiões, exemplo: projecaoDeDadosPorGrandeRegiao('Norte Nordeste')"
+    obj.projecaoDeDadosPorGrandeRegiao = (nome, variavel,  query = '', anos, grafico, tabela) => {
         let numeroRegioes = '', anosres = ''
         if (nome === 'all') {
             numeroRegioes += 'all'
@@ -607,8 +597,7 @@ function populacao(){
         return res
     }
 
-    obj.projecaoDeDadosPorEstado = (nome = '', variavel = 'populacao', query = '', anos = 'all', grafico = '', tabela = false) => {
-        if(nome === "") return "Erro: digite um ou mais nomes de estados, exemplo: projecaoDeDadosPorEstado('Pará RioGrandeDoSul')"
+    obj.projecaoDeDadosPorEstado = (nome, variavel, query = '', anos, grafico, tabela) => {
         let numeroEstado = '', anosres = '', agregado, va, classificacao
         if (nome === 'all') {
             numeroEstado += 'all'

@@ -11,12 +11,27 @@
     <script src="ibge_main.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/chart.js@3.7.1/dist/chart.min.js"></script>
 
+    <style>
+      div#div1 {
+        position: absolute;
+        top: 0px;
+        left: 0px;
+        width: 650px;
+      }
+      div#div2 {
+        position: absolute;
+        top: 0px;
+        right: 0px;
+        width: 650px;
+      }
+    </style>
+
     <title>test</title>
 </head>
 </head>
 <body>
-    <div id="myId"></div>
-
+    <div id="div1"></div>
+    <div id="div2"></div>
     <script type="text/javascript">
 /*
                 operações (op)
@@ -74,19 +89,31 @@
       letras maiúsculas de cada palavra e com acentuação e sem espaço, exemplo: de estados "Pará Rondônia MinasGerais" e
       exemplo de grandes regiões: "Norte Nordeste CentroOeste"
 */
-      var conf = {
+
+      var conf1 = {
         op: 21,
-        local: 'Norte Nordeste',
-        ano: 'all', // inserir o ano separado por espaço, se quiser retornar todos os anos insira a palavra "all"
-        variavel: 'nascimentos',
-        query: 'div#myId',
+        local: 'Norte Nordeste', // se não for inserido esse parâmetro, a localidade padrão é "all"
+        ano: '2000 2030 2060', // inserir os anos separados por espaços, se quiser retornar todos os anos insira a palavra "all" ou insira o parâmetro (ano)
+        variavel: 'nascimentos', // se não for inserido esse parâmetro, a variavel padrão é "populacao"
+        query: 'div#div1', // se não for inserido esse parâmetro, ele retorna um erro no console
         grafico: 'linha', // por enquanto só existe gráfico de linha
-        tabela: false,
-        gini: false
+        tabela: false, // se não for inserido esse parâmetro, o valor padrão é false
+        gini: false // se não for inserido esse parâmetro, o valor padrão é false
       }
 
-      IBGE(conf)
+      var conf2 = {
+        op: 21,
+        local: 'Norte Nordeste', // se não for inserido esse parâmetro, a localidade padrão é "all"
+        ano: '2000 2030 2060', // inserir os anos separados por espaços, se quiser retornar todos os anos insira a palavra "all" ou insira o parâmetro (ano)
+        variavel: 'nascimentos', // se não for inserido esse parâmetro, a variavel padrão é "populacao"
+        query: 'div#div2', // se não for inserido esse parâmetro, ele retorna um erro no console
+        grafico: 'barra', // por enquanto só existe gráfico de linha
+        tabela: false, // se não for inserido esse parâmetro, o valor padrão é false
+        gini: false // se não for inserido esse parâmetro, o valor padrão é false
+      }
 
+      IBGE(conf1)
+      IBGE(conf2)
     </script>
 </body>
 </html>

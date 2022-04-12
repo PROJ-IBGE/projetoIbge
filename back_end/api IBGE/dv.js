@@ -1,4 +1,5 @@
 function visualizar(query = '', grafico = '', tabela = false, res) {
+    let div = document.querySelector(query)
     if (tabela) {
         if (query != '') {
             let ano
@@ -29,7 +30,6 @@ function visualizar(query = '', grafico = '', tabela = false, res) {
                 }
             }
             html += '</table>'
-            let div = document.querySelector(query)
             if (div.firstElementChild != null) {
                 div.removeChild(div.firstElementChild)
                 div.innerHTML = html
@@ -58,7 +58,8 @@ function visualizar(query = '', grafico = '', tabela = false, res) {
                             lista.push({
                                 label: i,
                                 data: datapoints,
-                                borderColor: `#${Math.floor(Math.random() * 100)}${Math.floor(Math.random() * 100)}${Math.floor(Math.random() * 100)}`,
+                                borderColor: `#04d9b2`,
+                                backgroundColor: `#f28705`,
                                 fill: false,
                                 tension: 0.4
                             })
@@ -101,7 +102,6 @@ function visualizar(query = '', grafico = '', tabela = false, res) {
                             }
                         },
                     }
-                    let div = document.querySelector(query)
                     if (div.firstElementChild != null) {
                         div.removeChild(div.firstElementChild)
                         let canvas = document.createElement('canvas')
@@ -112,6 +112,66 @@ function visualizar(query = '', grafico = '', tabela = false, res) {
                         div.appendChild(canvas)
                         const myChart = new Chart(canvas, config)
                     }
+                } else return "Erro: insira uma query!"
+                break
+            case 'barra':
+                if(query != '') {
+                    let anos
+                    for (let i in res) {
+                        if (i != 'unidade' && i != 'variavel') {
+                            anos = Object.keys(res[i])
+                            break
+                        }
+                    }
+                    let datasets = []
+                    for (let i in res) {
+                        if (i != 'unidade' && i != 'variavel') {
+                            let data = []
+                            for (let i2 in res[i]) {
+                                data.push(res[i][i2])
+                            }
+                            datasets.push({
+                                label: i,
+                                data,
+                                borderColor: `#04d9b2`,
+                                backgroundColor: `#f28705`,
+                                borderWidth: 2,
+                                borderRadius: 5,
+                                borderSkipped: false
+                            })
+                        }
+                    }
+                    
+                    const data = {
+                        labels: anos,
+                        datasets
+                    }
+                    const config = {
+                        type: 'bar',
+                        data: data,
+                        options: {
+                            responsive: true,
+                            plugins: {
+                                legend: {
+                                    position: 'top',
+                                },
+                                title: {
+                                    display: true,
+                                    text: res.variavel+' - '+res.unidade
+                                }
+                            }
+                        }
+                    }
+                        if (div.firstElementChild != null) {
+                            div.removeChild(div.firstElementChild)
+                            let canvas = document.createElement('canvas')
+                            div.appendChild(canvas)
+                            const myChart = new Chart(canvas, config)
+                        } else {
+                            let canvas = document.createElement('canvas')
+                            div.appendChild(canvas)
+                            const myChart = new Chart(canvas, config)
+                        }
                 } else return "Erro: insira uma query!"
                 break
             default:

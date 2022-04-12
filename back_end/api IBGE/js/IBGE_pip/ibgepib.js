@@ -1,7 +1,7 @@
 function pibBrasil(){
     const obj = {}
 
-    obj.pibDoBrasil = (query = '', anos = 'all', grafico = '', tabela = false, gini = false) => {
+    obj.pibDoBrasil = (query = '', anos, grafico, tabela, gini) => {
         let variavel, agregado, anosres = ''
         if (gini){
             agregado = 5939
@@ -30,8 +30,7 @@ function pibBrasil(){
         return res
     }
 
-    obj.pibPorEstado = (nome = '', query = '', anos = 'all', grafico = '', tabela = false, gini = false) => {
-        if(nome === "") return "Erro: digite um ou mais nomes de estados, exemplo: pibPorEstado(nome='Pará RioGrandeDoSul', gini=true)"
+    obj.pibPorEstado = (nome, query = '', anos, grafico, tabela, gini) => {
         let variavel, agregado, anosres = '', numeroEstado = ''
         if (gini){
             agregado = 5939
@@ -70,8 +69,7 @@ function pibBrasil(){
         return res
     }
 
-    obj.pibPorGrandeRegiao = (nome = '', query = '', anos = 'all', grafico = '', tabela = false, gini = false) => {
-        if (nome === '') return "Erro: digite um ou mais nomes de grandes regiões, exemplo: pibGrandeRegiao(nome='Norte Nordeste', gini=true)"
+    obj.pibPorGrandeRegiao = (nome, query = '', anos, grafico, tabela, gini) => {
         let variavel, agregado, anosres = '', numeroRegioes = ''
         if (gini){
             agregado = 5939
@@ -110,8 +108,7 @@ function pibBrasil(){
         return res
     }
 
-    obj.pibPorMesorregiao = (nome = '', query = '', anos = 'all', grafico = '', tabela = false) => {
-        if (nome === '') return "Erro: digite um ou mais nomes de mesorregiões, exemplo: pibPorMesorregiao(nome='Marajó/Pa MetropolitanadeBelém/Pa')"
+    obj.pibPorMesorregiao = (nome, query = '', anos, grafico, tabela) => {
         let numeroRegioes = '', anosres = ''
         if (anos === 'all') {
             anosres += 'all'
@@ -152,8 +149,7 @@ function pibBrasil(){
         return res
     }
 
-    obj.pibPorMicrorregiao = (nome = '', query = '', anos = 'all', grafico = '', tabela = false) => {
-        if (nome === '') return "Erro: digite um ou mais nomes de microregiões, exemplo: pibPorMicrorregiao('Belém/Pa Castanhal/Pa')"
+    obj.pibPorMicrorregiao = (nome, query = '', anos, grafico, tabela) => {
         let numeroRegioes = '', anosres = ''
         if (anos === 'all') {
             anosres += 'all'
@@ -194,8 +190,7 @@ function pibBrasil(){
         return res
     }
 
-    obj.pibPorMunicipio = (nome = '', query = '', anos = 'all', grafico = '', tabela = false) => {
-        if (nome === '') return "Erro: digite um ou mais nomes de municipio, exemplo: pibPorMunicipio('Belém/Pa BrasilNovo/Pa')"
+    obj.pibPorMunicipio = (nome, query = '', anos, grafico, tabela) => {
         let numeroRegioes = '', anosres = ''
         if (anos === 'all') {
             anosres += 'all'
