@@ -118,7 +118,28 @@ header{
 }
 
 #compPopulacao{
+    display: flex;
+    width: 50%;
+}
+
+#slctCidades2{
     display: none;
+}
+
+#slctCidades3{
+    display: none;
+}
+
+button{
+    padding: 3px;
+}
+
+#selecoes{
+    display: flex;
+}
+
+#selecoes select{
+    margin: 5px;
 }
 
 footer{

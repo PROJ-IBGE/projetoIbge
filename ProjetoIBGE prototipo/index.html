@@ -105,9 +105,25 @@
                         <p id="retEscolarizacaoCH"></p>
                         <p id="retEscolarizacaoCM"></p>
                         <p id="retPibC"></p>
-                        <!-- Caixa de seleção na qual o usuário pode fazer uma comparação da população com um outro ano -->
+                    </div>
+                </div>
+                <div id="graficos">
+                    <h4>Realizar comparações:</h4>
+                    <label for="compara">Informe com quantas cidades quer comparar: 
+                        <input type="text" id="qtd" placeholder="Limite de 3 cidades">
+                    </label>
+                    <button id="ok">Ok</button>
+
+                    <div id="selecoes">
+                        <!-- Caixa de seleção que pede para o usuário selecionar um município para comparação -->
+                        <select name="slctCidades2" id="slctCidades2"></select>
+
+                        <!-- Caixa de seleção que pede para o usuário selecionar um município para comparação -->
+                        <select name="slctCidades3" id="slctCidades3"></select>
+
+                        <!-- Caixa de seleção na qual o usuário pode fazer uma comparação com outras cidades -->
                         <select name="slctAno2" id="slctAno2">
-                            <option>Compare com um outro ano</option>
+                            <option>Selecione um ano</option>
                             <option value="2001">2001</option>
                             <option value="2002">2002</option>
                             <option value="2003">2003</option>
@@ -130,10 +146,11 @@
                             <option value="2020">2020</option>
                             <option value="2021">2021</option>
                         </select>
-                        
-                        <div id="compPopulacao">
-                            <canvas id="garficoPopulacaoAno"></canvas>
-                        </div>
+                    </div>
+
+                    <div id="compPopulacao">
+                        <canvas id="garficoPopulacaoAno"></canvas>
+                        <canvas id="garficoPopulacaoCidades"></canvas>
                     </div>
                 </div>
             </div>
@@ -155,5 +172,10 @@
         <!-- Biblioteca chart.js do javascript para trabalhar com gráficos -->
         <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
         <script src="api.js"></script>
+        <script src="infoEstado.js"></script>
+        <script src="infoCidade.js"></script>
+        <script src="malha.js"></script>
+        <script src="funcaoCompara.js"></script>
+        <script src="funcaoGraficoCidade.js"></script>
     </body>
 </html>
