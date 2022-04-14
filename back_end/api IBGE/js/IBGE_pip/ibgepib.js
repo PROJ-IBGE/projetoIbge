@@ -1,125 +1,8 @@
-function visualizar(query = '', grafico = '', tabela = false, res) {
-    if (tabela) {
-        if (query != '') {
-            let div = document.querySelector(query)
-            let ano
-            for (let i in res) {
-                if (i != 'unidade' && i != 'variavel') {
-                    ano = Object.keys(res[i])
-                    break
-                }
-            }
-            let cont = 0
-            let html = '<table border="1" class="tabelaClass" id="tabelaId"><caption class="tituloClass" id="tituloId">'+res.variavel+' - '+res.unidade+'</caption><tr>'
-            for (let i in ano) {
-                if (cont === 0) {
-                    cont++
-                    html += '<th></th>'
-                }
-                html += '<th>'+ano[i]+'</th>'
-            }
-            cont = 0
-            html += '</tr>'
-            for (let i in res) {
-                if (i != 'unidade' && i != 'variavel') {
-                    html += '<tr><th>'+i+'</th>'
-                    for (let i1 in res[i]) {
-                        html += '<td>'+res[i][i1]+'</td>'
-                    }
-                    html += '</tr>'
-                }
-            }
-            html += '</table>'
-            div.innerHTML = html
-        } else console.log("Erro: insira uma query!")
-    }
-    switch(grafico) {
-        case 'linha':
-            if(query != '') {
-                let labels
-                for (let i in res) {
-                    if (i != 'unidade' && i != 'variavel') {
-                        labels = Object.keys(res[i])
-                        break
-                    }
-                }
-                let inicio = [], final = []
-                const lista = []
-                for (let i in res){
-                    if (i != 'unidade' && i != 'variavel') {
-                        let datapoints = []
-                        for (let i2 in res[i]) {
-                            datapoints.push(res[i][i2])
-                        }
-                        lista.push({
-                            label: i,
-                            data: datapoints,
-                            borderColor: `#${Math.floor(Math.random() * 100)}${Math.floor(Math.random() * 100)}${Math.floor(Math.random() * 100)}`,
-                            fill: false,
-                            tension: 0.4
-                        })
-                    }
-                }
-                const data = {
-                    labels: labels,
-                    datasets: lista
-                }
-                const config = {
-                    type: 'line',
-                    data: data,
-                    options: {
-                        responsive: true,
-                        plugins: {
-                        title: {
-                            display: true,
-                            text: res.variavel+' - '+res.unidade
-                        },
-                    },
-                        interaction: {
-                            intersect: false,
-                        },
-                        scales: {
-                            x: {
-                                display: true,
-                                title: {
-                                    display: true
-                                }
-                            },
-                            y: {
-                                display: true,
-                                title: {
-                                    display: true,
-                                    text: 'Value'
-                                },
-                                suggestedMin: parseInt(inicio.sort()[0]),
-                                suggestedMax: parseInt(final.sort()[final.length-1])
-                            }
-                        }
-                    },
-                }
-                let div = document.querySelector(query)
-                if (div.firstElementChild != null) {
-                    div.removeChild(div.firstElementChild)
-                    let canvas = document.createElement('canvas')
-                    div.appendChild(canvas)
-                    const myChart = new Chart(canvas, config)
-                } else {
-                    let canvas = document.createElement('canvas')
-                    div.appendChild(canvas)
-                    const myChart = new Chart(canvas, config)
-                }
-            } else console.log("Erro: insira uma query!")
-            break
-        default:
-            console.log(`Erro: gráfico = '${grafico}' não existe!`)
-    }
-}
-
 function pibBrasil(){
     const obj = {}
 
-    obj.pibDoBrasil = (query = '', grafico = '', tabela = false, gini = false) => {
-        let variavel, agregado
+    obj.pibDoBrasil = (query = '', anos, grafico, tabela, gini) => {
+        let variavel, agregado, anosres = ''
         if (gini){
             agregado = 5939
             variavel = 529
@@ -127,9 +10,16 @@ function pibBrasil(){
             agregado = 5938
             variavel = 37  
         }
-
+        if (anos === 'all') {
+            anosres += 'all'
+        } else {
+            anos.split(' ').map(ano => {
+                if (anosres === '') anosres += ano
+                else anosres += `|${ano}`
+            })
+        }
         const res = {}
-        fetch(`https://servicodados.ibge.gov.br/api/v3/agregados/${agregado}/periodos/all/variaveis/${variavel}?localidades=N1[all]`)
+        fetch(`https://servicodados.ibge.gov.br/api/v3/agregados/${agregado}/periodos/${anosres}/variaveis/${variavel}?localidades=N1[all]`)
             .then(data => data.json())
             .then(json => {
                 res.variavel = json[0].variavel
@@ -140,8 +30,8 @@ function pibBrasil(){
         return res
     }
 
-    obj.pibPorEstado = (nome = '', query = '', grafico = '', tabela = false, gini = false) => {
-        let variavel, agregado
+    obj.pibPorEstado = (nome, query = '', anos, grafico, tabela, gini) => {
+        let variavel, agregado, anosres = '', numeroEstado = ''
         if (gini){
             agregado = 5939
             variavel = 529
@@ -149,8 +39,14 @@ function pibBrasil(){
             agregado = 5938
             variavel = 37  
         }
-        if(nome === "") return "Erro: digite um ou mais nomes de estados, exemplo: pibPorEstado(nome='Pará RioGrandeDoSul', gini=true)"
-        let numeroEstado = ''
+        if (anos === 'all') {
+            anosres += 'all'
+        } else {
+            anos.split(' ').map(ano => {
+                if (anosres === '') anosres += ano
+                else anosres += `|${ano}`
+            })
+        }
         if (nome === 'all') {
             numeroEstado = 'all'
         } else {
@@ -162,7 +58,7 @@ function pibBrasil(){
         }
 
         const res = {}
-        fetch(`https://servicodados.ibge.gov.br/api/v3/agregados/${agregado}/periodos/all/variaveis/${variavel}?localidades=N3[${numeroEstado}]`)
+        fetch(`https://servicodados.ibge.gov.br/api/v3/agregados/${agregado}/periodos/${anosres}/variaveis/${variavel}?localidades=N3[${numeroEstado}]`)
             .then(data => data.json())
             .then(json => {
                 res.unidade = json[0].unidade
@@ -173,8 +69,8 @@ function pibBrasil(){
         return res
     }
 
-    obj.pibPorGrandeRegiao = (nome = '', query = '', grafico = '', tabela = false, gini = false) => {
-        let variavel, agregado
+    obj.pibPorGrandeRegiao = (nome, query = '', anos, grafico, tabela, gini) => {
+        let variavel, agregado, anosres = '', numeroRegioes = ''
         if (gini){
             agregado = 5939
             variavel = 529
@@ -182,8 +78,14 @@ function pibBrasil(){
             agregado = 5938
             variavel = 37  
         }
-        if (nome === '') return "Erro: digite um ou mais nomes de grandes regiões, exemplo: pibGrandeRegiao(nome='Norte Nordeste', gini=true)"
-        let numeroRegioes = ''
+        if (anos === 'all') {
+            anosres += 'all'
+        } else {
+            anos.split(' ').map(ano => {
+                if (anosres === '') anosres += ano
+                else anosres += `|${ano}`
+            })
+        }
         if (nome === 'all') {
             numeroRegioes += 'all'
         } else {
@@ -195,7 +97,7 @@ function pibBrasil(){
         }
 
         const res = {};
-        fetch(`https://servicodados.ibge.gov.br/api/v3/agregados/${agregado}/periodos/all/variaveis/${variavel}?localidades=N2[${numeroRegioes}]`)
+        fetch(`https://servicodados.ibge.gov.br/api/v3/agregados/${agregado}/periodos/${anosres}/variaveis/${variavel}?localidades=N2[${numeroRegioes}]`)
             .then(data => data.json())
             .then(json => {
                 res.unidade = json[0].unidade
@@ -206,9 +108,16 @@ function pibBrasil(){
         return res
     }
 
-    obj.pibPorMesorregiao = (nome = '', query = '', grafico = '', tabela = false) => {
-        if (nome === '') return "Erro: digite um ou mais nomes de mesorregiões, exemplo: pibPorMesorregiao(nome='Marajó/Pa MetropolitanadeBelém/Pa')"
-        let numeroRegioes = ''
+    obj.pibPorMesorregiao = (nome, query = '', anos, grafico, tabela) => {
+        let numeroRegioes = '', anosres = ''
+        if (anos === 'all') {
+            anosres += 'all'
+        } else {
+            anos.split(' ').map(ano => {
+                if (anosres === '') anosres += ano
+                else anosres += `|${ano}`
+            })
+        }
         if (nome === 'all') {
             numeroRegioes += 'all'
         } else {
@@ -229,7 +138,7 @@ function pibBrasil(){
         }
 
         const res = {}
-        fetch(`https://servicodados.ibge.gov.br/api/v3/agregados/5938/periodos/all/variaveis/37?localidades=N8[${numeroRegioes}]`)
+        fetch(`https://servicodados.ibge.gov.br/api/v3/agregados/5938/periodos/${anosres}/variaveis/37?localidades=N8[${numeroRegioes}]`)
             .then(data => data.json())
             .then(json => {
                 res.unidade = json[0].unidade
@@ -240,9 +149,16 @@ function pibBrasil(){
         return res
     }
 
-    obj.pibPorMicrorregiao = (nome = '', query = '', grafico = '', tabela = false) => {
-        if (nome === '') return "Erro: digite um ou mais nomes de microregiões, exemplo: pibPorMicrorregiao('Belém/Pa Castanhal/Pa')"
-        let numeroRegioes = ''
+    obj.pibPorMicrorregiao = (nome, query = '', anos, grafico, tabela) => {
+        let numeroRegioes = '', anosres = ''
+        if (anos === 'all') {
+            anosres += 'all'
+        } else {
+            anos.split(' ').map(ano => {
+                if (anosres === '') anosres += ano
+                else anosres += `|${ano}`
+            })
+        }
         if (nome === 'all') {
             numeroRegioes += 'all'
         } else {
@@ -263,7 +179,7 @@ function pibBrasil(){
         }
 
         const res = {}
-        fetch(`https://servicodados.ibge.gov.br/api/v3/agregados/5938/periodos/all/variaveis/37?localidades=N9[${numeroRegioes}]`)
+        fetch(`https://servicodados.ibge.gov.br/api/v3/agregados/5938/periodos/${anosres}/variaveis/37?localidades=N9[${numeroRegioes}]`)
             .then(data => data.json())
             .then(json => {
                 res.unidade = json[0].unidade
@@ -274,9 +190,16 @@ function pibBrasil(){
         return res
     }
 
-    obj.pibPorMunicipio = (nome = '', query = '', grafico = '', tabela = false) => {
-        if (nome === '') return "Erro: digite um ou mais nomes de municipio, exemplo: pibPorMunicipio('Belém/Pa BrasilNovo/Pa')"
-        let numeroRegioes = ''
+    obj.pibPorMunicipio = (nome, query = '', anos, grafico, tabela) => {
+        let numeroRegioes = '', anosres = ''
+        if (anos === 'all') {
+            anosres += 'all'
+        } else {
+            anos.split(' ').map(ano => {
+                if (anosres === '') anosres += ano
+                else anosres += `|${ano}`
+            })
+        }
         if (nome === 'all') {
             return 'Erro: não retorna todos os municipios!'
         } else {
@@ -297,7 +220,7 @@ function pibBrasil(){
         }
 
         const res = {}
-        fetch(`https://servicodados.ibge.gov.br/api/v3/agregados/5938/periodos/all/variaveis/37?localidades=N6[${numeroRegioes}]`)
+        fetch(`https://servicodados.ibge.gov.br/api/v3/agregados/5938/periodos/${anosres}/variaveis/37?localidades=N6[${numeroRegioes}]`)
             .then(data => data.json())
             .then(json => {
                 res.unidade = json[0].unidade

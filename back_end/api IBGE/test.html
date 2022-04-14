@@ -5,17 +5,33 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
+    <script src="dv.js"></script>
     <script src="js/IBGE_populacao/ibgepopulacao.js"></script>
     <script src="js/IBGE_pip/ibgepib.js"></script>
     <script src="ibge_main.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/chart.js@3.7.1/dist/chart.min.js"></script>
 
+    <style>
+      div#div1 {
+        position: absolute;
+        top: 0px;
+        left: 0px;
+        width: 650px;
+      }
+      div#div2 {
+        position: absolute;
+        top: 0px;
+        right: 0px;
+        width: 650px;
+      }
+    </style>
+
     <title>test</title>
 </head>
 </head>
 <body>
-    <div id="myId"></div>
-
+    <div id="div1"></div>
+    <div id="div2"></div>
     <script type="text/javascript">
 /*
                 operações (op)
@@ -38,6 +54,27 @@
       17: população assalariada no Brasil
       18: população assalariada nas grandes regiões
       19: população assalariada nos estados
+      20: projeção de dados do Brasil até 2060
+      21: projeção de dados das grandes regiões até 2060
+      22: projeção de dados dos estados até 2060
+
+                variavel
+      especifica quais dados retornar para as funções 20, 21 e 22.
+      no momento existem 5 dados diferentes que são:
+        - esperança de vida ao nascer:
+          variavel: 'esperanca de vida'
+
+        - taxa de mortalidade infantil:
+          variavel: 'taxa de mortalidade'
+
+        - nascimentos:
+          variavel: 'nascimentos'
+        
+        - óbitos:
+          variavel: 'obitos'
+
+        - população:
+          variavel: 'populacao'
 
               localidade (local)
       escrever o nome da localidade com as primeiras letras maiúsculas de cada palavra e com acentuação
@@ -52,17 +89,31 @@
       letras maiúsculas de cada palavra e com acentuação e sem espaço, exemplo: de estados "Pará Rondônia MinasGerais" e
       exemplo de grandes regiões: "Norte Nordeste CentroOeste"
 */
-      var conf = {
-        op: 13,
-        local: 'all',
-        query: 'div#myId',
+
+      var conf1 = {
+        op: 21,
+        local: 'Norte Nordeste', // se não for inserido esse parâmetro, a localidade padrão é "all"
+        ano: '2000 2030 2060', // inserir os anos separados por espaços, se quiser retornar todos os anos insira a palavra "all" ou insira o parâmetro (ano)
+        variavel: 'nascimentos', // se não for inserido esse parâmetro, a variavel padrão é "populacao"
+        query: 'div#div1', // se não for inserido esse parâmetro, ele retorna um erro no console
         grafico: 'linha', // por enquanto só existe gráfico de linha
-        tabela: false,
-        gini: false
+        tabela: false, // se não for inserido esse parâmetro, o valor padrão é false
+        gini: false // se não for inserido esse parâmetro, o valor padrão é false
       }
 
-      IBGE(conf)
+      var conf2 = {
+        op: 21,
+        local: 'Norte Nordeste', // se não for inserido esse parâmetro, a localidade padrão é "all"
+        ano: '2000 2030 2060', // inserir os anos separados por espaços, se quiser retornar todos os anos insira a palavra "all" ou insira o parâmetro (ano)
+        variavel: 'nascimentos', // se não for inserido esse parâmetro, a variavel padrão é "populacao"
+        query: 'div#div2', // se não for inserido esse parâmetro, ele retorna um erro no console
+        grafico: 'barra', // por enquanto só existe gráfico de linha
+        tabela: false, // se não for inserido esse parâmetro, o valor padrão é false
+        gini: false // se não for inserido esse parâmetro, o valor padrão é false
+      }
 
+      IBGE(conf1)
+      IBGE(conf2)
     </script>
 </body>
 </html>
