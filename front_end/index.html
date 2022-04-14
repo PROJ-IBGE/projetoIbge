@@ -17,9 +17,6 @@
     <nav class="navbar">
       <picture>
         <div class="logo">
-          <source srcset="imgs/ibge_logo2_2.png" media="(max-width: 320px)" width="40%">
-          <source srcset="imgs/ibge_logo2_2.png" media="(max-width: 425px)" width="40%">
-          <source srcset="imgs/ibge_logo2_2.png" media="(max-width: 648px)" width="25%">
           <img src="imgs/logo_PIDB_jnt4.png" width="103%">
         </div>
       </picture>
@@ -34,74 +31,76 @@
           <p>BUSCA</p>
         </div>
           <div class="formulario">
-            <div class="estado_cidade">
+            <section class="grid_search">
+              <div class="estado_cidade">
+                
+                <!-- Caixa de seleção que pede para o usuário selecionar um estado --> 
+                <select name="slctEstados" id="slctEstados"></select>
+                <!-- Caixa de seleção que pede para o usuário selecionar um município -->
+                <select name="slctMunicipios" id="slctMunicipios"></select>
+              </div>
+
+              <div class="sltAno">
+                <!-- Caixa de seleção que pede para o usuário selecionar um ano -->
+                <select name="slctAno" id="slctAno">
+                    <option>Ano</option>
+                    <option value="2001">2001</option>
+                    <option value="2002">2002</option>
+                    <option value="2003">2003</option>
+                    <option value="2004">2004</option>
+                    <option value="2005">2005</option>
+                    <option value="2006">2006</option>
+                    <option value="2007">2007</option>
+                    <option value="2008">2008</option>
+                    <option value="2009">2009</option>
+                    <option value="2010">2010</option>
+                    <option value="2011">2011</option>
+                    <option value="2012">2012</option>
+                    <option value="2013">2013</option>
+                    <option value="2014">2014</option>
+                    <option value="2015">2015</option>
+                    <option value="2016">2016</option>
+                    <option value="2017">2017</option>
+                    <option value="2018">2018</option>
+                    <option value="2019">2019</option>
+                    <option value="2020">2020</option>
+                    <option value="2021">2021</option>
+                </select>
+              </div>
               
-              <!-- Caixa de seleção que pede para o usuário selecionar um estado --> 
-              <select name="slctEstados" id="slctEstados"></select>
-              <!-- Caixa de seleção que pede para o usuário selecionar um município -->
-              <select name="slctMunicipios" id="slctMunicipios"></select>
-            </div>
+              <form>
+                <div class="slctAreaT" id="checkbox">
+                  <input class="checkbox_icon" type="checkbox" id="slctAreaT"> 
+                  <label class="texts">ÁREA TERRITORIAL</label>
+                </div>
 
-            <div class="sltAno">
-              <!-- Caixa de seleção que pede para o usuário selecionar um ano -->
-              <select name="slctAno" id="slctAno">
-                  <option>Ano</option>
-                  <option value="2001">2001</option>
-                  <option value="2002">2002</option>
-                  <option value="2003">2003</option>
-                  <option value="2004">2004</option>
-                  <option value="2005">2005</option>
-                  <option value="2006">2006</option>
-                  <option value="2007">2007</option>
-                  <option value="2008">2008</option>
-                  <option value="2009">2009</option>
-                  <option value="2010">2010</option>
-                  <option value="2011">2011</option>
-                  <option value="2012">2012</option>
-                  <option value="2013">2013</option>
-                  <option value="2014">2014</option>
-                  <option value="2015">2015</option>
-                  <option value="2016">2016</option>
-                  <option value="2017">2017</option>
-                  <option value="2018">2018</option>
-                  <option value="2019">2019</option>
-                  <option value="2020">2020</option>
-                  <option value="2021">2021</option>
-              </select>
-            </div>
+                <div class="slctDensidadeDmg" id="checkbox">
+                  <input class="checkbox_icon" type="checkbox" id="slctDensidadeDmg">
+                  <label class="texts" id="slctDensidadeDmgTxt" >DENSIDADE DEMOGRÁFICA</label>
+                </div>
 
-            <form>
-              <div class="slctAreaT" id="checkbox">
-                <input  type="checkbox" id="slctAreaT"> 
-                <label class="texts">ÁREA TERRITORIAL</label>
+                <div class="slctPopulacao" id="checkbox">
+                  <input class="checkbox_icon" type="checkbox" id="slctPopulacao">
+                  <label class="texts">POPULAÇÃO</label>
+                </div>
+
+                <div class="slctEscolarizacao" id="checkbox">
+                  <input class="checkbox_icon" type="checkbox" id="slctEscolarizacao">
+                  <label class="texts">ESCOLARIZAÇÃO</label>
+                </div>
+
+                <div class="slctPib" id="checkbox">
+                  <input class="checkbox_icon" type="checkbox" id="slctPib">
+                  <label class="texts">PIB</label>
+                </div> 
+              </form>
+              
+
+              <!-- Botão de consulta -->
+              <div class="btnConsultar">
+                <button id="btnConsultar">CONSULTAR</button>
               </div>
-
-              <div class="slctDensidadeDmg" id="checkbox">
-                <input type="checkbox" id="slctDensidadeDmg">
-                <label class="texts">DENSIDADE DEMOGRÁFICA</label>
-              </div>
-
-              <div class="slctPopulacao" id="checkbox">
-                <input type="checkbox" id="slctPopulacao">
-                <label class="texts">POPULAÇÃO</label>
-              </div>
-
-              <div class="slctEscolarizacao" id="checkbox">
-                <input type="checkbox" id="slctEscolarizacao">
-                <label class="texts">ESCOLARIZAÇÃO</label>
-              </div>
-
-              <div class="slctPib" id="checkbox">
-                <input type="checkbox" id="slctPib">
-                <label class="texts">PIB</label>
-             </div> 
-            </form>
-
-            <!-- Botão de consulta -->
-            <div class="btnConsultar">
-              <button id="btnConsultar">CONSULTAR</button>
-            </div>
-
+            </section>
           </div>
 
         
@@ -111,7 +110,7 @@
                     <!-- A div retorna as informações após btnConsutar ser clicado -->
           <div id="resposta">
            
-            <section class="grid">
+            <section class="grid_print">
               <div class="retMunicipio">
                 <p class="textResp" id="retMunicipio"></p>
               </div>
@@ -139,7 +138,7 @@
               <div class="retDensidadeDmgM">
                 <p class="textResp" id="retDensidadeDmgM"></p>
               </div>
-              
+          
               <div class="retPopulacaoM">
                 <p class="textResp" id="retPopulacaoM"></p>
               </div>
@@ -204,7 +203,7 @@
     <footer>
       <div class="img_footer">
         <picture>
-          <img src="imgs/logo_PIDB_rodape.png" width="50%">
+          <img id="img_footer" src="imgs/logo_PIDB_rodape.png" width="30%">
         </picture>
       </div>
     </footer>
