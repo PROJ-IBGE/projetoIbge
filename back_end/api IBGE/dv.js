@@ -127,8 +127,8 @@ function visualizar(query = '', grafico = '', tabela = false, res) {
                                 data,
                                 borderColor: `#04d9b2`,
                                 backgroundColor: `#f28705`,
-                                borderWidth: 2,
-                                borderRadius: 5,
+                                borderWidth: 3,
+                                borderRadius: 30,
                                 borderSkipped: false
                             })
                         }
