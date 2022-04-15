@@ -97,6 +97,26 @@ header{
     display: none;
 }
 
+#dadosE{
+    display: flex;
+    flex-direction: column;
+}
+
+#dadosE input{
+    border: none;
+    width: 40px;
+}
+
+#dadosC{
+    display: flex;
+    flex-direction: column;
+}
+
+#dadosC input{
+    border: none;
+    width: 60px;
+}
+
 #retMalhaE{
     display: none;
     align-items: center;

@@ -30,7 +30,9 @@ $(document).ready(function(){
 
                     } ,
                     success: function(areaT){
-                        var areaTC = "<p>Área Territorial: " + areaT[0].resultados[0].series[0].serie['2010'] + "km2</p>"
+                        var areaTC = "<p>Área Territorial: "
+                        areaTC = areaTC + "<input type='text' value='"+areaT[0].resultados[0].series[0].serie['2010']+"'>km2";
+                        areaTC = areaTC + "</p>"
                         $("#retareaTC").html(areaTC);
                     }
                 })
@@ -52,7 +54,9 @@ $(document).ready(function(){
 
                     } ,
                     success: function(densidadeDmg){
-                        var densidadeDmgC = "<p>Densidade Demográfica[2010]: " + densidadeDmg[0].resultados[0].series[0].serie['2010'] + "hab/km2</p>"
+                        var densidadeDmgC = "<p>Densidade Demográfica[2010]: "
+                        densidadeDmgC = densidadeDmgC + "<input type='text' value='"+densidadeDmg[0].resultados[0].series[0].serie['2010']+"'>hab/km2"
+                        densidadeDmgC = densidadeDmgC + "</p>"
                         $("#retDensidadeDmgC").html(densidadeDmgC);
                     }
                 })
@@ -66,20 +70,56 @@ $(document).ready(function(){
     $("#slctPopulacao").change(function(){
         if( $(this).prop("checked") == true ){
             $("#btnConsultar").click(function(){
-                // link do agregado Estimativas de população (população residente estimada) para o município
-                // Não há informações para população estimada no ano de 2010. Será necessário recuperar a informação do censo de 2010
-                // Método de conexão
-                $.ajax({
-                    url: "https://servicodados.ibge.gov.br/api/v3/agregados/6579/periodos/"+$("#slctAno").val()+"/variaveis/9324?localidades=N6["+$("#slctCidades").val()+"]" ,
-                    type: "GET" ,
-                    data: {
+                switch ($("#slctAno").val()){
+                    case "2007":
+                        // ANO 2007
+                        $.ajax({
+                            url: "https://servicodados.ibge.gov.br/api/v3/agregados/793/periodos/2007/variaveis/93?localidades=N6["+$("#slctCidades").val()+"]",
+                            type: "GET",
+                            data:{
 
-                    } ,
-                    success: function(populacao){
-                        var populacaoC = "<p>População estimada em " + $("#slctAno").val() + ": " + populacao[0].resultados[0].series[0].serie[$("#slctAno").val()] + "</p>"
-                        $("#retPopulacaoC").html(populacaoC);
-                    }
-                })
+                            },
+                            success: function(populacao){
+                                var populacaoC = "<p>População em " + $("#slctAno").val() + ": ";
+                                populacaoC = populacaoC + "<input type='text' id='inpPopC' value='"+populacao[0].resultados[0].series[0].serie['2007']+"'>"
+                                populacaoC = populacaoC + "</p>"
+                                $("#retPopulacaoC").html(populacaoC);
+                            }
+                        })
+                        break
+                    case "2010":
+                        // ANO 2010
+                        $.ajax({
+                            url: "https://servicodados.ibge.gov.br/api/v3/agregados/3175/periodos/2010/variaveis/93?localidades=N6["+$("#slctCidades").val()+"]",
+                            type: "GET",
+                            data:{
+
+                            },
+                            success: function(populacao){
+                                var populacaoC = "<p>População em " + $("#slctAno").val() + ": ";
+                                populacaoC = populacaoC + "<input type='text' id='inpPopC' value='"+populacao[0].resultados[0].series[0].serie['2010']+"'>"
+                                populacaoC = populacaoC + "</p>"
+                                $("#retPopulacaoC").html(populacaoC);
+                            }
+                        })
+                        break
+                    default:
+                        // link do agregado Estimativas de população (população residente estimada) para o município
+                        $.ajax({
+                            url: "https://servicodados.ibge.gov.br/api/v3/agregados/6579/periodos/"+$("#slctAno").val()+"/variaveis/9324?localidades=N6["+$("#slctCidades").val()+"]" ,
+                            type: "GET" ,
+                            data: {
+
+                            } ,
+                            success: function(populacao){
+                                var populacaoC = "<p>População em " + $("#slctAno").val() + ": ";
+                                populacaoC = populacaoC + "<input type='text' id='inpPopC' value='"+populacao[0].resultados[0].series[0].serie[$("#slctAno").val()]+"'>"
+                                populacaoC = populacaoC + "</p>"
+                                $("#retPopulacaoC").html(populacaoC);
+                            }
+                        })
+                        break
+                }
             })
         } else {
             return;
@@ -99,7 +139,9 @@ $(document).ready(function(){
 
                     },
                     success: function(escolarTotal){
-                        var escolarizacaoTotal = "<p>Alfabetização total de pessoas com 10 anos: " + escolarTotal[0].resultados[0].series[0].serie["2010"] + "%</p>"
+                        var escolarizacaoTotal = "<p>Alfabetização total de pessoas com 10 anos: "
+                        escolarizacaoTotal = escolarizacaoTotal + "<input type='text' value='"+escolarTotal[0].resultados[0].series[0].serie["2010"]+"'>%"
+                        escolarizacaoTotal = escolarizacaoTotal + "</p>"
                         $("#retEscolarizacaoCT").html(escolarizacaoTotal);
                     }
                 })
@@ -120,7 +162,9 @@ $(document).ready(function(){
 
                     },
                     success: function(escolarTotalH){
-                        var escolarizacaoTotalH = "<p>Alfabetização total de homens com 10 anos: " + escolarTotalH[0].resultados[0].series[0].serie["2010"] + "%</p>"
+                        var escolarizacaoTotalH = "<p>Alfabetização total de homens com 10 anos: "
+                        escolarizacaoTotalH = escolarizacaoTotalH + "<input type='text' value='"+ escolarTotalH[0].resultados[0].series[0].serie["2010"] +"'>%"
+                        escolarizacaoTotalH = escolarizacaoTotalH + "</p>"
                         $("#retEscolarizacaoCH").html(escolarizacaoTotalH);
                     }
                 })
@@ -141,7 +185,9 @@ $(document).ready(function(){
 
                     },
                     success: function(escolarTotalM){
-                        var escolarizacaoTotalM = "<p>Alfabetização total de mulheres com 10 anos: " + escolarTotalM[0].resultados[0].series[0].serie["2010"] + "%</p>"
+                        var escolarizacaoTotalM = "<p>Alfabetização total de mulheres com 10 anos: "
+                        escolarizacaoTotalM = escolarizacaoTotalM + "<input type='text' value='"+escolarTotalM[0].resultados[0].series[0].serie["2010"]+"'>%"
+                        escolarizacaoTotalM = escolarizacaoTotalM + "</p>"
                         $("#retEscolarizacaoCM").html(escolarizacaoTotalM);
                     }
                 })
@@ -162,7 +208,9 @@ $(document).ready(function(){
 
                     },
                     success: function(pib){
-                        var pibC = "<p>PIB em " + $("#slctAno").val() + ": R$" + pib[0].resultados[0].series[0].serie[$("#slctAno").val()] + "</p>"
+                        var pibC = "<p>PIB em " + $("#slctAno").val() + ": R$"
+                        pibC = pibC + "<input type='text' value='"+pib[0].resultados[0].series[0].serie[$("#slctAno").val()]+"'>"
+                        pibC = pibC + "</p>"
                         $("#retPibC").html(pibC);
                     }
                 })

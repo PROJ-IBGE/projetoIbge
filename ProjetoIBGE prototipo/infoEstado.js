@@ -46,19 +46,52 @@ $(document).ready(function(){
         if( $(this).prop("checked") == true ){
             if( $("#slctCidades option:selected").text() == "Selecione uma cidade" ){
                 $("#btnConsultar").click(function(){
-                    // link do agregado Estimativas de população (população residente estimada) para o estado
-                    // Não há informações para população estimada no ano de 2010. Será necessário recuperar a informação do censo de 2010
-                    $.ajax({
-                        url: "https://servicodados.ibge.gov.br/api/v3/agregados/6579/periodos/" + $("#slctAno").val() + "/variaveis/9324?localidades=N3["+$("#slctEstados").val()+"]" ,
-                        type: "GET" ,
-                        data: {
-    
-                        } ,
-                        success: function(populacao){
-                            var populacaoEst = "<p>População estimada em " + $("#slctAno").val() + ": " + populacao[0].resultados[0].series[0].serie[$("#slctAno").val()] + "</p>"
-                            $("#retPopulacaoE").html(populacaoEst);
-                        }
-                    })
+                    var ano = document.getElementById("slctAno").value;
+
+                    switch(ano){
+                        case "2007":
+                            // ANO DE 2007
+                            $.ajax({
+                                url: "https://servicodados.ibge.gov.br/api/v3/agregados/793/periodos/2007/variaveis/93?localidades=N3[15]",
+                                type: "GET",
+                                data:{
+
+                                },
+                                success: function(populacao){
+                                    var populacaoEst = "<p>População em "+$("#slctAno").val()+": " +populacao[0].resultados[0].series[0].serie['2007']+ "</p>";
+                                    $("#retPopulacaoE").html(populacaoEst);
+                                }
+                            })
+                            break
+                        case "2010":
+                            // ANO DE 2010
+                            $.ajax({
+                                url: "https://servicodados.ibge.gov.br/api/v3/agregados/3332/periodos/2010/variaveis/93?localidades=N3["+$("#slctEstados").val()+"]&classificacao=58[0]",
+                                type: "GET",
+                                data:{
+
+                                },
+                                success: function(populacao){
+                                    var populacaoEst = "<p>População em " + $("#slctAno").val() + ": " + populacao[0].resultados[0].series[0].serie['2010'] + "</p>"
+                                    $("#retPopulacaoE").html(populacaoEst);
+                                }
+                            })
+                            break
+                        default:
+                            // link do agregado Estimativas de população (população residente estimada) para o estado
+                            $.ajax({
+                                url: "https://servicodados.ibge.gov.br/api/v3/agregados/6579/periodos/" + $("#slctAno").val() + "/variaveis/9324?localidades=N3["+$("#slctEstados").val()+"]" ,
+                                type: "GET" ,
+                                data: {
+
+                                } ,
+                                success: function(populacao){
+                                    var populacaoEst = "<p>População estimada em " +$("#slctAno").val()+ ": " + populacao[0].resultados[0].series[0].serie[$("#slctAno").val()] + "</p>"
+                                    $("#retPopulacaoE").html(populacaoEst);
+                                }
+                            })
+                            break
+                    }
                 })
             } else {
                 return;
