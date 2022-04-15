@@ -16,13 +16,26 @@
         position: absolute;
         top: 0px;
         left: 0px;
-        width: 650px;
+        width: 50%;
       }
       div#div2 {
         position: absolute;
         top: 0px;
         right: 0px;
-        width: 650px;
+        width: 50%;
+      }
+      div {
+        text-align: center;
+      }
+      button {
+        border: none;
+        border-radius: 5px;
+        background-color: #193c40;
+        color: white;
+        padding: 5px;
+      }
+      label {
+        padding: 10px;
       }
     </style>
 
@@ -91,23 +104,23 @@
 */
 
       var conf1 = {
-        op: 21,
-        local: 'Norte Nordeste', // se não for inserido esse parâmetro, a localidade padrão é "all"
-        ano: '2000 2030 2060', // inserir os anos separados por espaços, se quiser retornar todos os anos insira a palavra "all" ou insira o parâmetro (ano)
+        op: 6,
+        local: 'Norte Nordeste Sul', // se não for inserido esse parâmetro, a localidade padrão é "all"
+        ano: '2000 2007 2014', // inserir os anos separados por espaços, se quiser retornar todos os anos insira a palavra "all" ou insira o parâmetro (ano)
         variavel: 'nascimentos', // se não for inserido esse parâmetro, a variavel padrão é "populacao"
-        query: 'div#div1', // se não for inserido esse parâmetro, ele retorna um erro no console
-        grafico: 'linha', // por enquanto só existe gráfico de linha
+        query: 'div#div1', // se não for inserido esse parâmetro, ele insere o gráfico no body
+        grafico: 'linha', // só existe gráficos de linha, barra1 e barra2
         tabela: false, // se não for inserido esse parâmetro, o valor padrão é false
         gini: false // se não for inserido esse parâmetro, o valor padrão é false
       }
 
       var conf2 = {
-        op: 21,
-        local: 'Norte Nordeste', // se não for inserido esse parâmetro, a localidade padrão é "all"
-        ano: '2000 2030 2060', // inserir os anos separados por espaços, se quiser retornar todos os anos insira a palavra "all" ou insira o parâmetro (ano)
+        op: 6,
+        local: 'Norte Nordeste Sul', // se não for inserido esse parâmetro, a localidade padrão é "all"
+        ano: '2000 2007 2014', // inserir os anos separados por espaços, se quiser retornar todos os anos insira a palavra "all" ou insira o parâmetro (ano)
         variavel: 'nascimentos', // se não for inserido esse parâmetro, a variavel padrão é "populacao"
-        query: 'div#div2', // se não for inserido esse parâmetro, ele retorna um erro no console
-        grafico: 'barra', // por enquanto só existe gráfico de linha
+        query: 'div#div2', // se não for inserido esse parâmetro, ele insere o gráfico no body
+        grafico: 'barra2', // só existe gráficos de linha, barra1 e barra2
         tabela: false, // se não for inserido esse parâmetro, o valor padrão é false
         gini: false // se não for inserido esse parâmetro, o valor padrão é false
       }

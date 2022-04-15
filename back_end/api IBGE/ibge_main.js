@@ -58,7 +58,7 @@ function IBGE(obj) {
             if (obj.local === undefined) obj.local = 'all'
             if (obj.ano === undefined) obj.ano = 'all'
             if (obj.variavel === undefined) obj.variavel = 'populacao'
-            if (obj.query === undefined) console.error('Erro: insira a query!')
+            if (obj.query === undefined) obj.query = 'body'
             if (obj.grafico === undefined) obj.grafico = 'linha'
             if (obj.tabela === undefined) obj.tabela = false
             if (obj.gini === undefined) obj.gini = false
