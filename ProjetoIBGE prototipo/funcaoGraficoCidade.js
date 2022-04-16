@@ -1,10 +1,10 @@
 $(document).ready(function(){
 
-    // Gráfico populacional por ano
+    // Gráfico populacional entre anos do município
     $("#slctPopulacao").change(function(){
         if( $(this).prop("checked") == true ){
             $("#slctAno2").change(function(){
-                document.getElementById("compPopulacao").style.display = 'flex';
+                document.getElementById("garficoPopulacaoAno").style.display = 'flex';
 
                 switch($("#slctAno2").val()){
                     case "2007":
@@ -20,7 +20,7 @@ $(document).ready(function(){
                                     datasets: [{
                                         label: 'População',
                                         data: [ {id: $("#slctAno").val(), nested: {value: $("#inpPopC").val()}},
-                                                {id: $("#slctAno2").val(), nested: {value: comparaAno[0].resultados[0].series[0].serie[$("#slctAno2").val()]}}],
+                                                {id: $("#slctAno2").val(), nested: {value: comparaAno[0].resultados[0].series[0].serie['2007']}}],
                                         backgroundColor: 'rgb(255, 99, 132)',
                                         borderColor: 'rgb(255, 99, 132)'
                                     }]
@@ -74,7 +74,7 @@ $(document).ready(function(){
                                     datasets: [{
                                         label: 'População',
                                         data: [ {id: $("#slctAno").val(), nested: {value: $("#inpPopC").val()}},
-                                                {id: $("#slctAno2").val(), nested: {value: comparaAno[0].resultados[0].series[0].serie[$("#slctAno2").val()]}}],
+                                                {id: $("#slctAno2").val(), nested: {value: comparaAno[0].resultados[0].series[0].serie['2010']}}],
                                         backgroundColor: 'rgb(255, 99, 132)',
                                         borderColor: 'rgb(255, 99, 132)'
                                     }]
@@ -174,7 +174,7 @@ $(document).ready(function(){
     
     // Gráfico populacional entre municípios
     $("#slctCidades2").change(function(){
-        document.getElementById("compPopulacao").style.display = 'flex';
+        document.getElementById("garficoPopulacaoCidades").style.display = 'flex';
 
         switch($("#slctAno").val()){
             case "2007":
@@ -189,10 +189,16 @@ $(document).ready(function(){
                             labels: [$("#slctCidades option:selected").text(), $("#slctCidades2 option:selected").text()],
                             datasets: [{
                                 label: 'População',
-                                data: [ {id: $("#slctCidades option:selected").text(), nested: {value: $("#inpPopC").val()}},
-                                        {id: $("#slctCidades2 option:selected").text(), nested: {value: comparaCidades[0].resultados[0].series[0].serie[$("#slctAno").val()]}}],
-                                backgroundColor: 'rgb(255, 99, 132)',
-                                borderColor: 'rgb(255, 99, 132)'
+                                data:[{id: $("#slctCidades option:selected").text(), nested: {value: $("#inpPopC").val()}},
+                                        {id: $("#slctCidades2 option:selected").text(), nested: {value: comparaCidades[0].resultados[0].series[0].serie['2007']}}],
+                                backgroundColor: [
+                                    'rgb(255, 99, 132)',
+                                    'rgb(70,130,180)'
+                                ],
+                                borderColor: [
+                                    'rgb(255, 99, 132)',
+                                    'rgb(70,130,180)'
+                                ]
                             }]
                         };
         
@@ -241,10 +247,16 @@ $(document).ready(function(){
                             labels: [$("#slctCidades option:selected").text(), $("#slctCidades2 option:selected").text()],
                             datasets: [{
                                 label: 'População',
-                                data: [ {id: $("#slctCidades option:selected").text(), nested: {value: $("#inpPopC").val()}},
-                                        {id: $("#slctCidades2 option:selected").text(), nested: {value: comparaCidades[0].resultados[0].series[0].serie[$("#slctAno").val()]}}],
-                                backgroundColor: 'rgb(255, 99, 132)',
-                                borderColor: 'rgb(255, 99, 132)'
+                                data:[{id: $("#slctCidades option:selected").text(), nested: {value: $("#inpPopC").val()}},
+                                        {id: $("#slctCidades2 option:selected").text(), nested: {value: comparaCidades[0].resultados[0].series[0].serie['2010']}}],
+                                backgroundColor: [
+                                    'rgb(255, 99, 132)',
+                                    'rgb(70,130,180)'
+                                ],
+                                borderColor: [
+                                    'rgb(255, 99, 132)',
+                                    'rgb(70,130,180)'
+                                ]
                             }]
                         };
         
@@ -293,10 +305,16 @@ $(document).ready(function(){
                             labels: [$("#slctCidades option:selected").text(), $("#slctCidades2 option:selected").text()],
                             datasets: [{
                                 label: 'População',
-                                data: [ {id: $("#slctCidades option:selected").text(), nested: {value: $("#inpPopC").val()}},
+                                data:[{id: $("#slctCidades option:selected").text(), nested: {value: $("#inpPopC").val()}},
                                         {id: $("#slctCidades2 option:selected").text(), nested: {value: comparaCidades[0].resultados[0].series[0].serie[$("#slctAno").val()]}}],
-                                backgroundColor: 'rgb(255, 99, 132)',
-                                borderColor: 'rgb(255, 99, 132)'
+                                backgroundColor: [
+                                    'rgb(255, 99, 132)',
+                                    'rgb(70,130,180)'
+                                ],
+                                borderColor: [
+                                    'rgb(255, 99, 132)',
+                                    'rgb(70,130,180)'
+                                ]
                             }]
                         };
         
@@ -333,6 +351,65 @@ $(document).ready(function(){
                     }
                 })
                 break
+        }
+    })
+
+    // Gráfico da área total entre os municípios
+    $("#slctAreaT").change(function(){
+        if($(this).prop("checked") == true){
+            $("#slctCidades2").change(function(){
+                document.getElementById("graficoAreaCidades").style.display = "flex";
+                $.ajax({
+                    url: "https://servicodados.ibge.gov.br/api/v3/agregados/1301/periodos/2010/variaveis/615?localidades=N6["+$("#slctCidades2").val()+"]" ,
+                    type: "GET" ,
+                    data: {
+        
+                    } ,
+                    success: function(comapraArea){
+                        var data = {
+                            labels: [$("#slctCidades option:selected").text(), $("#slctCidades2 option:selected").text()],
+                            datasets: [{
+                                label: 'Área Total',
+                                data:[$("#inpArea").val(),
+                                        comapraArea[0].resultados[0].series[0].serie['2010']],
+                                backgroundColor: [
+                                    'rgb(255, 99, 132)',
+                                    'rgb(70,130,180)'
+                                ],
+                                borderColor: [
+                                    'rgb(255, 99, 132)',
+                                    'rgb(70,130,180)'
+                                ]
+                            }]
+                        };
+        
+                        var config = {
+                            type: 'pie',
+                            data: data,
+                            options: {
+                                plugins: {
+                                    title: {
+                                        display: true,
+                                        text: 'Gráfico de comparação em áreas'
+                                    }
+                                }
+                            }
+                        };
+        
+                        var pieGraph = document.getElementById("graficoAreaCidades");
+        
+                        var ctx = new Chart(pieGraph, config);
+        
+                        $("#slctCidades2").change(function(){
+                            ctx.destroy();
+                        })
+        
+                        $("#slctCidades").change(function(){
+                            ctx.destroy();
+                        })
+                    }
+                })
+            })
         }
     })
 })

@@ -31,7 +31,7 @@ $(document).ready(function(){
                     } ,
                     success: function(areaT){
                         var areaTC = "<p>Área Territorial: "
-                        areaTC = areaTC + "<input type='text' value='"+areaT[0].resultados[0].series[0].serie['2010']+"'>km2";
+                        areaTC = areaTC + "<input type='text' id='inpArea' value='"+areaT[0].resultados[0].series[0].serie['2010']+"'>km2";
                         areaTC = areaTC + "</p>"
                         $("#retareaTC").html(areaTC);
                     }

@@ -139,7 +139,12 @@ header{
 
 #compPopulacao{
     display: flex;
-    width: 50%;
+    flex-direction: column;
+    width: 100%;
+}
+
+#compPopulacao canvas{
+    display: none;
 }
 
 #slctCidades2{
