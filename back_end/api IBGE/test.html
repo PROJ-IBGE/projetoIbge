@@ -16,13 +16,19 @@
         position: absolute;
         top: 0px;
         left: 0px;
-        width: 50%;
+        width: 45%;
       }
       div#div2 {
         position: absolute;
+        left: 0px;
+        bottom: 0px;
+        width: 45%;
+      }
+      div#div3 {
+        position: absolute;
         top: 0px;
         right: 0px;
-        width: 50%;
+        width: 43%;
       }
       div {
         text-align: center;
@@ -45,6 +51,7 @@
 <body>
     <div id="div1"></div>
     <div id="div2"></div>
+    <div id="div3"></div>
     <script type="text/javascript">
 /*
                 operações (op)
@@ -104,29 +111,41 @@
 */
 
       var conf1 = {
-        op: 6,
-        local: 'Norte Nordeste Sul', // se não for inserido esse parâmetro, a localidade padrão é "all"
-        ano: '2000 2007 2014', // inserir os anos separados por espaços, se quiser retornar todos os anos insira a palavra "all" ou insira o parâmetro (ano)
+        op: 12,
+        local: 'Pará Amazonas Piauí Maranhão', // se não for inserido esse parâmetro, a localidade padrão é "all"
+        ano: '2002 2007 2013 2019', // inserir os anos separados por espaços, se quiser retornar todos os anos insira a palavra "all" ou insira o parâmetro (ano)
         variavel: 'nascimentos', // se não for inserido esse parâmetro, a variavel padrão é "populacao"
         query: 'div#div1', // se não for inserido esse parâmetro, ele insere o gráfico no body
-        grafico: 'linha', // só existe gráficos de linha, barra1 e barra2
+        grafico: 'linha', // só existe gráficos de linha, barra1, barra2 e pizza
         tabela: false, // se não for inserido esse parâmetro, o valor padrão é false
         gini: false // se não for inserido esse parâmetro, o valor padrão é false
       }
 
       var conf2 = {
-        op: 6,
-        local: 'Norte Nordeste Sul', // se não for inserido esse parâmetro, a localidade padrão é "all"
-        ano: '2000 2007 2014', // inserir os anos separados por espaços, se quiser retornar todos os anos insira a palavra "all" ou insira o parâmetro (ano)
+        op: 12,
+        local: 'Pará Amazonas Piauí Maranhão', // se não for inserido esse parâmetro, a localidade padrão é "all"
+        ano: '2002 2007 2013 2019', // inserir os anos separados por espaços, se quiser retornar todos os anos insira a palavra "all" ou insira o parâmetro (ano)
         variavel: 'nascimentos', // se não for inserido esse parâmetro, a variavel padrão é "populacao"
         query: 'div#div2', // se não for inserido esse parâmetro, ele insere o gráfico no body
-        grafico: 'barra2', // só existe gráficos de linha, barra1 e barra2
+        grafico: 'barra2', // só existe gráficos de linha, barra1, barra2 e pizza
+        tabela: false, // se não for inserido esse parâmetro, o valor padrão é false
+        gini: false // se não for inserido esse parâmetro, o valor padrão é false
+      }
+
+      var conf3 = {
+        op: 12,
+        local: 'Pará Amazonas Piauí Maranhão', // se não for inserido esse parâmetro, a localidade padrão é "all"
+        ano: '2002 2007 2013 2019', // inserir os anos separados por espaços, se quiser retornar todos os anos insira a palavra "all" ou insira o parâmetro (ano)
+        variavel: 'nascimentos', // se não for inserido esse parâmetro, a variavel padrão é "populacao"
+        query: 'div#div3', // se não for inserido esse parâmetro, ele insere o gráfico no body
+        grafico: 'pizza', // só existe gráficos de linha, barra1, barra2 e pizza
         tabela: false, // se não for inserido esse parâmetro, o valor padrão é false
         gini: false // se não for inserido esse parâmetro, o valor padrão é false
       }
 
       IBGE(conf1)
       IBGE(conf2)
+      IBGE(conf3)
     </script>
 </body>
 </html>
