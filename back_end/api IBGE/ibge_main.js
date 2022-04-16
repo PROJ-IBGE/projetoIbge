@@ -59,8 +59,10 @@ function IBGE(obj) {
             if (obj.ano === undefined) obj.ano = 'all'
             if (obj.variavel === undefined) obj.variavel = 'populacao'
             if (obj.query === undefined) obj.query = 'body'
-            if (obj.grafico === undefined) obj.grafico = 'linha'
-            if (obj.tabela === undefined) obj.tabela = false
+            if (obj.tabela === undefined && obj.grafico === undefined) {
+                obj.tabela = false
+                obj.grafico = 'linha'
+            } else if (obj.tabela === true) obj.grafico = ''
             if (obj.gini === undefined) obj.gini = false
         }
         if (typeof obj.op === 'number') {
