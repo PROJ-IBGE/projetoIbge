@@ -45,7 +45,7 @@ function visualizar(query = '', grafico = '', tabela = false, res) {
                             break
                         }
                     }
-                    let inicio = [], final = []
+                    //let inicio = [], final = []
                     const lista = []
                     for (let i in res){
                         if (i != 'unidade' && i != 'variavel') {
@@ -57,7 +57,7 @@ function visualizar(query = '', grafico = '', tabela = false, res) {
                                 label: i,
                                 data: datapoints,
                                 borderColor: `#04d9b2`,
-                                backgroundColor: `#f28705`,
+                                backgroundColor: `rgba(242,135,5,0.7)`,
                                 fill: false,
                                 tension: 0.4
                             })
@@ -94,14 +94,14 @@ function visualizar(query = '', grafico = '', tabela = false, res) {
                                         display: true,
                                         text: 'Value'
                                     },
-                                    suggestedMin: parseInt(inicio.sort()[0]),
-                                    suggestedMax: parseInt(final.sort()[final.length-1])
+                                    //suggestedMin: parseInt(inicio.sort()[0]),
+                                    //suggestedMax: parseInt(final.sort()[final.length-1])
                                 }
                             }
                         },
                     }
                     while (div.firstElementChild != null) div.removeChild(div.firstElementChild)
-                    let canvas = document.createElement('canvas')
+                    const canvas = document.createElement('canvas')
                     div.appendChild(canvas)
                     const myChart = new Chart(canvas, config)
                 } else return "Erro: insira uma query!"
@@ -126,7 +126,7 @@ function visualizar(query = '', grafico = '', tabela = false, res) {
                                 label: i,
                                 data,
                                 borderColor: `#04d9b2`,
-                                backgroundColor: `#f28705`,
+                                backgroundColor: `rgba(242,135,5,0.7)`,
                                 borderWidth: 3,
                                 borderRadius: 30,
                                 borderSkipped: false
@@ -153,10 +153,10 @@ function visualizar(query = '', grafico = '', tabela = false, res) {
                             }
                         }
                     }
-                        while (div.firstElementChild != null) div.removeChild(div.firstElementChild)
-                        let canvas = document.createElement('canvas')
-                        div.appendChild(canvas)
-                        const myChart = new Chart(canvas, config)
+                    while (div.firstElementChild != null) div.removeChild(div.firstElementChild)
+                    let canvas = document.createElement('canvas')
+                    div.appendChild(canvas)
+                    const myChart = new Chart(canvas, config)
                 } else return "Erro: insira uma query!"
                 break
             case 'barra2':
@@ -190,13 +190,21 @@ function visualizar(query = '', grafico = '', tabela = false, res) {
                             }
                         }
                     }
+                    let d = []
+                    for (let i in res) {
+                        if (i != 'unidade' && i != 'variavel') {
+                            for (let i2 in res[i]) {
+                                d.push(parseInt(res[i][i2]))
+                            }
+                        }
+                    }
                     const data = {
                         labels: local,
                         datasets: [{
                             label: res.unidade,
                             data: dados[anos[contAno]],
                             borderColor: `#04d9b2`,
-                            backgroundColor: `#f28705`,
+                            backgroundColor: `rgba(242,135,5,0.7)`,
                             borderWidth: 3,
                             borderRadius: 30,
                             borderSkipped: false
@@ -215,99 +223,44 @@ function visualizar(query = '', grafico = '', tabela = false, res) {
                                     display: true,
                                     text: res.variavel+' - '+res.unidade
                                 }
-                            }
-                        }
-                    }
-                    function createChart(obj) {
-                        const canvas = document.createElement('canvas')
-                        const divBtn = document.createElement('div')
-                        const btnEsquerdo = document.createElement('button')
-                        btnEsquerdo.textContent = '<<'
-                        const btnDireito = document.createElement('button')
-                        btnDireito.textContent = '>>'
-                        const label = document.createElement('label')
-                        label.textContent = anos[contAno]
-                        btnDireito.onclick = () => {
-                            contAno++
-                            if (contAno === anos.length) contAno = 0
-                            const data = {
-                                labels: local,
-                                datasets: [{
-                                    label: res.unidade,
-                                    data: dados[anos[contAno]],
-                                    borderColor: `#04d9b2`,
-                                    backgroundColor: `#f28705`,
-                                    borderWidth: 3,
-                                    borderRadius: 30,
-                                    borderSkipped: false
-                                }]
-                            }
-                            const config = {
-                                type: 'bar',
-                                data: data,
-                                options: {
-                                    responsive: true,
-                                    plugins: {
-                                        legend: {
-                                            position: 'top',
-                                        },
-                                        title: {
-                                            display: true,
-                                            text: res.variavel+' - '+res.unidade
-                                        }
-                                    }
+                            },
+                            scales: {
+                                y: {
+                                    suggestedMin: 0,
+                                    suggestedMax: d.sort()[d.length-1]
                                 }
                             }
-                            if (div.firstElementChild != null) {
-                                while (div.firstElementChild != null) div.removeChild(div.firstElementChild)
-                                createChart(config)
-                            } else {
-                                createChart(config)
-                            }
                         }
-                        btnEsquerdo.onclick = () => {
-                            contAno--
-                            if (contAno === -1) contAno = anos.length-1
-                            const data = {
-                                labels: local,
-                                datasets: [{
-                                    label: res.unidade,
-                                    data: dados[anos[contAno]],
-                                    borderColor: `#04d9b2`,
-                                    backgroundColor: `#f28705`,
-                                    borderWidth: 3,
-                                    borderRadius: 30,
-                                    borderSkipped: false
-                                }]
-                            }
-                            const config = {
-                                type: 'bar',
-                                data: data,
-                                options: {
-                                    responsive: true,
-                                    plugins: {
-                                        legend: {
-                                            position: 'top',
-                                        },
-                                        title: {
-                                            display: true,
-                                            text: res.variavel+' - '+res.unidade
-                                        }
-                                    }
-                                }
-                            }
-                            while (div.firstElementChild != null) div.removeChild(div.firstElementChild)
-                            createChart(config)
-                        }
-                        divBtn.appendChild(btnEsquerdo)
-                        divBtn.appendChild(label)
-                        divBtn.appendChild(btnDireito)
-                        div.appendChild(canvas)
-                        div.appendChild(divBtn)
-                        const myChart = new Chart(canvas, obj)
                     }
                     while (div.firstElementChild != null) div.removeChild(div.firstElementChild)
-                    createChart(config)
+                    const canvas = document.createElement('canvas')
+                    const divBtn = document.createElement('div')
+                    const btnEsquerdo = document.createElement('button')
+                    btnEsquerdo.textContent = '<<'
+                    const btnDireito = document.createElement('button')
+                    btnDireito.textContent = '>>'
+                    const label = document.createElement('label')
+                    label.textContent = anos[contAno]
+                    divBtn.appendChild(btnEsquerdo)
+                    divBtn.appendChild(label)
+                    divBtn.appendChild(btnDireito)
+                    div.appendChild(canvas)
+                    div.appendChild(divBtn)
+                    const myChart = new Chart(canvas, config)
+                    btnDireito.onclick = () => {
+                        contAno++
+                        if (contAno === anos.length) contAno = 0
+                        myChart.data.datasets[0].data = dados[anos[contAno]]
+                        label.textContent = anos[contAno]
+                        myChart.update()
+                    }
+                    btnEsquerdo.onclick = () => {
+                        contAno--
+                        if (contAno === -1) contAno = anos.length-1
+                        myChart.data.datasets[0].data = dados[anos[contAno]]
+                        label.textContent = anos[contAno]
+                        myChart.update()
+                    }
                 } else return "Erro: insira uma query!"
                 break
             case 'pizza':
@@ -348,7 +301,7 @@ function visualizar(query = '', grafico = '', tabela = false, res) {
                                 label: 'Dataset 1',
                                 data: dados[anos[contAno]],
                                 borderColor: `#04d9b2`,
-                                backgroundColor: `#f28705`
+                                backgroundColor: `rgba(242,135,5,0.7)`
                             }
                         ]
                     }
@@ -368,90 +321,296 @@ function visualizar(query = '', grafico = '', tabela = false, res) {
                             }
                         }
                     }
-                    function createChart (obj) {
-                        const canvas = document.createElement('canvas')
-                        const divBtn = document.createElement('div')
-                        const btnEsquerdo = document.createElement('button')
-                        btnEsquerdo.textContent = '<<'
-                        const btnDireito = document.createElement('button')
-                        btnDireito.textContent = '>>'
-                        const label = document.createElement('label')
+                    while (div.firstElementChild != null) div.removeChild(div.firstElementChild)
+                    const canvas = document.createElement('canvas')
+                    const divBtn = document.createElement('div')
+                    const btnEsquerdo = document.createElement('button')
+                    btnEsquerdo.textContent = '<<'
+                    const btnDireito = document.createElement('button')
+                    btnDireito.textContent = '>>'
+                    const label = document.createElement('label')
+                    label.textContent = anos[contAno]
+                    divBtn.appendChild(btnEsquerdo)
+                    divBtn.appendChild(label)
+                    divBtn.appendChild(btnDireito)
+                    div.appendChild(canvas)
+                    div.appendChild(divBtn)
+                    const myChart = new Chart(canvas, config)
+                    btnDireito.onclick = () => {
+                        contAno++
+                        if (contAno === anos.length) contAno = 0
+                        myChart.data.datasets[0].data = dados[anos[contAno]]
                         label.textContent = anos[contAno]
-                        btnDireito.onclick = () => {
-                            contAno++
-                            if (contAno === anos.length) contAno = 0
-                            const data = {
-                                labels: local,
-                                datasets: [
-                                    {
-                                        label: 'Dataset 1',
-                                        data: dados[anos[contAno]],
-                                        borderColor: `#04d9b2`,
-                                        backgroundColor: `#f28705`
-                                    }
-                                ]
+                        myChart.update()
+                    }
+                    btnEsquerdo.onclick = () => {
+                        contAno--
+                        if (contAno === -1) contAno = anos.length-1
+                        myChart.data.datasets[0].data = dados[anos[contAno]]
+                        label.textContent = anos[contAno]
+                        myChart.update()
+                    }
+                } else return "Erro: insira uma query!"
+                break
+            case 'polar':
+                if (query != '') {
+                    let local = []
+                    for (let i in res) {
+                        if (i != 'unidade' && i != 'variavel') {
+                            local.push(i)
+                        }
+                    }
+                    let anos, contAno = 0
+                    for (let i in res) {
+                        if (i != 'unidade' && i != 'variavel') {
+                            anos = Object.keys(res[i])
+                            break
+                        }
+                    }
+                    let dados = {}
+                    for (let i in res) {
+                        if (i != 'unidade' && i != 'variavel') {
+                            for (let i2 in res[i]) {
+                                dados[i2] = []
                             }
-                            const config = {
-                                type: 'pie',
-                                data: data,
-                                options: {
-                                    responsive: true,
-                                    plugins: {
-                                        legend: {
-                                            position: 'top',
-                                        },
-                                        title: {
-                                            display: true,
-                                            text: res.variavel+' - '+res.unidade
-                                        }
-                                    }
+                            break
+                        }
+                    }
+                    for (let i in res) {
+                        if (i != 'unidade' && i != 'variavel') {
+                            for (let i2 in res[i]) {
+                                dados[i2].push(res[i][i2])
+                            }
+                        }
+                    }
+                    const data = {
+                        labels: local,
+                        datasets: [{
+                            label: res.unidade,
+                            data: dados[anos[contAno]],
+                            borderColor: `#04d9b2`,
+                            backgroundColor: `rgba(242,135,5,0.7)`
+                        }]
+                    }
+                    const config = {
+                        type: 'polarArea',
+                        data: data,
+                        options: {
+                            responsive: true,
+                            plugins: {
+                                legend: {
+                                    position: 'top'
+                                },
+                                title: {
+                                    display: true,
+                                    text: res.variavel+' - '+res.unidade
                                 }
                             }
-                            while (div.firstElementChild != null) div.removeChild(div.firstElementChild)
-                            createChart(config)
                         }
-                        btnEsquerdo.onclick = () => {
-                            contAno--
-                            if (contAno === -1) contAno = anos.length-1
-                            const data = {
-                                labels: local,
-                                datasets: [
-                                    {
-                                        label: 'Dataset 1',
-                                        data: dados[anos[contAno]],
-                                        borderColor: `#04d9b2`,
-                                        backgroundColor: `#f28705`
-                                    }
-                                ]
-                            }
-                            const config = {
-                                type: 'pie',
-                                data: data,
-                                options: {
-                                    responsive: true,
-                                    plugins: {
-                                        legend: {
-                                            position: 'top',
-                                        },
-                                        title: {
-                                            display: true,
-                                            text: res.variavel+' - '+res.unidade
-                                        }
-                                    }
-                                }
-                            }
-                            while (div.firstElementChild != null) div.removeChild(div.firstElementChild)
-                            createChart(config)
-                        }
-                        divBtn.appendChild(btnEsquerdo)
-                        divBtn.appendChild(label)
-                        divBtn.appendChild(btnDireito)
-                        div.appendChild(canvas)
-                        div.appendChild(divBtn)
-                        const myChart = new Chart(canvas, obj)
                     }
                     while (div.firstElementChild != null) div.removeChild(div.firstElementChild)
-                    createChart(config)
+                    const canvas = document.createElement('canvas')
+                    const divBtn = document.createElement('div')
+                    const btnEsquerdo = document.createElement('button')
+                    btnEsquerdo.textContent = '<<'
+                    const btnDireito = document.createElement('button')
+                    btnDireito.textContent = '>>'
+                    const label = document.createElement('label')
+                    label.textContent = anos[contAno]
+                    divBtn.appendChild(btnEsquerdo)
+                    divBtn.appendChild(label)
+                    divBtn.appendChild(btnDireito)
+                    div.appendChild(canvas)
+                    div.appendChild(divBtn)
+                    const myChart = new Chart(canvas, config)
+                    btnDireito.onclick = () => {
+                        contAno++
+                        if (contAno === anos.length) contAno = 0
+                        myChart.data.datasets[0].data = dados[anos[contAno]]
+                        label.textContent = anos[contAno]
+                        myChart.update()
+                    }
+                    btnEsquerdo.onclick = () => {
+                        contAno--
+                        if (contAno === -1) contAno = anos.length-1
+                        myChart.data.datasets[0].data = dados[anos[contAno]]
+                        label.textContent = anos[contAno]
+                        myChart.update()
+                    }
+                } else return "Erro: insira uma query!"
+                break
+            case 'radar':
+                if (query != '') {
+                    let local = []
+                    for (let i in res) {
+                        if (i != 'unidade' && i != 'variavel') {
+                            local.push(i)
+                        }
+                    }
+                    let anos, contAno = 0
+                    for (let i in res) {
+                        if (i != 'unidade' && i != 'variavel') {
+                            anos = Object.keys(res[i])
+                            break
+                        }
+                    }
+                    let dados = {}
+                    for (let i in res) {
+                        if (i != 'unidade' && i != 'variavel') {
+                            for (let i2 in res[i]) {
+                                dados[i2] = []
+                            }
+                            break
+                        }
+                    }
+                    for (let i in res) {
+                        if (i != 'unidade' && i != 'variavel') {
+                            for (let i2 in res[i]) {
+                                dados[i2].push(res[i][i2])
+                            }
+                        }
+                    }
+                    const data = {
+                        labels: local,
+                        datasets: [
+                          {
+                            label: res.unidade,
+                            data: dados[anos[contAno]],
+                            borderColor: `#04d9b2`,
+                            backgroundColor: `rgba(242,135,5,0.7)`
+                          }
+                        ]
+                    }
+                    const config = {
+                        type: 'radar',
+                        data: data,
+                        options: {
+                            responsive: true,
+                            plugins: {
+                                title: {
+                                    display: true,
+                                    text: res.variavel+' - '+res.unidade
+                                }
+                            }
+                        },
+                    }
+                    while (div.firstElementChild != null) div.removeChild(div.firstElementChild)
+                    const canvas = document.createElement('canvas')
+                    const divBtn = document.createElement('div')
+                    const btnEsquerdo = document.createElement('button')
+                    btnEsquerdo.textContent = '<<'
+                    const btnDireito = document.createElement('button')
+                    btnDireito.textContent = '>>'
+                    const label = document.createElement('label')
+                    label.textContent = anos[contAno]
+                    divBtn.appendChild(btnEsquerdo)
+                    divBtn.appendChild(label)
+                    divBtn.appendChild(btnDireito)
+                    div.appendChild(canvas)
+                    div.appendChild(divBtn)
+                    const myChart = new Chart(canvas, config)
+                    btnDireito.onclick = () => {
+                        contAno++
+                        if (contAno === anos.length) contAno = 0
+                        myChart.data.datasets[0].data = dados[anos[contAno]]
+                        label.textContent = anos[contAno]
+                        myChart.update()
+                    }
+                    btnEsquerdo.onclick = () => {
+                        contAno--
+                        if (contAno === -1) contAno = anos.length-1
+                        myChart.data.datasets[0].data = dados[anos[contAno]]
+                        label.textContent = anos[contAno]
+                        myChart.update()
+                    }
+                } else return "Erro: insira uma query!"
+                break
+            case 'anel':
+                if (query != '') {
+                    let local = []
+                    for (let i in res) {
+                        if (i != 'unidade' && i != 'variavel') {
+                            local.push(i)
+                        }
+                    }
+                    let anos, contAno = 0
+                    for (let i in res) {
+                        if (i != 'unidade' && i != 'variavel') {
+                            anos = Object.keys(res[i])
+                            break
+                        }
+                    }
+                    let dados = {}
+                    for (let i in res) {
+                        if (i != 'unidade' && i != 'variavel') {
+                            for (let i2 in res[i]) {
+                                dados[i2] = []
+                            }
+                            break
+                        }
+                    }
+                    for (let i in res) {
+                        if (i != 'unidade' && i != 'variavel') {
+                            for (let i2 in res[i]) {
+                                dados[i2].push(res[i][i2])
+                            }
+                        }
+                    }
+                    const data = {
+                        labels: local,
+                        datasets: [{
+                            label: res.unidade,
+                            data: dados[anos[contAno]],
+                            borderColor: `#04d9b2`,
+                            backgroundColor: `rgba(242,135,5,0.7)`,
+                            cutout: '80%'
+                        }]
+                    }
+                    const config = {
+                        type: 'doughnut',
+                        data: data,
+                        options: {
+                            responsive: true,
+                            plugins: {
+                                legend: {
+                                    position: 'top',
+                                },
+                                title: {
+                                    display: true,
+                                    text: res.variavel+' - '+res.unidade
+                                }
+                            }
+                        },
+                    }
+                    while (div.firstElementChild != null) div.removeChild(div.firstElementChild)
+                    const canvas = document.createElement('canvas')
+                    const divBtn = document.createElement('div')
+                    const btnEsquerdo = document.createElement('button')
+                    btnEsquerdo.textContent = '<<'
+                    const btnDireito = document.createElement('button')
+                    btnDireito.textContent = '>>'
+                    const label = document.createElement('label')
+                    label.textContent = anos[contAno]
+                    divBtn.appendChild(btnEsquerdo)
+                    divBtn.appendChild(label)
+                    divBtn.appendChild(btnDireito)
+                    div.appendChild(canvas)
+                    div.appendChild(divBtn)
+                    const myChart = new Chart(canvas, config)
+                    btnDireito.onclick = () => {
+                        contAno++
+                        if (contAno === anos.length) contAno = 0
+                        myChart.data.datasets[0].data = dados[anos[contAno]]
+                        label.textContent = anos[contAno]
+                        myChart.update()
+                    }
+                    btnEsquerdo.onclick = () => {
+                        contAno--
+                        if (contAno === -1) contAno = anos.length-1
+                        myChart.data.datasets[0].data = dados[anos[contAno]]
+                        label.textContent = anos[contAno]
+                        myChart.update()
+                    }
                 } else return "Erro: insira uma query!"
                 break
             default:
