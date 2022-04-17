@@ -137,13 +137,13 @@ header{
     width: 30%;
 }
 
-#compPopulacao{
+#graficos{
     display: flex;
     flex-direction: column;
     width: 100%;
 }
 
-#compPopulacao canvas{
+#graficos canvas{
     display: none;
 }
 

@@ -107,10 +107,16 @@
                         <label id="retPibC"></label>
                     </div>
                 </div>
-                <div id="graficos">
+                <div id="comparar">
                     <h4>Realizar comparações:</h4>
                     <label for="compara">Informe com quantas cidades quer comparar: 
                         <input type="text" id="qtd" placeholder="Limite de 3 cidades">
+                        <select id="tipoGrafico">
+                            <option value="">Selecione um tipo de Gráfico</option>
+                            <option value="barra">Barra</option>
+                            <option value="pizza">Pizza</option>
+                            <option value="linha">Linha</option>
+                        </select>
                     </label>
                     <button id="ok">Ok</button>
 
@@ -148,7 +154,7 @@
                         </select>
                     </div>
 
-                    <div id="compPopulacao">
+                    <div id="graficos">
                         <canvas id="garficoPopulacaoAno"></canvas>
                         <canvas id="garficoPopulacaoCidades"></canvas>
                         <canvas id="graficoAreaCidades"></canvas>

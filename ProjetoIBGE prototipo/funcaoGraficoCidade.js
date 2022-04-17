@@ -9,55 +9,136 @@ $(document).ready(function(){
                 switch($("#slctAno2").val()){
                     case "2007":
                         $.ajax({
-                            url: "https://servicodados.ibge.gov.br/api/v3/agregados/793/periodos/2007/variaveis/93?localidades=N6["+$("#slctCidades").val()+"" ,
+                            url: "https://servicodados.ibge.gov.br/api/v3/agregados/793/periodos/2007/variaveis/93?localidades=N6["+$("#slctCidades").val()+"]" ,
                             type: "GET" ,
                             data: {
 
                             } ,
                             success: function(comparaAno){
-                                var data = {
-                                    labels: [$("#slctAno").val(), $("#slctAno2").val()],
-                                    datasets: [{
-                                        label: 'População',
-                                        data: [ {id: $("#slctAno").val(), nested: {value: $("#inpPopC").val()}},
-                                                {id: $("#slctAno2").val(), nested: {value: comparaAno[0].resultados[0].series[0].serie['2007']}}],
-                                        backgroundColor: 'rgb(255, 99, 132)',
-                                        borderColor: 'rgb(255, 99, 132)'
-                                    }]
-                                };
-        
-                                var config = {
-                                    type: 'bar',
-                                    data: data,
-                                    options: {
-                                        plugins: {
-                                            title: {
-                                                display: true,
-                                                text: 'Gráfico da População'
+                                switch($("#tipoGrafico").val()){
+                                    case "barra":
+                                        var data = {
+                                            labels: [$("#slctAno").val(), $("#slctAno2").val()],
+                                            datasets: [{
+                                                label: 'População',
+                                                data: [ {id: $("#slctAno").val(), nested: {value: $("#inpPopC").val()}},
+                                                        {id: $("#slctAno2").val(), nested: {value: comparaAno[0].resultados[0].series[0].serie['2007']}}],
+                                                backgroundColor: `#f28705`,
+                                                borderColor: `#04d9b2`
+                                            }]
+                                        };
+                
+                                        var config = {
+                                            type: 'bar',
+                                            data: data,
+                                            options: {
+                                                responsive: true,
+                                                plugins: {
+                                                    title: {
+                                                        display: true,
+                                                        text: 'Gráfico da População'
+                                                    }
+                                                },
+                                                parsing: {
+                                                    xAxisKey: 'id',
+                                                    yAxisKey: 'nested.value'
+                                                }
                                             }
-                                        },
-                                        parsing: {
-                                            xAxisKey: 'id',
-                                            yAxisKey: 'nested.value'
-                                        }
-                                    }
-                                };
-        
-                                var barGraph = document.getElementById("garficoPopulacaoAno");
-        
-                                var ctx = new Chart(barGraph, config);
-        
-                                $("#slctAno2").change(function(){
-                                    ctx.destroy();
-                                })
-        
-                                $("#slctCidades").change(function(){
-                                    $("#slctAno").change(function(){
-                                        ctx.destroy();
-                                    })
-                                })
+                                        };
+                
+                                        var barGraph = document.getElementById("garficoPopulacaoAno");
+                
+                                        var ctx = new Chart(barGraph, config);
+                
+                                        $("#slctAno2").change(function(){
+                                            ctx.destroy();
+                                        })
+                
+                                        $("#slctCidades").change(function(){
+                                            $("#slctAno").change(function(){
+                                                ctx.destroy();
+                                            })
+                                        })
+                                        break
+                                    case "linha":
+                                        var data = {
+                                            labels: [$("#slctAno").val(), $("#slctAno2").val()],
+                                            datasets: [{
+                                                label: 'População',
+                                                data: [ $("#inpPopC").val(), comparaAno[0].resultados[0].series[0].serie['2007']],
+                                                backgroundColor: `#f28705`,
+                                                borderColor: `#04d9b2`,
+                                                fill: false,
+                                                tension: 0.4
+                                            }]
+                                        };
+                                        
+                                        var config = {
+                                            type: 'line',
+                                            data: data,
+                                            options: {
+                                                responsive: true,
+                                                plugins: {
+                                                    title: {
+                                                        display: true,
+                                                        text: 'Gráfico da População'
+                                                    }
+                                                },
+                                            }
+                                        };
 
-                                ctx.destroy();
+                                        var lineGraph = document.getElementById("garficoPopulacaoAno");
+                
+                                        var ctx = new Chart(lineGraph, config);
+                
+                                        $("#slctAno2").change(function(){
+                                            ctx.destroy();
+                                        })
+                
+                                        $("#slctCidades").change(function(){
+                                            $("#slctAno").change(function(){
+                                                ctx.destroy();
+                                            })
+                                        })
+                                        break
+                                    case "pizza":
+                                        var data = {
+                                            labels: [$("#slctAno").val(), $("#slctAno2").val()],
+                                            datasets: [{
+                                                label: 'População',
+                                                data:[$("#inpPopC").val(), comparaAno[0].resultados[0].series[0].serie['2007']],
+                                                backgroundColor: [`#f28705`, `#00a000`],
+                                                borderColor: `#04d9b2`
+                                            }]
+                                        };
+                        
+                                        var config = {
+                                            type: 'pie',
+                                            data: data,
+                                            options: {
+                                                plugins: {
+                                                    title: {
+                                                        display: true,
+                                                        text: 'Gráfico da População'
+                                                    }
+                                                }
+                                            }
+                                        };
+                        
+                                        var pieGraph = document.getElementById("garficoPopulacaoAno");
+                        
+                                        var ctx = new Chart(pieGraph, config);
+                                        $("#slctAno2").change(function(){
+                                            ctx.destroy();
+                                        })
+                
+                                        $("#slctCidades").change(function(){
+                                            $("#slctAno").change(function(){
+                                                ctx.destroy();
+                                            })
+                                        })
+                                        break
+                                }
                             }
                         })
                         break
@@ -69,47 +150,130 @@ $(document).ready(function(){
         
                             } ,
                             success: function(comparaAno){
-                                var data = {
-                                    labels: [$("#slctAno").val(), $("#slctAno2").val()],
-                                    datasets: [{
-                                        label: 'População',
-                                        data: [ {id: $("#slctAno").val(), nested: {value: $("#inpPopC").val()}},
-                                                {id: $("#slctAno2").val(), nested: {value: comparaAno[0].resultados[0].series[0].serie['2010']}}],
-                                        backgroundColor: 'rgb(255, 99, 132)',
-                                        borderColor: 'rgb(255, 99, 132)'
-                                    }]
-                                };
-        
-                                var config = {
-                                    type: 'bar',
-                                    data: data,
-                                    options: {
-                                        plugins: {
-                                            title: {
-                                                display: true,
-                                                text: 'Gráfico da População'
+                                switch($("#tipoGrafico").val()){
+                                    case "barra":
+                                        var data = {
+                                            labels: [$("#slctAno").val(), $("#slctAno2").val()],
+                                            datasets: [{
+                                                label: 'População',
+                                                data: [ {id: $("#slctAno").val(), nested: {value: $("#inpPopC").val()}},
+                                                        {id: $("#slctAno2").val(), nested: {value: comparaAno[0].resultados[0].series[0].serie['2010']}}],
+                                                backgroundColor: `#f28705`,
+                                                borderColor: `#04d9b2`
+                                            }]
+                                        };
+                
+                                        var config = {
+                                            type: 'bar',
+                                            data: data,
+                                            options: {
+                                                responsive: true,
+                                                plugins: {
+                                                    title: {
+                                                        display: true,
+                                                        text: 'Gráfico da População'
+                                                    }
+                                                },
+                                                parsing: {
+                                                    xAxisKey: 'id',
+                                                    yAxisKey: 'nested.value'
+                                                }
                                             }
-                                        },
-                                        parsing: {
-                                            xAxisKey: 'id',
-                                            yAxisKey: 'nested.value'
-                                        }
-                                    }
-                                };
-        
-                                var barGraph = document.getElementById("garficoPopulacaoAno");
-        
-                                var ctx = new Chart(barGraph, config);
-        
-                                $("#slctAno2").change(function(){
-                                    ctx.destroy();
-                                })
-        
-                                $("#slctCidades").change(function(){
-                                    $("#slctAno").change(function(){
-                                        ctx.destroy();
-                                    })
-                                })
+                                        };
+                
+                                        var barGraph = document.getElementById("garficoPopulacaoAno");
+                
+                                        var ctx = new Chart(barGraph, config);
+                
+                                        $("#slctAno2").change(function(){
+                                            ctx.destroy();
+                                        })
+                
+                                        $("#slctCidades").change(function(){
+                                            $("#slctAno").change(function(){
+                                                ctx.destroy();
+                                            })
+                                        })
+                                        break
+                                    case "linha":
+                                        var data = {
+                                            labels: [$("#slctAno").val(), $("#slctAno2").val()],
+                                            datasets: [{
+                                                label: 'População',
+                                                data: [ $("#inpPopC").val(), comparaAno[0].resultados[0].series[0].serie[$('2010').val()]],
+                                                backgroundColor: `#f28705`,
+                                                borderColor: `#04d9b2`,
+                                                fill: false,
+                                                tension: 0.4
+                                            }]
+                                        };
+                                        
+                                        var config = {
+                                            type: 'line',
+                                            data: data,
+                                            options: {
+                                                responsive: true,
+                                                plugins: {
+                                                    title: {
+                                                        display: true,
+                                                        text: 'Gráfico da População'
+                                                    }
+                                                },
+                                            }
+                                        };
+
+                                        var lineGraph = document.getElementById("garficoPopulacaoAno");
+                
+                                        var ctx = new Chart(lineGraph, config);
+                
+                                        $("#slctAno2").change(function(){
+                                            ctx.destroy();
+                                        })
+                
+                                        $("#slctCidades").change(function(){
+                                            $("#slctAno").change(function(){
+                                                ctx.destroy();
+                                            })
+                                        })
+                                        break
+                                    case "pizza":
+                                        var data = {
+                                            labels: [$("#slctAno").val(), $("#slctAno2").val()],
+                                            datasets: [{
+                                                label: 'População',
+                                                data:[$("#inpPopC").val(), comparaAno[0].resultados[0].series[0].serie['2010']],
+                                                backgroundColor: [`#f28705`, `#00a000`],
+                                                borderColor: `#04d9b2`
+                                            }]
+                                        };
+                        
+                                        var config = {
+                                            type: 'pie',
+                                            data: data,
+                                            options: {
+                                                plugins: {
+                                                    title: {
+                                                        display: true,
+                                                        text: 'Gráfico da População'
+                                                    }
+                                                }
+                                            }
+                                        };
+                        
+                                        var pieGraph = document.getElementById("garficoPopulacaoAno");
+                        
+                                        var ctx = new Chart(pieGraph, config);
+                                        $("#slctAno2").change(function(){
+                                            ctx.destroy();
+                                        })
+                
+                                        $("#slctCidades").change(function(){
+                                            $("#slctAno").change(function(){
+                                                ctx.destroy();
+                                            })
+                                        })
+                                        break
+                                }
                             }
                         })
                         break
@@ -121,47 +285,130 @@ $(document).ready(function(){
         
                             } ,
                             success: function(comparaAno){
-                                var data = {
-                                    labels: [$("#slctAno").val(), $("#slctAno2").val()],
-                                    datasets: [{
-                                        label: 'População',
-                                        data: [ {id: $("#slctAno").val(), nested: {value: $("#inpPopC").val()}},
-                                                {id: $("#slctAno2").val(), nested: {value: comparaAno[0].resultados[0].series[0].serie[$("#slctAno2").val()]}}],
-                                        backgroundColor: 'rgb(255, 99, 132)',
-                                        borderColor: 'rgb(255, 99, 132)'
-                                    }]
-                                };
-        
-                                var config = {
-                                    type: 'bar',
-                                    data: data,
-                                    options: {
-                                        plugins: {
-                                            title: {
-                                                display: true,
-                                                text: 'Gráfico da População'
+                                switch($("#tipoGrafico").val()){
+                                    case "barra":
+                                        var data = {
+                                            labels: [$("#slctAno").val(), $("#slctAno2").val()],
+                                            datasets: [{
+                                                label: 'População',
+                                                data: [ {id: $("#slctAno").val(), nested: {value: $("#inpPopC").val()}},
+                                                        {id: $("#slctAno2").val(), nested: {value: comparaAno[0].resultados[0].series[0].serie[$("#slctAno2").val()]}}],
+                                                backgroundColor: `#f28705`,
+                                                borderColor: `#04d9b2`
+                                            }]
+                                        };
+                
+                                        var config = {
+                                            type: 'bar',
+                                            data: data,
+                                            options: {
+                                                responsive: true,
+                                                plugins: {
+                                                    title: {
+                                                        display: true,
+                                                        text: 'Gráfico da População'
+                                                    }
+                                                },
+                                                parsing: {
+                                                    xAxisKey: 'id',
+                                                    yAxisKey: 'nested.value'
+                                                }
                                             }
-                                        },
-                                        parsing: {
-                                            xAxisKey: 'id',
-                                            yAxisKey: 'nested.value'
-                                        }
-                                    }
-                                };
-        
-                                var barGraph = document.getElementById("garficoPopulacaoAno");
-        
-                                var ctx = new Chart(barGraph, config);
-        
-                                $("#slctAno2").change(function(){
-                                    ctx.destroy();
-                                })
-        
-                                $("#slctCidades").change(function(){
-                                    $("#slctAno").change(function(){
-                                        ctx.destroy();
-                                    })
-                                })
+                                        };
+                
+                                        var barGraph = document.getElementById("garficoPopulacaoAno");
+                
+                                        var ctx = new Chart(barGraph, config);
+                
+                                        $("#slctAno2").change(function(){
+                                            ctx.destroy();
+                                        })
+                
+                                        $("#slctCidades").change(function(){
+                                            $("#slctAno").change(function(){
+                                                ctx.destroy();
+                                            })
+                                        })
+                                        break
+                                    case "linha":
+                                        var data = {
+                                            labels: [$("#slctAno").val(), $("#slctAno2").val()],
+                                            datasets: [{
+                                                label: 'População',
+                                                data: [ $("#inpPopC").val(), comparaAno[0].resultados[0].series[0].serie[$("#slctAno2").val()]],
+                                                backgroundColor: `#f28705`,
+                                                borderColor: `#04d9b2`,
+                                                fill: false,
+                                                tension: 0.4
+                                            }]
+                                        };
+                                        
+                                        var config = {
+                                            type: 'line',
+                                            data: data,
+                                            options: {
+                                                responsive: true,
+                                                plugins: {
+                                                    title: {
+                                                        display: true,
+                                                        text: 'Gráfico da População'
+                                                    }
+                                                },
+                                            }
+                                        };
+
+                                        var lineGraph = document.getElementById("garficoPopulacaoAno");
+                
+                                        var ctx = new Chart(lineGraph, config);
+                
+                                        $("#slctAno2").change(function(){
+                                            ctx.destroy();
+                                        })
+                
+                                        $("#slctCidades").change(function(){
+                                            $("#slctAno").change(function(){
+                                                ctx.destroy();
+                                            })
+                                        })
+                                        break
+                                    case "pizza":
+                                        var data = {
+                                            labels: [$("#slctAno").val(), $("#slctAno2").val()],
+                                            datasets: [{
+                                                label: 'População',
+                                                data:[$("#inpPopC").val(), comparaAno[0].resultados[0].series[0].serie[$("#slctAno2").val()]],
+                                                backgroundColor: [`#f28705`, `#00a000`],
+                                                borderColor: `#04d9b2`
+                                            }]
+                                        };
+                        
+                                        var config = {
+                                            type: 'pie',
+                                            data: data,
+                                            options: {
+                                                plugins: {
+                                                    title: {
+                                                        display: true,
+                                                        text: 'Gráfico da População'
+                                                    }
+                                                }
+                                            }
+                                        };
+                        
+                                        var pieGraph = document.getElementById("garficoPopulacaoAno");
+                        
+                                        var ctx = new Chart(pieGraph, config);
+                                        $("#slctAno2").change(function(){
+                                            ctx.destroy();
+                                        })
+                
+                                        $("#slctCidades").change(function(){
+                                            $("#slctAno").change(function(){
+                                                ctx.destroy();
+                                            })
+                                        })
+                                        break
+                                }
                             }
                         })
                         break
@@ -185,53 +432,129 @@ $(document).ready(function(){
 
                     } ,
                     success: function(comparaCidades){
-                        var data = {
-                            labels: [$("#slctCidades option:selected").text(), $("#slctCidades2 option:selected").text()],
-                            datasets: [{
-                                label: 'População',
-                                data:[{id: $("#slctCidades option:selected").text(), nested: {value: $("#inpPopC").val()}},
-                                        {id: $("#slctCidades2 option:selected").text(), nested: {value: comparaCidades[0].resultados[0].series[0].serie['2007']}}],
-                                backgroundColor: [
-                                    'rgb(255, 99, 132)',
-                                    'rgb(70,130,180)'
-                                ],
-                                borderColor: [
-                                    'rgb(255, 99, 132)',
-                                    'rgb(70,130,180)'
-                                ]
-                            }]
-                        };
-        
-                        var config = {
-                            type: 'bar',
-                            data: data,
-                            options: {
-                                plugins: {
-                                    title: {
-                                        display: true,
-                                        text: 'Gráfico das Populações das cidades em ' + $("#slctAno").val()
+                        switch($("#tipoGrafico").val()){
+                            case "barra":
+                                var data = {
+                                    labels: [$("#slctCidades option:selected").text(), $("#slctCidades2 option:selected").text()],
+                                    datasets: [{
+                                        label: 'População',
+                                            data:[{id: $("#slctCidades option:selected").text(), nested: {value: $("#inpPopC").val()}},
+                                                    {id: $("#slctCidades2 option:selected").text(), nested: {value: comparaCidades[0].resultados[0].series[0].serie['2007']}}],
+                                        backgroundColor: [`#f28705`, `#00a000`],
+                                        borderColor: `#04d9b2`
+                                    }]
+                                };
+                
+                                var config = {
+                                    type: 'bar',
+                                    data: data,
+                                    options: {
+                                        plugins: {
+                                            title: {
+                                                display: true,
+                                                text: 'Gráfico das Populações das cidades em ' + $("#slctAno").val()
+                                            }
+                                        },
+                                        parsing: {
+                                            xAxisKey: 'id',
+                                            yAxisKey: 'nested.value'
+                                        }
                                     }
-                                },
-                                parsing: {
-                                    xAxisKey: 'id',
-                                    yAxisKey: 'nested.value'
-                                }
-                            }
-                        };
-        
-                        var barGraph = document.getElementById("garficoPopulacaoCidades");
-        
-                        var ctx = new Chart(barGraph, config);
-        
-                        $("#slctCidades2").change(function(){
-                            ctx.destroy();
-                        })
-        
-                        $("#slctCidades").change(function(){
-                            $("#slctAno").change(function(){
-                                ctx.destroy();
-                            })
-                        })
+                                };
+                
+                                var barGraph = document.getElementById("garficoPopulacaoCidades");
+                
+                                var ctx = new Chart(barGraph, config);
+                
+                                $("#slctCidades2").change(function(){
+                                    ctx.destroy();
+                                })
+                
+                                $("#slctCidades").change(function(){
+                                    $("#slctAno").change(function(){
+                                        ctx.destroy();
+                                    })
+                                })
+                                break
+                            case "linha":
+                                var data = {
+                                    labels: [$("#slctCidades option:selected").text(), $("#slctCidades2 option:selected").text()],
+                                    datasets: [{
+                                        label: 'População',
+                                        data:[ $("#inpPopC").val(), comparaCidades[0].resultados[0].series[0].serie['2007']],
+                                        backgroundColor: `#f28705`,
+                                        borderColor: `#04d9b2`,
+                                        fill: false,
+                                        tension: 0.4
+                                    }]
+                                };
+                                    
+                                var config = {
+                                    type: 'line',
+                                    data: data,
+                                    options: {
+                                        responsive: true,
+                                        plugins: {
+                                            title: {
+                                                display: true,
+                                                text: 'Gráfico das Populações das cidades em ' + $("#slctAno").val()
+                                            }
+                                        },
+                                    }
+                                };
+
+                                var lineGraph = document.getElementById("garficoPopulacaoCidades");
+            
+                                var ctx = new Chart(lineGraph, config);
+            
+                                $("#slctCidades2").change(function(){
+                                    ctx.destroy();
+                                })
+            
+                                $("#slctCidades").change(function(){
+                                    $("#slctAno").change(function(){
+                                        ctx.destroy();
+                                    })
+                                })
+                                break
+                            case "pizza":
+                                var data = {
+                                    labels: [$("#slctCidades option:selected").text(), $("#slctCidades2 option:selected").text()],
+                                    datasets: [{
+                                        label: 'População',
+                                        data:[$("#inpPopC").val(), comparaCidades[0].resultados[0].series[0].serie['2007']],
+                                            backgroundColor: [`#f28705`, `#00a000`],
+                                            borderColor: `#04d9b2`
+                                        }]
+                                    };
+                    
+                                var config = {
+                                    type: 'pie',
+                                    data: data,
+                                    options: {
+                                        plugins: {
+                                            title: {
+                                                display: true,
+                                                text: 'Gráfico das Populações das cidades em ' + $("#slctAno").val()
+                                            }
+                                        }
+                                    }
+                                };
+                    
+                                var pieGraph = document.getElementById("garficoPopulacaoCidades");
+                    
+                                var ctx = new Chart(pieGraph, config);
+                                $("#slctCidades2").change(function(){
+                                    ctx.destroy();
+                                })
+            
+                                $("#slctCidades").change(function(){
+                                    $("#slctAno").change(function(){
+                                        ctx.destroy();
+                                    })
+                                })
+                                break
+                        }
                     }
                 })
                 break
@@ -243,53 +566,129 @@ $(document).ready(function(){
         
                     } ,
                     success: function(comparaCidades){
-                        var data = {
-                            labels: [$("#slctCidades option:selected").text(), $("#slctCidades2 option:selected").text()],
-                            datasets: [{
-                                label: 'População',
-                                data:[{id: $("#slctCidades option:selected").text(), nested: {value: $("#inpPopC").val()}},
-                                        {id: $("#slctCidades2 option:selected").text(), nested: {value: comparaCidades[0].resultados[0].series[0].serie['2010']}}],
-                                backgroundColor: [
-                                    'rgb(255, 99, 132)',
-                                    'rgb(70,130,180)'
-                                ],
-                                borderColor: [
-                                    'rgb(255, 99, 132)',
-                                    'rgb(70,130,180)'
-                                ]
-                            }]
-                        };
-        
-                        var config = {
-                            type: 'bar',
-                            data: data,
-                            options: {
-                                plugins: {
-                                    title: {
-                                        display: true,
-                                        text: 'Gráfico das Populações das cidades em ' + $("#slctAno").val()
+                        switch($("#tipoGrafico").val()){
+                            case "barra":
+                                var data = {
+                                    labels: [$("#slctCidades option:selected").text(), $("#slctCidades2 option:selected").text()],
+                                    datasets: [{
+                                        label: 'População',
+                                        data:[{id: $("#slctCidades option:selected").text(), nested: {value: $("#inpPopC").val()}},
+                                                {id: $("#slctCidades2 option:selected").text(), nested: {value: comparaCidades[0].resultados[0].series[0].serie['2010']}}],
+                                        backgroundColor: [`#f28705`, `#00a000`],
+                                        borderColor: `#04d9b2`
+                                    }]
+                                };
+                
+                                var config = {
+                                    type: 'bar',
+                                    data: data,
+                                    options: {
+                                        plugins: {
+                                            title: {
+                                                display: true,
+                                                text: 'Gráfico das Populações das cidades em ' + $("#slctAno").val()
+                                            }
+                                        },
+                                        parsing: {
+                                            xAxisKey: 'id',
+                                            yAxisKey: 'nested.value'
+                                        }
                                     }
-                                },
-                                parsing: {
-                                    xAxisKey: 'id',
-                                    yAxisKey: 'nested.value'
-                                }
-                            }
-                        };
-        
-                        var barGraph = document.getElementById("garficoPopulacaoCidades");
-        
-                        var ctx = new Chart(barGraph, config);
-        
-                        $("#slctCidades2").change(function(){
-                            ctx.destroy();
-                        })
-        
-                        $("#slctCidades").change(function(){
-                            $("#slctAno").change(function(){
-                                ctx.destroy();
-                            })
-                        })
+                                };
+                
+                                var barGraph = document.getElementById("garficoPopulacaoCidades");
+                
+                                var ctx = new Chart(barGraph, config);
+                
+                                $("#slctCidades2").change(function(){
+                                    ctx.destroy();
+                                })
+                
+                                $("#slctCidades").change(function(){
+                                    $("#slctAno").change(function(){
+                                        ctx.destroy();
+                                    })
+                                })
+                                break
+                            case "linha":
+                                var data = {
+                                    labels: [$("#slctCidades option:selected").text(), $("#slctCidades2 option:selected").text()],
+                                    datasets: [{
+                                        label: 'População',
+                                        data:[$("#inpPopC").val(), comparaCidades[0].resultados[0].series[0].serie['2010']],
+                                        backgroundColor: `#f28705`,
+                                        borderColor: `#04d9b2`,
+                                        fill: false,
+                                        tension: 0.4
+                                    }]
+                                };
+                                    
+                                var config = {
+                                    type: 'line',
+                                    data: data,
+                                    options: {
+                                        responsive: true,
+                                        plugins: {
+                                            title: {
+                                                display: true,
+                                                text: 'Gráfico das Populações das cidades em ' + $("#slctAno").val()
+                                            }
+                                        },
+                                    }
+                                };
+
+                                var lineGraph = document.getElementById("garficoPopulacaoCidades");
+            
+                                var ctx = new Chart(lineGraph, config);
+            
+                                $("#slctCidades2").change(function(){
+                                    ctx.destroy();
+                                })
+            
+                                $("#slctCidades").change(function(){
+                                    $("#slctAno").change(function(){
+                                        ctx.destroy();
+                                    })
+                                })
+                                break
+                            case "pizza":
+                                var data = {
+                                    labels: [$("#slctCidades option:selected").text(), $("#slctCidades2 option:selected").text()],
+                                    datasets: [{
+                                        label: 'População',
+                                        data:[$("#inpPopC").val(), comparaCidades[0].resultados[0].series[0].serie['2010']],
+                                            backgroundColor: [`#f28705`, `#00a000`],
+                                            borderColor: `#04d9b2`
+                                        }]
+                                    };
+                    
+                                var config = {
+                                    type: 'pie',
+                                    data: data,
+                                    options: {
+                                        plugins: {
+                                            title: {
+                                                display: true,
+                                                text: 'Gráfico das Populações das cidades em ' + $("#slctAno").val()
+                                            }
+                                        }
+                                    }
+                                };
+                    
+                                var pieGraph = document.getElementById("garficoPopulacaoCidades");
+                    
+                                var ctx = new Chart(pieGraph, config);
+                                $("#slctCidades2").change(function(){
+                                    ctx.destroy();
+                                })
+            
+                                $("#slctCidades").change(function(){
+                                    $("#slctAno").change(function(){
+                                        ctx.destroy();
+                                    })
+                                })
+                                break
+                        }
                     }
                 })
                 break
@@ -301,53 +700,129 @@ $(document).ready(function(){
         
                     } ,
                     success: function(comparaCidades){
-                        var data = {
-                            labels: [$("#slctCidades option:selected").text(), $("#slctCidades2 option:selected").text()],
-                            datasets: [{
-                                label: 'População',
-                                data:[{id: $("#slctCidades option:selected").text(), nested: {value: $("#inpPopC").val()}},
-                                        {id: $("#slctCidades2 option:selected").text(), nested: {value: comparaCidades[0].resultados[0].series[0].serie[$("#slctAno").val()]}}],
-                                backgroundColor: [
-                                    'rgb(255, 99, 132)',
-                                    'rgb(70,130,180)'
-                                ],
-                                borderColor: [
-                                    'rgb(255, 99, 132)',
-                                    'rgb(70,130,180)'
-                                ]
-                            }]
-                        };
-        
-                        var config = {
-                            type: 'bar',
-                            data: data,
-                            options: {
-                                plugins: {
-                                    title: {
-                                        display: true,
-                                        text: 'Gráfico das Populações das cidades em ' + $("#slctAno").val()
+                        switch($("#tipoGrafico").val()){
+                            case "barra":
+                                var data = {
+                                    labels: [$("#slctCidades option:selected").text(), $("#slctCidades2 option:selected").text()],
+                                    datasets: [{
+                                        label: 'População',
+                                        data:[{id: $("#slctCidades option:selected").text(), nested: {value: $("#inpPopC").val()}},
+                                                {id: $("#slctCidades2 option:selected").text(), nested: {value: comparaCidades[0].resultados[0].series[0].serie[$("#slctAno").val()]}}],
+                                        backgroundColor: [`#f28705`, `#00a000`],
+                                        borderColor: `#04d9b2`
+                                    }]
+                                };
+                
+                                var config = {
+                                    type: 'bar',
+                                    data: data,
+                                    options: {
+                                        plugins: {
+                                            title: {
+                                                display: true,
+                                                text: 'Gráfico das Populações das cidades em ' + $("#slctAno").val()
+                                            }
+                                        },
+                                        parsing: {
+                                            xAxisKey: 'id',
+                                            yAxisKey: 'nested.value'
+                                        }
                                     }
-                                },
-                                parsing: {
-                                    xAxisKey: 'id',
-                                    yAxisKey: 'nested.value'
-                                }
-                            }
-                        };
-        
-                        var barGraph = document.getElementById("garficoPopulacaoCidades");
-        
-                        var ctx = new Chart(barGraph, config);
-        
-                        $("#slctCidades2").change(function(){
-                            ctx.destroy();
-                        })
-        
-                        $("#slctCidades").change(function(){
-                            $("#slctAno").change(function(){
-                                ctx.destroy();
-                            })
-                        })
+                                };
+                
+                                var barGraph = document.getElementById("garficoPopulacaoCidades");
+                
+                                var ctx = new Chart(barGraph, config);
+                
+                                $("#slctCidades2").change(function(){
+                                    ctx.destroy();
+                                })
+                
+                                $("#slctCidades").change(function(){
+                                    $("#slctAno").change(function(){
+                                        ctx.destroy();
+                                    })
+                                })
+                                break
+                            case "linha":
+                                var data = {
+                                    labels: [$("#slctCidades option:selected").text(), $("#slctCidades2 option:selected").text()],
+                                    datasets: [{
+                                        label: 'População',
+                                        data:[$("#inpPopC").val(), comparaCidades[0].resultados[0].series[0].serie[$("#slctAno").val()]],
+                                        backgroundColor: `#f28705`,
+                                        borderColor: `#04d9b2`,
+                                        fill: false,
+                                        tension: 0.4
+                                    }]
+                                };
+                                    
+                                var config = {
+                                    type: 'line',
+                                    data: data,
+                                    options: {
+                                        responsive: true,
+                                        plugins: {
+                                            title: {
+                                                display: true,
+                                                text: 'Gráfico das Populações das cidades em ' + $("#slctAno").val()
+                                            }
+                                        },
+                                    }
+                                };
+
+                                var lineGraph = document.getElementById("garficoPopulacaoCidades");
+            
+                                var ctx = new Chart(lineGraph, config);
+            
+                                $("#slctCidades2").change(function(){
+                                    ctx.destroy();
+                                })
+            
+                                $("#slctCidades").change(function(){
+                                    $("#slctAno").change(function(){
+                                        ctx.destroy();
+                                    })
+                                })
+                                break
+                            case "pizza":
+                                var data = {
+                                    labels: [$("#slctCidades option:selected").text(), $("#slctCidades2 option:selected").text()],
+                                    datasets: [{
+                                        label: 'População',
+                                        data:[$("#inpPopC").val(), comparaCidades[0].resultados[0].series[0].serie[$("#slctAno").val()]],
+                                            backgroundColor: [`#f28705`, `#00a000`],
+                                            borderColor: `#04d9b2`
+                                        }]
+                                    };
+                    
+                                var config = {
+                                    type: 'pie',
+                                    data: data,
+                                    options: {
+                                        plugins: {
+                                            title: {
+                                                display: true,
+                                                text: 'Gráfico das Populações das cidades em ' + $("#slctAno").val()
+                                            }
+                                        }
+                                    }
+                                };
+                    
+                                var pieGraph = document.getElementById("garficoPopulacaoCidades");
+                    
+                                var ctx = new Chart(pieGraph, config);
+                                $("#slctCidades2").change(function(){
+                                    ctx.destroy();
+                                })
+            
+                                $("#slctCidades").change(function(){
+                                    $("#slctAno").change(function(){
+                                        ctx.destroy();
+                                    })
+                                })
+                                break
+                        }
                     }
                 })
                 break
@@ -366,50 +841,131 @@ $(document).ready(function(){
         
                     } ,
                     success: function(comapraArea){
-                        var data = {
-                            labels: [$("#slctCidades option:selected").text(), $("#slctCidades2 option:selected").text()],
-                            datasets: [{
-                                label: 'Área Total',
-                                data:[$("#inpArea").val(),
-                                        comapraArea[0].resultados[0].series[0].serie['2010']],
-                                backgroundColor: [
-                                    'rgb(255, 99, 132)',
-                                    'rgb(70,130,180)'
-                                ],
-                                borderColor: [
-                                    'rgb(255, 99, 132)',
-                                    'rgb(70,130,180)'
-                                ]
-                            }]
-                        };
+                        switch($("#tipoGrafico").val()){
+                            case "barra":
+                                var data = {
+                                    labels: [$("#slctAno").val(), $("#slctAno2").val()],
+                                    datasets: [{
+                                        label: 'Área Total',
+                                        data: [ {id: $("#slctCidades").val(), nested: {value: $("#inpArea").val()}},
+                                                {id: $("#slctCidades2").val(), nested: {value: comapraArea[0].resultados[0].series[0].serie['2010']}}],
+                                        backgroundColor: `#f28705`,
+                                        borderColor: `#04d9b2`
+                                    }]
+                                };
         
-                        var config = {
-                            type: 'pie',
-                            data: data,
-                            options: {
-                                plugins: {
-                                    title: {
-                                        display: true,
-                                        text: 'Gráfico de comparação em áreas'
+                                var config = {
+                                    type: 'bar',
+                                    data: data,
+                                    options: {
+                                        responsive: true,
+                                        plugins: {
+                                            title: {
+                                                display: true,
+                                                text: 'Gráfico de comparação em áreas'
+                                            }
+                                        },
+                                        parsing: {
+                                            xAxisKey: 'id',
+                                            yAxisKey: 'nested.value'
+                                        }
                                     }
-                                }
-                            }
-                        };
+                                };
         
-                        var pieGraph = document.getElementById("graficoAreaCidades");
+                                var barGraph = document.getElementById("graficoAreaCidades");
         
-                        var ctx = new Chart(pieGraph, config);
-        
-                        $("#slctCidades2").change(function(){
-                            ctx.destroy();
-                        })
-        
-                        $("#slctCidades").change(function(){
-                            ctx.destroy();
-                        })
+                                var ctx = new Chart(barGraph, config);
+
+                                $("#slctCidades2").change(function(){
+                                    ctx.destroy();
+                                })
+                
+                                $("#slctCidades").change(function(){
+                                    ctx.destroy();
+                                })
+                                break
+                            case "linha":
+                                var data = {
+                                    labels: [$("#slctCidades option:selected").text(), $("#slctCidades2 option:selected").text()],
+                                    datasets: [{
+                                        label: 'Área Total',
+                                        data:[$("#inpArea").val(), comapraArea[0].resultados[0].series[0].serie['2010']],
+                                        backgroundColor: `#f28705`,
+                                        borderColor: `#04d9b2`,
+                                        fill: false,
+                                        tension: 0.4
+                                    }]
+                                };
+                                    
+                                var config = {
+                                    type: 'line',
+                                    data: data,
+                                    options: {
+                                        responsive: true,
+                                        plugins: {
+                                            title: {
+                                                display: true,
+                                                text: 'Gráfico de comparação em áreas'
+                                            }
+                                        },
+                                    }
+                                };
+
+                                var lineGraph = document.getElementById("graficoAreaCidades");
+            
+                                var ctx = new Chart(lineGraph, config);
+
+                                $("#slctCidades2").change(function(){
+                                    ctx.destroy();
+                                })
+                
+                                $("#slctCidades").change(function(){
+                                    ctx.destroy();
+                                })
+                                break
+                            case "pizza":
+                                var data = {
+                                    labels: [$("#slctCidades option:selected").text(), $("#slctCidades2 option:selected").text()],
+                                    datasets: [{
+                                        label: 'Área Total',
+                                        data:[$("#inpArea").val(), comapraArea[0].resultados[0].series[0].serie['2010']],
+                                        backgroundColor: [`#f28705`, `#00a000`],
+                                        borderColor: `#04d9b2`
+                                    }]
+                                };
+                
+                                var config = {
+                                    type: 'pie',
+                                    data: data,
+                                    options: {
+                                        plugins: {
+                                            title: {
+                                                display: true,
+                                                text: 'Gráfico de comparação em áreas'
+                                            }
+                                        }
+                                    }
+                                };
+                
+                                var pieGraph = document.getElementById("graficoAreaCidades");
+                
+                                var ctx = new Chart(pieGraph, config);
+                
+                                $("#slctCidades2").change(function(){
+                                    ctx.destroy();
+                                })
+                
+                                $("#slctCidades").change(function(){
+                                    ctx.destroy();
+                                })
+                                break
+                        }
                     }
                 })
             })
         }
     })
+
+    // Gráfico de escolarização total da população entre os municípios
+    //$("#slctEscolarizacao").change(function(){})
 })
