@@ -171,6 +171,16 @@ footer{
     margin-top: 7px;
 }
 
+#dadosE input{
+    width: auto;
+    font-size: 16px;
+}
+
+#dadosC input{
+    width: auto;
+    font-size: 16px;
+}
+
 @media screen and (min-width: 412px){
     .img-ibge{
         width: 50%;
