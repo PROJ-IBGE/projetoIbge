@@ -1,7 +1,7 @@
 function pibBrasil(){
     const obj = {}
 
-    obj.pibDoBrasil = (query = '', anos, grafico, tabela, gini) => {
+    obj.pibDoBrasil = (query, anos, grafico, tabela,cor, gini) => {
         let variavel, agregado, anosres = ''
         if (gini){
             agregado = 5939
@@ -25,12 +25,12 @@ function pibBrasil(){
                 res.variavel = json[0].variavel
                 res.unidade = json[0].unidade
                 res.Brasil = json[0].resultados[0].series[0].serie
-                visualizar(query, grafico, tabela, res)
+                visualizar(query, grafico, tabela, cor, res)
             })
         return res
     }
 
-    obj.pibPorEstado = (nome, query = '', anos, grafico, tabela, gini) => {
+    obj.pibPorEstado = (nome, query, anos, grafico, tabela, cor, gini) => {
         let variavel, agregado, anosres = '', numeroEstado = ''
         if (gini){
             agregado = 5939
@@ -64,12 +64,12 @@ function pibBrasil(){
                 res.unidade = json[0].unidade
                 res.variavel = json[0].variavel
                 json[0].resultados[0].series.map((d) => res[d.localidade.nome] = d.serie)
-                visualizar(query, grafico, tabela, res)
+                visualizar(query, grafico, tabela, cor, res)
             })
         return res
     }
 
-    obj.pibPorGrandeRegiao = (nome, query = '', anos, grafico, tabela, gini) => {
+    obj.pibPorGrandeRegiao = (nome, query, anos, grafico, tabela, cor, gini) => {
         let variavel, agregado, anosres = '', numeroRegioes = ''
         if (gini){
             agregado = 5939
@@ -103,12 +103,12 @@ function pibBrasil(){
                 res.unidade = json[0].unidade
                 res.variavel = json[0].variavel
                 json[0].resultados[0].series.map((d) => res[d.localidade.nome] = d.serie)
-                visualizar(query, grafico, tabela, res)
+                visualizar(query, grafico, tabela, cor, res)
             })
         return res
     }
 
-    obj.pibPorMesorregiao = (nome, query = '', anos, grafico, tabela) => {
+    obj.pibPorMesorregiao = (nome, query, anos, grafico, tabela, cor) => {
         let numeroRegioes = '', anosres = ''
         if (anos === 'all') {
             anosres += 'all'
@@ -144,12 +144,12 @@ function pibBrasil(){
                 res.unidade = json[0].unidade
                 res.variavel = json[0].variavel
                 json[0].resultados[0].series.map((d) => res[d.localidade.nome] = d.serie)
-                visualizar(query, grafico, tabela, res)
+                visualizar(query, grafico, tabela, cor, res)
             })
         return res
     }
 
-    obj.pibPorMicrorregiao = (nome, query = '', anos, grafico, tabela) => {
+    obj.pibPorMicrorregiao = (nome, query, anos, grafico, tabela, cor) => {
         let numeroRegioes = '', anosres = ''
         if (anos === 'all') {
             anosres += 'all'
@@ -185,12 +185,12 @@ function pibBrasil(){
                 res.unidade = json[0].unidade
                 res.variavel = json[0].variavel
                 json[0].resultados[0].series.map((d) => res[d.localidade.nome] = d.serie)
-                visualizar(query, grafico, tabela, res)
+                visualizar(query, grafico, tabela, cor, res)
             })
         return res
     }
 
-    obj.pibPorMunicipio = (nome, query = '', anos, grafico, tabela) => {
+    obj.pibPorMunicipio = (nome, query, anos, grafico, tabela, cor) => {
         let numeroRegioes = '', anosres = ''
         if (anos === 'all') {
             anosres += 'all'
@@ -226,7 +226,7 @@ function pibBrasil(){
                 res.unidade = json[0].unidade
                 res.variavel = json[0].variavel
                 json[0].resultados[0].series.map((d) => res[d.localidade.nome] = d.serie)
-                visualizar(query, grafico, tabela, res)
+                visualizar(query, grafico, tabela, cor, res)
             })
         return res
     }

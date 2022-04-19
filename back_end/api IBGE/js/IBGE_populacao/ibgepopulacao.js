@@ -1,7 +1,7 @@
 function populacao(){
     const obj ={};
 
-    obj.populacaoDoBrasil = (query = '', anos, grafico, tabela) => {
+    obj.populacaoDoBrasil = (query, anos, grafico, tabela, cor) => {
         const res = {}
         let anosres = ''
         if (anos === 'all') {
@@ -19,12 +19,12 @@ function populacao(){
                 res.unidade = json[0].unidade
                 res.Brasil = json[0].resultados[0].series[0].serie
 
-                visualizar(query, grafico, tabela, res)
+                visualizar(query, grafico, tabela, cor, res)
             })
         return res
     }
 
-    obj.populacaoPorGrandeRegiao = (nome, query = '', anos, grafico, tabela) => {
+    obj.populacaoPorGrandeRegiao = (nome, query, anos, grafico, tabela, cor) => {
         let numeroRegioes = '', anosres = ''
         if (anos === 'all') {
             anosres += 'all'
@@ -51,12 +51,12 @@ function populacao(){
                 res.unidade = json[0].unidade
                 json[0].resultados[0].series.map(d => res[d.localidade.nome] = d.serie)
 
-                visualizar(query, grafico, tabela, res)
+                visualizar(query, grafico, tabela, cor, res)
             })
         return res
     }
 
-    obj.populacaoPorEstado = (nome, query = '', anos, grafico, tabela) => {
+    obj.populacaoPorEstado = (nome, query, anos, grafico, tabela, cor) => {
         let numeroEstado = '', anosres = ''
         if (anos === 'all') {
             anosres += 'all'
@@ -84,12 +84,12 @@ function populacao(){
                 res.unidade = json[0].unidade
                 json[0].resultados[0].series.map(d => res[d.localidade.nome] = d.serie)
 
-                visualizar(query, grafico, tabela, res)
+                visualizar(query, grafico, tabela, cor, res)
             })
         return res
     }
 
-    obj.populacaoPorMunicipio = (nome, query = '', anos, grafico, tabela) => {
+    obj.populacaoPorMunicipio = (nome, query, anos, grafico, tabela, cor) => {
         let numeroMunicipio = '', anosres = ''
         if (anos === 'all') {
             anosres += 'all'
@@ -126,12 +126,12 @@ function populacao(){
                 res.unidade = json[0].unidade
                 json[0].resultados[0].series.map(d => res[d.localidade.nome] = d.serie)
 
-                visualizar(query, grafico, tabela, res)
+                visualizar(query, grafico, tabela, cor, res)
             })
         return res
     }
 
-    obj.esperancaDeVidaDoBrasil = (query = '', anos, grafico, tabela) => {
+    obj.esperancaDeVidaDoBrasil = (query, anos, grafico, tabela, cor) => {
         const res = {}
         let anosres = ''
         if (anos === 'all') {
@@ -149,12 +149,12 @@ function populacao(){
             res.unidade = json[0].unidade
             res.Brasil = json[0].resultados[0].series[0].serie
 
-            visualizar(query, grafico, tabela, res)
+            visualizar(query, grafico, tabela, cor, res)
         })
         return res
     }
 
-    obj.esperancaDeVidaPorGrandeRegiao = (nome, query = '', anos, grafico, tabela) => {
+    obj.esperancaDeVidaPorGrandeRegiao = (nome, query, anos, grafico, tabela, cor) => {
         let numeroRegioes = '', anosres = ''
         if (anos === 'all') {
             anosres += 'all'
@@ -181,12 +181,12 @@ function populacao(){
                 res.unidade = json[0].unidade
                 json[0].resultados[0].series.map(d => res[d.localidade.nome] = d.serie)
 
-                visualizar(query, grafico, tabela, res)
+                visualizar(query, grafico, tabela, cor, res)
             })
         return res
     }
 
-    obj.esperancaDeVidaPorEstado = (nome, query = '', anos, grafico, tabela) => {
+    obj.esperancaDeVidaPorEstado = (nome, query, anos, grafico, tabela, cor) => {
         let numeroEstado = '', anosres = ''
         if (anos === 'all') {
             anosres += 'all'
@@ -214,12 +214,12 @@ function populacao(){
                 res.unidade = json[0].unidade
                 json[0].resultados[0].series.map(d => res[d.localidade.nome] = d.serie)
 
-                visualizar(query, grafico, tabela, res)
+                visualizar(query, grafico, tabela, cor, res)
             })
         return res
     }
 
-    obj.densidadeDemograficaDoBrasil = (query = '', anos, grafico, tabela) => {
+    obj.densidadeDemograficaDoBrasil = (query, anos, grafico, tabela, cor) => {
         const res = {}
         let anosres = ''
         /*
@@ -240,12 +240,12 @@ function populacao(){
             res.unidade = json[0].unidade
             res[json[0].resultados[0].series[0].localidade.nome] = json[0].resultados[0].series[0].serie
 
-            visualizar(query, grafico, tabela, res)
+            visualizar(query, grafico, tabela, cor, res)
         })
         return res
     }
 
-    obj.densidadeDemograficaPorGrandeRegiao = (nome,  query = '', anos, grafico, tabela) => {
+    obj.densidadeDemograficaPorGrandeRegiao = (nome,  query, anos, grafico, tabela, cor) => {
         let numeroRegioes = '', anosres = ''
         if (anos === 'all') {
             anosres += 'all'
@@ -272,12 +272,12 @@ function populacao(){
                 res.unidade = json[0].unidade
                 json[0].resultados[0].series.map(d => res[d.localidade.nome] = d.serie)
 
-                visualizar(query, grafico, tabela, res)
+                visualizar(query, grafico, tabela, cor, res)
             })
         return res
     }
 
-    obj.densidadeDemograficaPorEstado = (nome, query = '', anos, grafico, tabela) => {
+    obj.densidadeDemograficaPorEstado = (nome, query, anos, grafico, tabela, cor) => {
         let numeroEstado = '', anosres = ''
         if (anos === 'all') {
             anosres += 'all'
@@ -305,12 +305,12 @@ function populacao(){
                 res.unidade = json[0].unidade
                 json[0].resultados[0].series.map(d => res[d.localidade.nome] = d.serie)
 
-                visualizar(query, grafico, tabela, res)
+                visualizar(query, grafico, tabela, cor, res)
             })
         return res
     }
 
-    obj.populacaoAssalariadaDoBrasil = (query = '', anos, grafico, tabela) => {
+    obj.populacaoAssalariadaDoBrasil = (query, anos, grafico, tabela, cor) => {
         const res = {}
         let anosres = ''
         if (anos === 'all') {
@@ -328,12 +328,12 @@ function populacao(){
                 res.unidade = json[0].unidade
                 json[0].resultados[0].series.map(d => res[d.localidade.nome] = d.serie)
 
-                visualizar(query, grafico, tabela, res)
+                visualizar(query, grafico, tabela, cor, res)
             })
         return res
     }
 
-    obj.populacaoAssalariadaPorGrandeRegiao = (nome,  query = '', anos, grafico, tabela) => {
+    obj.populacaoAssalariadaPorGrandeRegiao = (nome,  query, anos, grafico, tabela, cor) => {
         let numeroRegioes = '', anosres = ''
         if (anos === 'all') {
             anosres += 'all'
@@ -361,12 +361,12 @@ function populacao(){
                 res.unidade = json[0].unidade
                 json[0].resultados[0].series.map(d => res[d.localidade.nome] = d.serie)
 
-                visualizar(query, grafico, tabela, res)
+                visualizar(query, grafico, tabela, cor, res)
             })
         return res
     }
 
-    obj.populacaoAssalariadaPorEstado = (nome, query = '', anos, grafico, tabela) => {
+    obj.populacaoAssalariadaPorEstado = (nome, query, anos, grafico, tabela, cor) => {
         let numeroEstado = '', anosres = ''
         if (anos === 'all') {
             anosres += 'all'
@@ -394,11 +394,11 @@ function populacao(){
                 res.unidade = json[0].unidade
                 json[0].resultados[0].series.map(d => res[d.localidade.nome] = d.serie)
 
-                visualizar(query, grafico, tabela, res)
+                visualizar(query, grafico, tabela, cor, res)
             })
     }
 
-    obj.projecaoDeDadosNoBrasil = (variavel, anos, query = '', grafico, tabela) => {
+    obj.projecaoDeDadosNoBrasil = (variavel, anos, query, grafico, tabela, cor) => {
         let agregado, va, classificacao, anosres = ''
         if (anos === 'all') {
             anosres += 'all'
@@ -454,7 +454,7 @@ function populacao(){
                         }
                     })
 
-                    visualizar(query, grafico, tabela, res)
+                    visualizar(query, grafico, tabela, cor, res)
                 })
         } else if (variavel === 'nascimentos' || variavel === 'obitos') {
             fetch(`https://servicodados.ibge.gov.br/api/v3/agregados/${agregado}/periodos/2018/variaveis/${va}?localidades=N1[all]&${classificacao}`)
@@ -469,7 +469,7 @@ function populacao(){
                         }
                     })
 
-                    visualizar(query, grafico, tabela, res)
+                    visualizar(query, grafico, tabela, cor, res)
                 })
         } else if (variavel === 'populacao') {
             fetch(`https://servicodados.ibge.gov.br/api/v3/agregados/${agregado}/periodos/2018/variaveis/${va}?localidades=N1[all]&${classificacao}`)
@@ -484,13 +484,13 @@ function populacao(){
                         }
                     })
 
-                    visualizar(query, grafico, tabela, res)
+                    visualizar(query, grafico, tabela, cor, res)
                 })
         }
         return res
     }
 
-    obj.projecaoDeDadosPorGrandeRegiao = (nome, variavel,  query = '', anos, grafico, tabela) => {
+    obj.projecaoDeDadosPorGrandeRegiao = (nome, variavel,  query, anos, grafico, tabela, cor) => {
         let numeroRegioes = '', anosres = ''
         if (nome === 'all') {
             numeroRegioes += 'all'
@@ -557,7 +557,7 @@ function populacao(){
                         d.series.map(d2 => res[d2.localidade.nome][ano] = d2.serie['2018'])
                     })
 
-                    visualizar(query, grafico, tabela, res)
+                    visualizar(query, grafico, tabela, cor, res)
                 })
         } else if (variavel === 'nascimentos' || variavel === 'obitos') {
             fetch(`https://servicodados.ibge.gov.br/api/v3/agregados/${agregado}/periodos/2018/variaveis/${va}?localidades=N2[${numeroRegioes}]&${classificacao}`)
@@ -574,7 +574,7 @@ function populacao(){
                         d.series.map(d2 => res[d2.localidade.nome][ano] = d2.serie['2018'])
                     })
 
-                    visualizar(query, grafico, tabela, res)
+                    visualizar(query, grafico, tabela, cor, res)
                 })
         } else if (variavel === 'populacao') {
             fetch(`https://servicodados.ibge.gov.br/api/v3/agregados/${agregado}/periodos/2018/variaveis/${va}?localidades=N2[${numeroRegioes}]&${classificacao}`)
@@ -591,13 +591,13 @@ function populacao(){
                         d.series.map(d2 => res[d2.localidade.nome][ano] = d2.serie['2018'])
                     })
 
-                    visualizar(query, grafico, tabela, res)
+                    visualizar(query, grafico, tabela, cor, res)
                 })
         }
         return res
     }
 
-    obj.projecaoDeDadosPorEstado = (nome, variavel, query = '', anos, grafico, tabela) => {
+    obj.projecaoDeDadosPorEstado = (nome, variavel, query, anos, grafico, tabela, cor) => {
         let numeroEstado = '', anosres = '', agregado, va, classificacao
         if (nome === 'all') {
             numeroEstado += 'all'
@@ -664,7 +664,7 @@ function populacao(){
                         d.series.map(d2 => res[d2.localidade.nome][ano] = d2.serie['2018'])
                     })
 
-                    visualizar(query, grafico, tabela, res)
+                    visualizar(query, grafico, tabela, cor, res)
                 })
         } else if (variavel === 'nascimentos' || variavel === 'obitos') {
             fetch(`https://servicodados.ibge.gov.br/api/v3/agregados/${agregado}/periodos/2018/variaveis/${va}?localidades=N3[${numeroEstado}]&${classificacao}`)
@@ -681,7 +681,7 @@ function populacao(){
                         d.series.map(d2 => res[d2.localidade.nome][ano] = d2.serie['2018'])
                     })
 
-                    visualizar(query, grafico, tabela, res)
+                    visualizar(query, grafico, tabela, cor, res)
                 })
         } else if (variavel === 'populacao') {
             fetch(`https://servicodados.ibge.gov.br/api/v3/agregados/${agregado}/periodos/2018/variaveis/${va}?localidades=N3[${numeroEstado}]&${classificacao}`)
@@ -698,7 +698,7 @@ function populacao(){
                         d.series.map(d2 => res[d2.localidade.nome][ano] = d2.serie['2018'])
                     })
 
-                    visualizar(query, grafico, tabela, res)
+                    visualizar(query, grafico, tabela, cor, res)
                 })
         }
         return res

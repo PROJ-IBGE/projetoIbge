@@ -64,96 +64,97 @@ function IBGE(obj) {
                 obj.grafico = 'linha'
             } else if (obj.tabela === true) obj.grafico = ''
             if (obj.gini === undefined) obj.gini = false
+            if (obj.cor === undefined) obj.cor = true 
         }
         if (typeof obj.op === 'number') {
             switch (obj.op) {
                 case 1:
                     verifica(obj)
-                    ibge.populacaoDoBrasil(obj.query, obj.ano, obj.grafico, obj.tabela)
+                    ibge.populacaoDoBrasil(obj.query, obj.ano, obj.grafico, obj.tabela, obj.cor)
                     break
                 case 2:
                     verifica(obj)
-                    ibge.populacaoPorGrandeRegiao(obj.local, obj.query, obj.ano, obj.grafico, obj.tabela)
+                    ibge.populacaoPorGrandeRegiao(obj.local, obj.query, obj.ano, obj.grafico, obj.tabela, obj.cor)
                     break
                 case 3:
                     verifica(obj)
-                    ibge.populacaoPorEstado(obj.local, obj.query, obj.ano, obj.grafico, obj.tabela)
+                    ibge.populacaoPorEstado(obj.local, obj.query, obj.ano, obj.grafico, obj.tabela, obj.cor)
                     break
                 case 4:
                     verifica(obj)
-                    ibge.populacaoPorMunicipio(obj.local, obj.query, obj.ano, obj.grafico, obj.tabela)
+                    ibge.populacaoPorMunicipio(obj.local, obj.query, obj.ano, obj.grafico, obj.tabela, obj.cor)
                     break
                 case 5:
                     verifica(obj)
-                    ibge.esperancaDeVidaDoBrasil(obj.query, obj.ano, obj.grafico, obj.tabela)
+                    ibge.esperancaDeVidaDoBrasil(obj.query, obj.ano, obj.grafico, obj.tabela, obj.cor)
                     break
                 case 6:
                     verifica(obj)
-                    ibge.esperancaDeVidaPorGrandeRegiao(obj.local, obj.query, obj.ano, obj.grafico, obj.tabela)
+                    ibge.esperancaDeVidaPorGrandeRegiao(obj.local, obj.query, obj.ano, obj.grafico, obj.tabela, obj.cor)
                     break
                 case 7:
                     verifica(obj)
-                    ibge.esperancaDeVidaPorEstado(obj.local, obj.query, obj.ano, obj.grafico, obj.tabela)
+                    ibge.esperancaDeVidaPorEstado(obj.local, obj.query, obj.ano, obj.grafico, obj.tabela, obj.cor)
                     break
                 case 8:
                     verifica(obj)
-                    ibge.densidadeDemograficaDoBrasil(obj.query, obj.ano, obj.grafico, obj.tabela)
+                    ibge.densidadeDemograficaDoBrasil(obj.query, obj.ano, obj.grafico, obj.tabela, obj.cor)
                     break
                 case 9:
                     verifica(obj)
-                    ibge.densidadeDemograficaPorGrandeRegiao(obj.local, obj.query, obj.ano, obj.grafico, obj.tabela)
+                    ibge.densidadeDemograficaPorGrandeRegiao(obj.local, obj.query, obj.ano, obj.grafico, obj.tabela, obj.cor)
                     break
                 case 10:
                     verifica(obj)
-                    ibge.densidadeDemograficaPorEstado(obj.local, obj.query, obj.ano, obj.grafico, obj.tabela)
+                    ibge.densidadeDemograficaPorEstado(obj.local, obj.query, obj.ano, obj.grafico, obj.tabela, obj.cor)
                     break
                 case 11:
                     verifica(obj)
-                    ibge.pibDoBrasil(obj.query, obj.ano, obj.grafico, obj.tabela, obj.gini)
+                    ibge.pibDoBrasil(obj.query, obj.ano, obj.grafico, obj.tabela, obj.cor, obj.gini)
                     break
                 case 12:
                     verifica(obj)
-                    ibge.pibPorEstado(obj.local, obj.query, obj.ano, obj.grafico, obj.tabela, obj.gini)
+                    ibge.pibPorEstado(obj.local, obj.query, obj.ano, obj.grafico, obj.tabela, obj.cor, obj.gini)
                     break
                 case 13:
                     verifica(obj)
-                    ibge.pibPorGrandeRegiao(obj.local, obj.query, obj.ano, obj.grafico, obj.tabela, obj.gini)
+                    ibge.pibPorGrandeRegiao(obj.local, obj.query, obj.ano, obj.grafico, obj.tabela, obj.cor, obj.gini)
                     break
                 case 14:
                     verifica(obj)
-                    ibge.pibPorMesorregiao(obj.local, obj.query, obj.ano, obj.grafico, obj.tabela)
+                    ibge.pibPorMesorregiao(obj.local, obj.query, obj.ano, obj.grafico, obj.tabela, obj.cor)
                     break
                 case 15:
                     verifica(obj)
-                    ibge.pibPorMicrorregiao(obj.local, obj.query, obj.ano, obj.grafico, obj.tabela)
+                    ibge.pibPorMicrorregiao(obj.local, obj.query, obj.ano, obj.grafico, obj.tabela, obj.cor)
                     break
                 case 16:
                     verifica(obj)
-                    ibge.pibPorMunicipio(obj.local, obj.query, obj.ano, obj.grafico, obj.tabela)
+                    ibge.pibPorMunicipio(obj.local, obj.query, obj.ano, obj.grafico, obj.tabela, obj.cor)
                     break
                 case 17:
                     verifica(obj)
-                    ibge.populacaoAssalariadaDoBrasil(obj.query, obj.ano, obj.grafico, obj.tabela)
+                    ibge.populacaoAssalariadaDoBrasil(obj.query, obj.ano, obj.grafico, obj.tabela, obj.cor)
                     break
                 case 18:
                     verifica(obj)
-                    ibge.populacaoAssalariadaPorGrandeRegiao(obj.local,  obj.query, obj.ano, obj.grafico, obj.tabela)
+                    ibge.populacaoAssalariadaPorGrandeRegiao(obj.local,  obj.query, obj.ano, obj.grafico, obj.tabela, obj.cor)
                     break
                 case 19:
                     verifica(obj)
-                    ibge.populacaoAssalariadaPorEstado(obj.local, obj.query, obj.ano, obj.grafico, obj.tabela)
+                    ibge.populacaoAssalariadaPorEstado(obj.local, obj.query, obj.ano, obj.grafico, obj.tabela, obj.cor)
                     break
                 case 20:
                     verifica(obj)
-                    ibge.projecaoDeDadosNoBrasil(obj.variavel, obj.ano, obj.query, obj.grafico, obj.tabela)
+                    ibge.projecaoDeDadosNoBrasil(obj.variavel, obj.ano, obj.query, obj.grafico, obj.tabela, obj.cor)
                     break
                 case 21:
                     verifica(obj)
-                    ibge.projecaoDeDadosPorGrandeRegiao(obj.local, obj.variavel,  obj.query, obj.ano, obj.grafico, obj.tabela)
+                    ibge.projecaoDeDadosPorGrandeRegiao(obj.local, obj.variavel,  obj.query, obj.ano, obj.grafico, obj.tabela, obj.cor)
                     break
                 case 22:
                     verifica(obj)
-                    ibge.projecaoDeDadosPorEstado(obj.local, obj.variavel, obj.query, obj.ano, obj.grafico, obj.tabela)
+                    ibge.projecaoDeDadosPorEstado(obj.local, obj.variavel, obj.query, obj.ano, obj.grafico, obj.tabela, obj.cor)
                     break
                 default:
                     console.log(`Erro: op = ${obj.op} não existe`)
