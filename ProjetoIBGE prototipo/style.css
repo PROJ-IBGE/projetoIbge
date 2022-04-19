@@ -137,13 +137,13 @@ header{
     width: 30%;
 }
 
-#compPopulacao{
+#graficos{
     display: flex;
     flex-direction: column;
     width: 100%;
 }
 
-#compPopulacao canvas{
+#graficos canvas{
     display: none;
 }
 
@@ -169,6 +169,16 @@ button{
 
 footer{
     margin-top: 7px;
+}
+
+#dadosE input{
+    width: auto;
+    font-size: 16px;
+}
+
+#dadosC input{
+    width: auto;
+    font-size: 16px;
 }
 
 @media screen and (min-width: 412px){
