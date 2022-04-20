@@ -115,6 +115,71 @@ $(document).ready(function(){
                                     ctx.destroy();
                                 })
                                 break
+                            // Gráfico polar
+                            case "polar":
+                                var data = {
+                                    labels: [$("#slctCidades option:selected").text(), $("#slctCidades2 option:selected").text()],
+                                    datasets: [{
+                                        label: 'Área Total',
+                                        data: [ $("#inpArea").val(), comapraArea[0].resultados[0].series[0].serie['2010'] ],
+                                        backgroundColor: [`#f28705`, `#00a000`],
+                                        borderColor: `#04d9b2`
+                                    }]
+                                };
+                                var config = {
+                                    type: 'polarArea',
+                                    data: data,
+                                    options: {
+                                        responsive: true,
+                                        plugins: {
+                                            title: {
+                                                display: true,
+                                                text: 'Gráfico de comparação em áreas'
+                                            }
+                                        }
+                                    }
+                                };
+                                var polarGraph = document.getElementById("graficoAreaCidades");
+                                var ctx = new Chart(polarGraph, config);
+                                $("#slctCidades2").change(function(){
+                                    ctx.destroy();
+                                })
+                                $("#slctCidades").change(function(){
+                                    ctx.destroy();
+                                })
+                                break
+                            // Gráfico de anel
+                            case "anel":
+                                var data = {
+                                    labels: [$("#slctCidades option:selected").text(), $("#slctCidades2 option:selected").text()],
+                                    datasets: [{
+                                        label: 'Área Total',
+                                        data:[$("#inpArea").val(), comapraArea[0].resultados[0].series[0].serie['2010']],
+                                        backgroundColor: [`#f28705`, `#00a000`],
+                                        borderColor: `#04d9b2`
+                                    }]
+                                };
+                                var config = {
+                                    type: 'doughnut',
+                                    data: data,
+                                    options: {
+                                        plugins: {
+                                            title: {
+                                                display: true,
+                                                text: 'Gráfico de comparação em áreas'
+                                            }
+                                        }
+                                    }
+                                };
+                                var doughnutGraph = document.getElementById("graficoAreaCidades");
+                                var ctx = new Chart(doughnutGraph, config);
+                                $("#slctCidades2").change(function(){
+                                    ctx.destroy();
+                                })
+                                $("#slctCidades").change(function(){
+                                    ctx.destroy();
+                                })
+                                break
                         }
                     }
                 })
