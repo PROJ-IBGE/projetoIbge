@@ -1,0 +1,390 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- importando as funções da api do IBGE -->
+    <script src="dv.js"></script>
+    <script src="js/IBGE_populacao/ibgepopulacao.js"></script>
+    <script src="js/IBGE_pip/ibgepib.js"></script>
+    <script src="ibge_main.js"></script>
+    <!-- importando o modulo chart para a construção de gráficos -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@3.7.1/dist/chart.min.js"></script>
+    <title>PIDB - test</title>
+    <style>
+        div#divH1 {
+            position: absolute;
+            border: 1px solid black;
+            width: 35%;
+            top: 0%;
+            left: 0%;
+            text-align: center;
+            border-radius: 5px;
+        }
+        div#sup {
+            position: absolute;
+            border: 1px solid black;
+            border-radius: 5px;
+            width: 64%;
+            right: 0px;
+            top: 0px;
+            bottom: 0px;
+        }
+        div#divList {
+            line-height: 2.5;
+        }
+        ul {
+            list-style-type: none;
+        }
+        div#divDados {
+            line-height: 1.5;
+        }
+        div#graf {
+            text-align: center;
+        }
+        div#grafTipo {
+            text-align: center;
+        }
+        button {
+            border: none;
+            border-radius: 5px;
+            background-color: #193c40;
+            color: white;
+            padding: 5px;
+        }
+        label {
+            padding: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div id="divH1">
+    <h1>Busca</h1>
+    <div id="divBusca">
+        <div id="divList">
+            <ul id="listaLocal">
+                <li><input type="button" value="Grandes Regiões" onclick="carregaGrandeRegiao()"/></li>
+                <li><input type="button" value="Estados" onclick="carregaEstado()"/></li>
+            </ul>
+        </div>
+    </div>
+    </div>
+    <div id="sup">
+        <div id="graf"></div>
+        <div id="grafTipo"></div>
+    </div>
+    <script type="text/javascript">
+        var conf = {}, loc = true, an = false, da = false
+        conf.query = 'div#graf'
+        function local(array) {
+            const labelRes = document.getElementById('labelRes')
+            if (labelRes != null) {
+                labelRes.textContent = ''
+            }
+            const divDados = document.getElementById("divDados")
+            let html = ''
+            if (typeof array === 'object') {
+                while (divDados.firstElementChild != null) divDados.removeChild(divDados.firstElementChild)
+                for (let i in array) {
+                    html += `<input type="checkbox" name="local" value="${array[i]}"><label>${array[i]}</label><br/>`
+                }
+            }
+            divDados.innerHTML = html
+        }
+        function localGR () {
+            loc = true
+            an = false
+            da = false
+            local(['Norte', 'Nordeste', 'Sudeste', 'Sul', 'CentroOeste'])
+        }
+        function localE () {
+            loc = true
+            an = false
+            da = false
+            local(['Rondônia', 'Acre', 'Amazonas', 'Roraima', 'Pará', 'Amapá', 'Tocantins', 'Maranhão', 'Piauí', 'Ceará', 'RioGrandeDoNorte', 'Paraíba', 'Pernambuco', 'Alagoas', 'Sergipe', 'Bahia', 'MinasGerais', 'EspíritoSanto', 'RioDeRaneiro', 'SãoPaulo', 'Paraná', 'SantaCatarina', 'RioGrandeDoSul', 'MatoGrossoDoSul', 'MatoGrosso', 'Goiás', 'DistritoFederal'])
+        }
+        function ano(){
+            loc = false
+            an = true
+            da = false
+            const labelRes = document.getElementById('labelRes')
+            if (labelRes != null) {
+                labelRes.textContent = ''
+            }
+            const divDados = document.getElementById("divDados")
+            let html = ''
+            let ano = []
+            while (divDados.firstElementChild != null) divDados.removeChild(divDados.firstElementChild)
+            for (let i = 2000; i <= 2020; i++) ano.push(""+i)
+            for (let i in ano) {
+                html += `<input type="checkbox" name="ano" value="${ano[i]}"><label>${ano[i]}</label><br/>`
+            }
+            divDados.innerHTML = html
+        }
+        function dado (op) {
+            const labelRes = document.getElementById('labelRes')
+            if (labelRes != null) {
+                labelRes.textContent = ''
+            }
+            const divDados = document.getElementById("divDados")
+            let html = '<ul>'
+            if (typeof op === 'object') {
+                while (divDados.firstElementChild != null) divDados.removeChild(divDados.firstElementChild)
+                for (let i in op) {
+                    html += `<li><input type="radio" name="dado" value="${op[i]}"/><label>${i}</label></li>`
+                }
+                html += '</ul>'
+            }
+            divDados.innerHTML = html
+        }
+        function dadoGR() {
+            loc = false
+            an = false
+            da = true
+            dado({
+                'Quantidade de População': 2,
+                'Estimativa de Vida': 6,
+                'Densidade Demográfica': 9,
+                'Pib': 13,
+                'População Assalariada': 18
+            })
+            
+        }
+        function dadoE () {
+            loc = false
+            an = false
+            da = true
+            dado({
+                'Quantidade de População': 3,
+                'Estimativa de Vida': 7,
+                'Densidade Demográfica': 10,
+                'pib': 12,
+                'população assalariada': 19
+            })
+        }
+        function carregaGrandeRegiao () {
+            const divBusca = document.getElementById("divBusca")
+            while (divBusca.firstElementChild != null) divBusca.removeChild(divBusca.firstElementChild)
+            const divInputs = document.createElement('div')
+            divInputs.setAttribute('id', 'divInputs')
+            const btnLocal = document.createElement('input')
+            btnLocal.setAttribute('type', 'button')
+            btnLocal.setAttribute('value', 'Local')
+            divInputs.appendChild(btnLocal)
+            const btnAno = document.createElement('input')
+            btnAno.setAttribute('type', 'button')
+            btnAno.setAttribute('value', 'Ano')
+            divInputs.appendChild(btnAno)
+            const btnDodo = document.createElement('input')
+            btnDodo.setAttribute('type', 'button')
+            btnDodo.setAttribute('value', 'Dados')
+            divInputs.appendChild(btnDodo)
+            divBusca.appendChild(divInputs)
+            const divDados = document.createElement('div')
+            divDados.setAttribute('id', 'divDados')
+            divBusca.appendChild(divDados)
+            btnLocal.setAttribute('onclick', 'localGR()')
+            document.addEventListener('click', localGR(), false)
+            btnAno.setAttribute('onclick', `ano()`)
+            btnDodo.setAttribute('onclick', 'dadoGR()')
+            const divRes = document.createElement('div')
+            divRes.setAttribute('id', 'divRes')
+            const btnRes = document.createElement('input')
+            btnRes.setAttribute('type', 'button')
+            btnRes.setAttribute('value', 'OK')
+            const labelRes = document.createElement('label')
+            labelRes.setAttribute('id', 'labelRes')
+            divRes.appendChild(btnRes)
+            divRes.appendChild(labelRes)
+            divBusca.appendChild(divRes)
+            btnRes.onclick = () => {
+                if (loc) {
+                    let checkboxes = document.querySelectorAll('input[name="local"]:checked')
+                    let local = ''
+                    conf.local = ''
+                    checkboxes.forEach(check =>{
+                        local += check.value + " "
+                    })
+                    for (let i in local) if (i < local.length-1) conf.local += local[i]
+                    labelRes.textContent = conf.local
+                    let cont = 0
+                    for (let i in conf) {
+                        cont++
+                    }
+                    if (cont >= 4) {
+                        IBGE(conf)
+                    }
+                    console.log(conf)
+                }
+                if (an) {
+                    let checkboxes = document.querySelectorAll('input[name="ano"]:checked')
+                    let ano = ''
+                    conf.ano = ''
+                    checkboxes.forEach(check =>{
+                        ano += check.value + " "
+                    })
+                    for (let i in ano) if (i < ano.length-1) conf.ano += ano[i]
+                    labelRes.textContent = conf.ano
+                    let cont = 0
+                    for (let i in conf) {
+                        cont++
+                    }
+                    if (cont >= 4) {
+                        IBGE(conf)
+                    }
+                    console.log(conf)
+                }
+                if (da) {
+                    let checkboxes = document.querySelectorAll('input[name="dado"]:checked')[0].value
+                    conf.op = parseInt(checkboxes)
+                    IBGE(conf)
+                    const divGrafTipo = document.getElementById("grafTipo")
+                    while (divGrafTipo.firstElementChild != null) divGrafTipo.removeChild(divGrafTipo.firstElementChild)
+                    const linha = document.createElement('input')
+                    linha.setAttribute('type', 'button')
+                    linha.setAttribute('value', 'Linha')
+                    const barra = document.createElement('input')
+                    barra.setAttribute('type', 'button')
+                    barra.setAttribute('value', 'Barra')
+                    const polar = document.createElement('input')
+                    polar.setAttribute('type', 'button')
+                    polar.setAttribute('value', 'Polar')
+                    divGrafTipo.appendChild(linha)
+                    divGrafTipo.appendChild(barra)
+                    divGrafTipo.appendChild(polar)
+                    linha.onclick = () => {
+                        conf.grafico = 'linha'
+                        const divGraf = document.getElementById("graf")
+                        divGraf.setAttribute('style', 'width: 100%;')
+                        IBGE(conf)
+                    }
+                    barra.onclick = () => {
+                        conf.grafico = 'barra2'
+                        const divGraf = document.getElementById("graf")
+                        divGraf.setAttribute('style', 'width: 100%;')
+                        IBGE(conf)
+                    }
+                    polar.onclick = () => {
+                        conf.grafico = 'polar'
+                        const divGraf = document.getElementById("graf")
+                        divGraf.setAttribute('style', 'width: 60%;')
+                        IBGE(conf)
+                    }
+                }
+            }
+        }
+        function carregaEstado () {
+            const divBusca = document.getElementById("divBusca")
+            while (divBusca.firstElementChild != null) divBusca.removeChild(divBusca.firstElementChild)
+            const divInputs = document.createElement('div')
+            divInputs.setAttribute('id', 'divInputs')
+            const btnLocal = document.createElement('input')
+            btnLocal.setAttribute('type', 'button')
+            btnLocal.setAttribute('value', 'Local')
+            divInputs.appendChild(btnLocal)
+            const btnAno = document.createElement('input')
+            btnAno.setAttribute('type', 'button')
+            btnAno.setAttribute('value', 'Ano')
+            divInputs.appendChild(btnAno)
+            const btnDodo = document.createElement('input')
+            btnDodo.setAttribute('type', 'button')
+            btnDodo.setAttribute('value', 'Dados')
+            divInputs.appendChild(btnDodo)
+            divBusca.appendChild(divInputs)
+            const divDados = document.createElement('div')
+            divDados.setAttribute('id', 'divDados')
+            divBusca.appendChild(divDados)
+            btnLocal.setAttribute('onclick', 'localE()')
+            document.addEventListener('click', localE(), false)
+            btnAno.setAttribute('onclick', 'ano()')
+            btnDodo.setAttribute('onclick', 'dadoE()')
+            const divRes = document.createElement('div')
+            divRes.setAttribute('id', 'divRes')
+            const btnRes = document.createElement('input')
+            btnRes.setAttribute('type', 'button')
+            btnRes.setAttribute('value', 'OK')
+            const labelRes = document.createElement('label')
+            labelRes.setAttribute('id', 'labelRes')
+            divRes.appendChild(btnRes)
+            divRes.appendChild(labelRes)
+            divBusca.appendChild(divRes)
+            btnRes.onclick = () => {
+                if (loc) {
+                    let checkboxes = document.querySelectorAll('input[name="local"]:checked')
+                    let local = ''
+                    conf.local = ''
+                    checkboxes.forEach(check =>{
+                        local += check.value + " "
+                    })
+                    for (let i in local) if (i < local.length-1) conf.local += local[i]
+                    labelRes.textContent = conf.local
+                    let cont = 0
+                    for (let i in conf) {
+                        cont++
+                    }
+                    if (cont >= 4) {
+                        IBGE(conf)
+                    }
+                    console.log(conf)
+                }
+                if (an) {
+                    let checkboxes = document.querySelectorAll('input[name="ano"]:checked')
+                    let ano = ''
+                    conf.ano = ''
+                    checkboxes.forEach(check =>{
+                        ano += check.value + " "
+                    })
+                    for (let i in ano) if (i < ano.length-1) conf.ano += ano[i]
+                    labelRes.textContent = conf.ano
+                    let cont = 0
+                    for (let i in conf) {
+                        cont++
+                    }
+                    if (cont >= 4) {
+                        IBGE(conf)
+                    }
+                    console.log(conf)
+                }
+                if (da) {
+                    let checkboxes = document.querySelectorAll('input[name="dado"]:checked')[0].value
+                    conf.op = parseInt(checkboxes)
+                    IBGE(conf)
+                    const divGrafTipo = document.getElementById("grafTipo")
+                    while (divGrafTipo.firstElementChild != null) divGrafTipo.removeChild(divGrafTipo.firstElementChild)
+                    const linha = document.createElement('input')
+                    linha.setAttribute('type', 'button')
+                    linha.setAttribute('value', 'Linha')
+                    const barra = document.createElement('input')
+                    barra.setAttribute('type', 'button')
+                    barra.setAttribute('value', 'Barra')
+                    const polar = document.createElement('input')
+                    polar.setAttribute('type', 'button')
+                    polar.setAttribute('value', 'Polar')
+                    divGrafTipo.appendChild(linha)
+                    divGrafTipo.appendChild(barra)
+                    divGrafTipo.appendChild(polar)
+                    linha.onclick = () => {
+                        conf.grafico = 'linha'
+                        const divGraf = document.getElementById("graf")
+                        divGraf.setAttribute('style', 'width: 100%;')
+                        IBGE(conf)
+                    }
+                    barra.onclick = () => {
+                        conf.grafico = 'barra2'
+                        const divGraf = document.getElementById("graf")
+                        divGraf.setAttribute('style', 'width: 100%;')
+                        IBGE(conf)
+                    }
+                    polar.onclick = () => {
+                        conf.grafico = 'polar'
+                        const divGraf = document.getElementById("graf")
+                        divGraf.setAttribute('style', 'width: 60%;')
+                        IBGE(conf)
+                    }
+                }
+            }
+        }
+    </script>
+</body>
+</html>
