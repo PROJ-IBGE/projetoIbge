@@ -134,6 +134,7 @@ form {
 /* Referenhte a Box Print */
 
 .box-print {
+    display: block;
     margin-left: 2%;
     width: 68%;
     height: 69vh;
@@ -196,7 +197,7 @@ form {
 }
 
 .restInp {
-    width: 10vh;
+    width: 20vh;
     color: #ffffff;
     background: transparent;
     text-align: right;
@@ -232,7 +233,21 @@ form {
 
 }
 
+#qtd{
+    width: 10vh;
+}
 
+#comparar{
+    display: none;
+    margin-bottom: 2vh;
+}
+
+#selecoes select {
+    display: none;
+}
+canvas{
+    display: none;
+}
 
 /*---- RESPONSIVIDADE (!CUIDADO AO MODIFICAR!) ----*/
 

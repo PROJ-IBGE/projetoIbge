@@ -22,7 +22,7 @@ $(document).ready(function(){
                                                 data: [ {id: $("#slctAno").val(), nested: {value: $("#inpPopC").val()}},
                                                         {id: $("#slctAno2").val(), nested: {value: comparaAno[0].resultados[0].series[0].serie['2007']}} ],
                                                 backgroundColor: `#f28705`,
-                                                borderColor: `#04d9b2`
+                                                borderColor: `#04d9b2`,
                                             }]
                                         };
                                         var config = {
@@ -31,9 +31,18 @@ $(document).ready(function(){
                                             options: {
                                                 responsive: true,
                                                 plugins: {
+                                                    legend: {
+                                                        labels: {
+                                                            color: "#fff"
+                                                        },
+                                                        label: {
+                                                            color: "#fff"
+                                                        }
+                                                    },
                                                     title: {
                                                         display: true,
-                                                        text: 'Gráfico da População'
+                                                        text: 'Gráfico da População',
+                                                        color: "#fff"
                                                     }
                                                 },
                                                 parsing: {

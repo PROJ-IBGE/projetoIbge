@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Pesquisa IBGE</title>
+    <title>PIDB</title>
 </head>
 <body>
 
@@ -150,7 +150,7 @@
                 <p class="textResp" id="real_compara">Realizar comparações:</p>
                 
                 <label class="textResp titler_compar" for="compara">Informe com quantas cidades quer comparar: 
-                    <input type="text" id="qtd" placeholder="Limite de 2 cidades">
+                    <input type="text" id="qtd" placeholder=" 0 ou 1">
                     <select id="tipoGrafico">
                         <option value="">TIPO DE GRÁFICO</option>
                         <option value="anel">Anel</option>
@@ -162,12 +162,13 @@
                 </label>
                 <button id="btnOk">Ok</button>
 
+                <div class="textResp">
+                  <p>Coloque um parâmetro de 0 ou 1. O 0 irar comparar com ele mesmo, mas em datas diferentes.</p>
+                </div>
+
                 <div id="selecoes">
                     <!-- Caixa de seleção que pede para o usuário selecionar um município para comparação -->
                     <select name="slctCidades2" id="slctCidades2"></select>
-
-                    <!-- Caixa de seleção que pede para o usuário selecionar um município para comparação -->
-                    <select name="slctCidades3" id="slctCidades3"></select>
 
                     <!-- Caixa de seleção na qual o usuário pode fazer uma comparação com outras cidades -->
                     <select name="slctAno2" id="slctAno2">

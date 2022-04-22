@@ -13,11 +13,11 @@ $(document).ready(function(){
                             // Gráfico de barra
                             case "barra":
                                 var data = {
-                                    labels: [$("#slctAno").val(), $("#slctAno2").val()],
+                                    labels: [$("#slctCidades option:selected").text(), $("#slctCidades2 option:selected").text()],
                                     datasets: [{
                                         label: 'Área Total',
-                                        data: [ {id: $("#slctCidades").val(), nested: {value: $("#inpArea").val()}},
-                                                {id: $("#slctCidades2").val(), nested: {value: comapraArea[0].resultados[0].series[0].serie['2010']}}],
+                                        data: [ {id: $("#slctCidades option:selected").text(), nested: {value: $("#inpArea").val()}},
+                                                {id: $("#slctCidades2 option:selected").text(), nested: {value: comapraArea[0].resultados[0].series[0].serie['2010']}}],
                                         backgroundColor: `#f28705`,
                                         borderColor: `#04d9b2`
                                     }]
