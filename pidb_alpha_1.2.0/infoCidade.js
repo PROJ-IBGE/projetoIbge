@@ -10,6 +10,7 @@ $(document).ready(function(){
             $("#btnConsultar").click(function(){
                 // A div resposta passa a ser visível
                 document.getElementById("resposta").style.display = 'flex';
+                document.getElementById("comparar").style.display = 'block';
 
                 var valueCidade = $("#slctCidades option:selected").text();
                 $("#retNomeCidade").html(valueCidade);

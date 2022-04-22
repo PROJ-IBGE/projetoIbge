@@ -1,5 +1,5 @@
 $(document).ready(function(){
-    $("#ok").click(function(){
+    $("#btnOk").click(function(){
         var qtd = document.getElementById("qtd").value;
         switch(qtd){
             case "0":
