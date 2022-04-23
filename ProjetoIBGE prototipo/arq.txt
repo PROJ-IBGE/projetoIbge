@@ -1,0 +1,20 @@
+scales: {
+                                            xAxes: [ {
+                                              scaleLabel: {
+                                                display: true,
+                                                labelString: 'Date'
+                                              },
+                                              ticks: {
+                                                major: {
+                                                  fontColor: '#FF0000'
+                                                }
+                                              }
+                                            } ],
+                                            yAxes: [ {
+                                                display: true,
+                                                scaleLabel: {
+                                                  display: true,
+                                                  labelString: 'value'
+                                                }
+                                              } ]
+                                        }

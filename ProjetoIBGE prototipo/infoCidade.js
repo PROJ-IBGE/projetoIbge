@@ -10,6 +10,7 @@ $(document).ready(function(){
             $("#btnConsultar").click(function(){
                 // A div resposta passa a ser visível
                 document.getElementById("resposta").style.display = 'flex';
+                document.getElementById("comparar").style.display = 'block';
 
                 var valueCidade = $("#slctCidades option:selected").text();
                 $("#retNomeCidade").html(valueCidade);
@@ -31,7 +32,7 @@ $(document).ready(function(){
                     } ,
                     success: function(areaT){
                         var areaTC = "Área Territorial: "
-                        areaTC = areaTC + "<input type='text' readonly id='inpArea' value='"+areaT[0].resultados[0].series[0].serie['2010']+"'>km2";
+                        areaTC = areaTC + "<input class='restInp' type='text' readonly id='inpArea' value='"+areaT[0].resultados[0].series[0].serie['2010']+"'>km2";
                         $("#retareaTC").html(areaTC);
                     }
                 })
@@ -54,7 +55,7 @@ $(document).ready(function(){
                     } ,
                     success: function(densidadeDmg){
                         var densidadeDmgC = "Densidade Demográfica[2010]: "
-                        densidadeDmgC = densidadeDmgC + "<input type='text' readonly value='"+densidadeDmg[0].resultados[0].series[0].serie['2010']+"'>hab/km2";
+                        densidadeDmgC = densidadeDmgC + "<input class='restInp' type='text' readonly value='"+densidadeDmg[0].resultados[0].series[0].serie['2010']+"'>hab/km2";
                         $("#retDensidadeDmgC").html(densidadeDmgC);
                     }
                 })
@@ -79,7 +80,7 @@ $(document).ready(function(){
                             },
                             success: function(populacao){
                                 var populacaoC = "População em " + $("#slctAno").val() + ": ";
-                                populacaoC = populacaoC + "<input type='text' readonly id='inpPopC' value='"+populacao[0].resultados[0].series[0].serie['2007']+"'>";
+                                populacaoC = populacaoC + "<input class='restInp' type='text' readonly id='inpPopC' value='"+populacao[0].resultados[0].series[0].serie['2007']+"'>";
                                 $("#retPopulacaoC").html(populacaoC);
                             }
                         })
@@ -94,7 +95,7 @@ $(document).ready(function(){
                             },
                             success: function(populacao){
                                 var populacaoC = "População em " + $("#slctAno").val() + ": ";
-                                populacaoC = populacaoC + "<input type='text' readonly id='inpPopC' value='"+populacao[0].resultados[0].series[0].serie['2010']+"'>";
+                                populacaoC = populacaoC + "<input class='restInp' type='text' readonly id='inpPopC' value='"+populacao[0].resultados[0].series[0].serie['2010']+"'>";
                                 $("#retPopulacaoC").html(populacaoC);
                             }
                         })
@@ -109,7 +110,7 @@ $(document).ready(function(){
                             } ,
                             success: function(populacao){
                                 var populacaoC = "População em " + $("#slctAno").val() + ": ";
-                                populacaoC = populacaoC + "<input type='text' readonly id='inpPopC' value='"+populacao[0].resultados[0].series[0].serie[$("#slctAno").val()]+"'>";
+                                populacaoC = populacaoC + "<input class='restInp' type='text' readonly id='inpPopC' value='"+populacao[0].resultados[0].series[0].serie[$("#slctAno").val()]+"'>";
                                 $("#retPopulacaoC").html(populacaoC);
                             }
                         })
@@ -135,7 +136,7 @@ $(document).ready(function(){
                         data:{},
                         success: function(escolarTotal){
                             var escolarTotalC = "Alfabetização total de pessoas com 10 anos: ";
-                            escolarTotalC = escolarTotalC+"<input type='text' readonly id='inpETC' value='"+escolarTotal[0].resultados[0].series[0].serie['2010']+"'>%";
+                            escolarTotalC = escolarTotalC+"<input class='restInp' type='text' readonly id='inpETC' value='"+escolarTotal[0].resultados[0].series[0].serie['2010']+"'>%";
                             $("#retEscolarizacaoCT").html(escolarTotalC);
                         }
                     })
@@ -146,7 +147,7 @@ $(document).ready(function(){
                         data:{},
                         success: function(escolarHomens){
                             var escolarHomensC = "Alfabetização total de homens com 10 anos: ";
-                            escolarHomensC = escolarHomensC+"<input type='text' readonly id='inpEHC' value='"+escolarHomens[0].resultados[0].series[0].serie['2010']+"'>%";
+                            escolarHomensC = escolarHomensC+"<input class='restInp' type='text' readonly id='inpEHC' value='"+escolarHomens[0].resultados[0].series[0].serie['2010']+"'>%";
                             $("#retEscolarizacaoCH").html(escolarHomensC);
                         }
                     })
@@ -157,7 +158,7 @@ $(document).ready(function(){
                         data:{},
                         success: function(escolarMulheres){
                             var escolarMulheresC = "Alfabetização total de mulheres com 10 anos: ";
-                            escolarMulheresC = escolarMulheresC+"<input type='text' readonly id='inpEMC' value='"+escolarMulheres[0].resultados[0].series[0].serie['2010']+"'>%";
+                            escolarMulheresC = escolarMulheresC+"<input class='restInp' type='text' readonly id='inpEMC' value='"+escolarMulheres[0].resultados[0].series[0].serie['2010']+"'>%";
                             $("#retEscolarizacaoCM").html(escolarMulheresC);
                         }
                     })
@@ -198,7 +199,7 @@ $(document).ready(function(){
                             data:{},
                             success: function(pib){
                                 var pibC = "PIB em "+$("#slctAno").val()+": R$";
-                                pibC = pibC+"<input type='text' readonly id='inpPibC' value='"+pib[0].resultados[0].series[0].serie[$("#slctAno").val()]+"'>";
+                                pibC = pibC+"<input class='restInp' type='text' readonly id='inpPibC' value='"+pib[0].resultados[0].series[0].serie[$("#slctAno").val()]+"'>";
                                 $("#retPibC").html(pibC);
                             }
                         })

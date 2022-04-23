@@ -9,7 +9,7 @@ $(document).ready(function(){
                 orderBy: "nome"
             } ,
             success: function(cidades){
-                var cidade = "<option value=''>Selecione uma cidade</option>";
+                var cidade = "<option value=''>CIDADE</option>";
                 for(var i = 0; i < cidades.length; i++){
                     cidade = cidade + "<option value='"+cidades[i].id+"'>"+cidades[i].nome+"</option>"
                 }
@@ -26,7 +26,7 @@ $(document).ready(function(){
             orderBy: "nome"
         } ,
         success: function(estados){
-            var estado = "<option value=''>Selecione um estado</option>";
+            var estado = "<option value=''>ESTADO</option>";
             for(var i = 0; i < estados.length; i++){
                 estado = estado + "<option value='" + estados[i].id + "'>" + estados[i].nome + "</option>"
             }           
@@ -47,7 +47,7 @@ $(document).ready(function(){
             success: function(cidades){    
                 var i;
                 var cidade = ""
-                cidade = "<option value=''>Selecione uma cidade</option>";
+                cidade = "<option value=''>CIDADE</option>";
                 cidade = cidade + "<optgroup label='Acre'></optgroup>"
                 for(i = 0; i < cidades.length; i++){
                     if(cidades[i].microrregiao.mesorregiao.UF.id == 12){     

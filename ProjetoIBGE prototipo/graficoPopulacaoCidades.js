@@ -27,15 +27,34 @@ $(document).ready(function(){
                                     type: 'bar',
                                     data: data,
                                     options: {
+                                        responsive: true,
                                         plugins: {
+                                            legend: {
+                                                labels: {
+                                                    color: "#fff"
+                                                },
+                                            },
                                             title: {
                                                 display: true,
-                                                text: 'Gráfico das Populações das cidades em ' + $("#slctAno").val()
+                                                text: 'Gráfico das Populações das cidades em ' + $("#slctAno").val(),
+                                                color: "#fff"
                                             }
                                         },
                                         parsing: {
                                             xAxisKey: 'id',
                                             yAxisKey: 'nested.value'
+                                        },
+                                        scales: {
+                                            x: {
+                                                ticks: {
+                                                    color: "#fff"
+                                                }
+                                            },
+                                            y: {
+                                                ticks: {
+                                                    color: "#fff"
+                                                }
+                                            }
                                         }
                                     }
                                 };
@@ -71,9 +90,27 @@ $(document).ready(function(){
                                         plugins: {
                                             title: {
                                                 display: true,
-                                                text: 'Gráfico das Populações das cidades em ' + $("#slctAno").val()
+                                                text: 'Gráfico das Populações das cidades em ' + $("#slctAno").val(),
+                                                color: "#fff"
+                                            },
+                                            legend: {
+                                                labels: {
+                                                    color: "#fff"
+                                                },
                                             }
                                         },
+                                        scales: {
+                                            x: {
+                                                ticks: {
+                                                    color: "#fff"
+                                                }
+                                            },
+                                            y: {
+                                                ticks: {
+                                                    color: "#fff"
+                                                }
+                                            }
+                                        }
                                     }
                                 };
                                 var lineGraph = document.getElementById("garficoPopulacaoCidades");
@@ -103,9 +140,15 @@ $(document).ready(function(){
                                     data: data,
                                     options: {
                                         plugins: {
+                                            legend: {
+                                                labels: {
+                                                    color: "#fff"
+                                                },
+                                            },
                                             title: {
                                                 display: true,
-                                                text: 'Gráfico das Populações das cidades em ' + $("#slctAno").val()
+                                                text: 'Gráfico das Populações das cidades em ' + $("#slctAno").val(),
+                                                color: "#fff"
                                             }
                                         }
                                     }
@@ -138,9 +181,15 @@ $(document).ready(function(){
                                     options: {
                                         responsive: true,
                                         plugins: {
+                                            legend: {
+                                                labels: {
+                                                    color: "#fff"
+                                                },
+                                            },
                                             title: {
                                                 display: true,
-                                                text: 'Gráfico das Populações das cidades em ' + $("#slctAno").val()
+                                                text: 'Gráfico das Populações das cidades em ' + $("#slctAno").val(),
+                                                color: "#fff"
                                             }
                                         }
                                     }
@@ -172,9 +221,15 @@ $(document).ready(function(){
                                     data: data,
                                     options: {
                                         plugins: {
+                                            legend: {
+                                                labels: {
+                                                    color: "#fff"
+                                                },
+                                            },
                                             title: {
                                                 display: true,
-                                                text: 'Gráfico das Populações das cidades em ' + $("#slctAno").val()
+                                                text: 'Gráfico das Populações das cidades em ' + $("#slctAno").val(),
+                                                color: "#fff"
                                             }
                                         }
                                     }
@@ -218,15 +273,34 @@ $(document).ready(function(){
                                     type: 'bar',
                                     data: data,
                                     options: {
+                                        responsive: true,
                                         plugins: {
+                                            legend: {
+                                                labels: {
+                                                    color: "#fff"
+                                                },
+                                            },
                                             title: {
                                                 display: true,
-                                                text: 'Gráfico das Populações das cidades em ' + $("#slctAno").val()
+                                                text: 'Gráfico das Populações das cidades em ' + $("#slctAno").val(),
+                                                color: "#fff"
                                             }
                                         },
                                         parsing: {
                                             xAxisKey: 'id',
                                             yAxisKey: 'nested.value'
+                                        },
+                                        scales: {
+                                            x: {
+                                                ticks: {
+                                                    color: "#fff"
+                                                }
+                                            },
+                                            y: {
+                                                ticks: {
+                                                    color: "#fff"
+                                                }
+                                            }
                                         }
                                     }
                                 };
@@ -262,9 +336,27 @@ $(document).ready(function(){
                                         plugins: {
                                             title: {
                                                 display: true,
-                                                text: 'Gráfico das Populações das cidades em ' + $("#slctAno").val()
+                                                text: 'Gráfico das Populações das cidades em ' + $("#slctAno").val(),
+                                                color: "#fff"
+                                            },
+                                            legend: {
+                                                labels: {
+                                                    color: "#fff"
+                                                },
                                             }
                                         },
+                                        scales: {
+                                            x: {
+                                                ticks: {
+                                                    color: "#fff"
+                                                }
+                                            },
+                                            y: {
+                                                ticks: {
+                                                    color: "#fff"
+                                                }
+                                            }
+                                        }
                                     }
                                 };
                                 var lineGraph = document.getElementById("garficoPopulacaoCidades");
@@ -294,9 +386,15 @@ $(document).ready(function(){
                                     data: data,
                                     options: {
                                         plugins: {
+                                            legend: {
+                                                labels: {
+                                                    color: "#fff"
+                                                },
+                                            },
                                             title: {
                                                 display: true,
-                                                text: 'Gráfico das Populações das cidades em ' + $("#slctAno").val()
+                                                text: 'Gráfico das Populações das cidades em ' + $("#slctAno").val(),
+                                                color: "#fff"
                                             }
                                         }
                                     }
@@ -329,9 +427,15 @@ $(document).ready(function(){
                                     options: {
                                         responsive: true,
                                         plugins: {
+                                            legend: {
+                                                labels: {
+                                                    color: "#fff"
+                                                },
+                                            },
                                             title: {
                                                 display: true,
-                                                text: 'Gráfico das Populações das cidades em ' + $("#slctAno").val()
+                                                text: 'Gráfico das Populações das cidades em ' + $("#slctAno").val(),
+                                                color: "#fff"
                                             }
                                         }
                                     }
@@ -363,9 +467,15 @@ $(document).ready(function(){
                                     data: data,
                                     options: {
                                         plugins: {
+                                            legend: {
+                                                labels: {
+                                                    color: "#fff"
+                                                },
+                                            },
                                             title: {
                                                 display: true,
-                                                text: 'Gráfico das Populações das cidades em ' + $("#slctAno").val()
+                                                text: 'Gráfico das Populações das cidades em ' + $("#slctAno").val(),
+                                                color: "#fff"
                                             }
                                         }
                                     }
@@ -409,15 +519,34 @@ $(document).ready(function(){
                                     type: 'bar',
                                     data: data,
                                     options: {
+                                        responsive: true,
                                         plugins: {
+                                            legend: {
+                                                labels: {
+                                                    color: "#fff"
+                                                },
+                                            },
                                             title: {
                                                 display: true,
-                                                text: 'Gráfico das Populações das cidades em ' + $("#slctAno").val()
+                                                text: 'Gráfico das Populações das cidades em ' + $("#slctAno").val(),
+                                                color: "#fff"
                                             }
                                         },
                                         parsing: {
                                             xAxisKey: 'id',
                                             yAxisKey: 'nested.value'
+                                        },
+                                        scales: {
+                                            x: {
+                                                ticks: {
+                                                    color: "#fff"
+                                                }
+                                            },
+                                            y: {
+                                                ticks: {
+                                                    color: "#fff"
+                                                }
+                                            }
                                         }
                                     }
                                 };
@@ -453,9 +582,27 @@ $(document).ready(function(){
                                         plugins: {
                                             title: {
                                                 display: true,
-                                                text: 'Gráfico das Populações das cidades em ' + $("#slctAno").val()
+                                                text: 'Gráfico das Populações das cidades em ' + $("#slctAno").val(),
+                                                color: "#fff"
+                                            },
+                                            legend: {
+                                                labels: {
+                                                    color: "#fff"
+                                                },
                                             }
                                         },
+                                        scales: {
+                                            x: {
+                                                ticks: {
+                                                    color: "#fff"
+                                                }
+                                            },
+                                            y: {
+                                                ticks: {
+                                                    color: "#fff"
+                                                }
+                                            }
+                                        }
                                     }
                                 };
                                 var lineGraph = document.getElementById("garficoPopulacaoCidades");
@@ -485,9 +632,15 @@ $(document).ready(function(){
                                     data: data,
                                     options: {
                                         plugins: {
+                                            legend: {
+                                                labels: {
+                                                    color: "#fff"
+                                                },
+                                            },
                                             title: {
                                                 display: true,
-                                                text: 'Gráfico das Populações das cidades em ' + $("#slctAno").val()
+                                                text: 'Gráfico das Populações das cidades em ' + $("#slctAno").val(),
+                                                color: "#fff"
                                             }
                                         }
                                     }
@@ -520,9 +673,15 @@ $(document).ready(function(){
                                     options: {
                                         responsive: true,
                                         plugins: {
+                                            legend: {
+                                                labels: {
+                                                    color: "#fff"
+                                                },
+                                            },
                                             title: {
                                                 display: true,
-                                                text: 'Gráfico das Populações das cidades em ' + $("#slctAno").val()
+                                                text: 'Gráfico das Populações das cidades em ' + $("#slctAno").val(),
+                                                color: "#fff"
                                             }
                                         }
                                     }
@@ -554,9 +713,15 @@ $(document).ready(function(){
                                     data: data,
                                     options: {
                                         plugins: {
+                                            legend: {
+                                                labels: {
+                                                    color: "#fff"
+                                                },
+                                            },
                                             title: {
                                                 display: true,
-                                                text: 'Gráfico das Populações das cidades em ' + $("#slctAno").val()
+                                                text: 'Gráfico das Populações das cidades em ' + $("#slctAno").val(),
+                                                color: "#fff"
                                             }
                                         }
                                     }

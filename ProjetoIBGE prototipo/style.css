@@ -1,310 +1,814 @@
-/* Estilo baseado em telas de 375px */
-*{
-    margin: 0;
-    padding: 0;
+/*---- GERAL (!EVITAR MODIFICAÇÃO!) ----*/
+
+/* REFERENTE A PAGINA */
+
+html, body {
+    min-height: 100%;
+}
+
+body {
+    margin: 0%;
+    padding: 0%;
     font-family: Arial, Helvetica, sans-serif;
+    background-color: #04D9B2;
 }
 
-body{
-    display: flex;
-    flex-direction: column;
-    justify-items: center;
-    align-items: center;
-    background-color: #d9d9d9;
+.texts{
+    color: #ffffff;
 }
 
-header{
+/* REFERENTE AO TOP DA PAGINA */
+
+.navbar {
+    margin: 0%;
+    width: auto;
+    padding-left: 0.5%;
+    padding-top: 0.5%;
+    padding-bottom: 0.5%;
+    width: auto;
+    background: #193C40; /*#193C40;*/
+}
+
+.logo {
+    margin-left: 38%;
+    width: 15.6%;
+
+}
+
+/* REFERENTE AO RODAPE DA PAGINA */
+
+footer{
     width: 100%;
-    display: flex;
+    height: auto;    
+    position: absolute;
+    bottom: 0;
+    background: #193C40;
+    text-align: center;
 }
 
-.img-ibge{
-    width: 45%;
-    padding: 5px;
+/* REFERENTE AO CORPO DA PAGINA */
+
+.container {
+    margin: 0%;
+    padding-top: 2%;
+    padding-left: 2%;
 }
 
-.img-ibge img{
-    width: 70%;
+/* Referenhte a Box Search */
+
+.box-search {
+    width: 24%;
+    height: 73vh;
+    border-radius: 1%;
+    margin-right: 0px;
+    float: left;
+    background-color: #193C40; 
 }
 
-.search{
-    display: flex;
-    width: 55%;
-    padding: 5px;
+#title-search {
+    padding: 5%;
+    margin: auto;
+    text-align: center;
+    font-size: 200%;
+    font-weight: bolder;
 }
 
-.search img{
-    width: 50%;
-}
-
-.container{
-    display: flex;
-    flex-direction: column;
-    justify-items: center;
-    align-items: center;
+.formulario {
+    padding-left: 4%;
     width: 100%;
-    margin-top: 5px;
+    font-size: 60%;
+    margin-left: 2%;
+    font-weight: bolder;
 }
 
-.container .pesquisa{
+form {
+    font-size: 0.8rem;
+}
+
+.estado_cidade{
     display: flex;
-    flex-direction: column;
-    border-radius: 10px;
-    padding: 10px;
-    background-color: #ffffff;
+    margin-bottom: 4%;
 }
 
-.container h1{
-    font-size: 25px;
+#slctEstados {
+    width: 13vh;
 }
 
-.container label{
-    padding: 5px;
+#slctCidades{
+    width: 13vh;
+    margin-left: 2%;
 }
 
-.ckbox {
-    display: flex;
-    flex-direction: column;
+.sltAno{
+    margin-bottom: 4%;
 }
 
-#btnConsultar{
-    margin-top: 5px;
-    width: 70px;
-    padding: 5px;
+#slctAno{
+    width: 13vh;
 }
 
-#btnConsultar:hover{
-    cursor: pointer;
+#checkbox {
+    margin-bottom: 2%;
+
+}
+
+#btnConsultar {
+    width: 40%;
+    height: 6vh;
+    margin-top: 10vh;
+    margin-left: 2%;
+    font-size: 1rem;
+    border-radius:0px 10px 10px 10px;
+    -moz-border-radius:0px 10px 10px 10px;
+    -webkit-border-radius:0px 10px 10px 10px;
+    -webkit-text-stroke: 1.3px rgb(0, 0, 0);
+    color: #000000;
+    background: #F28705;
+    border:0px none #ffffff;
+    box-shadow:2px 2px 5px #000000;
+    -moz-box-shadow:2px 2px 5px #000000;
+    -webkit-box-shadow:2px 2px 5px #000000;
 }
 
 
-.container select{
-    padding: 3px;
+/* Referenhte a Box Print */
+
+.box-print {
+    display: block;
+    margin-left: 2%;
+    width: 68%;
+    height: 69vh;
+    border-radius: 1%;
+    float: left;
+    padding-left: 4%;
+    padding-top: 2%;
+    overflow: auto;
+    font-weight: bolder;
+    background-color: #193C40;
 }
 
-#resposta{
-    display: none;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    margin-top: 10px;
-    border-radius: 10px;
-    padding: 5px;
-    background-color: #ffffff;
+.grid_print {
+    display: grid;
+    grid-template-columns: auto;
+    grid-template-rows: auto;
 }
 
-#slctAno2{
-    display: none;
+.retNomeCidade{
+    width: max-content;
+    height: 8vh;
+}
+#retNomeCidade {
+    margin-top: 0%;
+    font-size: 3rem;
 }
 
-#dadosE{
-    display: flex;
-    flex-direction: column;
+.retNomeEstado{
+    margin-top: 2vh;
 }
 
-#dadosE input{
-    border: none;
-    width: 40px;
-}
 
-#dadosC{
-    display: flex;
-    flex-direction: column;
-}
-
-#dadosC input{
-    border: none;
-    width: 60px;
-}
-
-#retMalhaE{
-    display: none;
-    align-items: center;
-    justify-content: center;
-}
-
-#retMalhaE img{
-    width: 30%;
+#retNomeEstado {
+    text-align: left;
+    margin-top: 0%;
+    font-size: 1.5rem; 
 }
 
 #retMalhaC{
     display: flex;
     align-items: center;
     justify-content: center;
+    width: 0vh;
+    margin-left: 110vh;
+    margin-top: -10vh;
+
 }
 
 #retMalhaC img{
-    width: 30%;
+    width: 30vh;
+    height: 30vh;
 }
 
-#graficos{
-    display: flex;
-    flex-direction: column;
-    width: 100%;
+.print_info{
+    margin-top: -20vh;
 }
 
-#graficos canvas{
-    display: none;
+.textResp{
+    color: #ffffff
 }
 
-#slctCidades2{
-    display: none;
+.restInp {
+    width: 20vh;
+    color: #ffffff;
+    background: transparent;
+    text-align: right;
+    font-size: 1rem;
+    font-weight: bolder;
+    box-shadow: 0 0 0 0;
+    border: 0 none;
+    outline: 0;
+    
 }
 
-#slctCidades3{
-    display: none;
+#real_compara {
+    margin-left: -20vh;
+    text-align: center;
 }
 
-button{
-    padding: 3px;
-}
-
-#selecoes{
-    display: flex;
-}
-
-#selecoes select{
-    margin: 5px;
-}
-
-footer{
-    margin-top: 7px;
-}
-
-#dadosE input{
+#btnOk {
     width: auto;
-    font-size: 16px;
+    height: 3vh;
+    
+    
+    font-size: 0.9rem;
+    border-radius:0px 10px 10px 10px;
+    -moz-border-radius:0px 10px 10px 10px;
+    -webkit-border-radius:0px 10px 10px 10px;
+    -webkit-text-stroke: 1.3px rgb(0, 0, 0);
+    color: #000000;
+    background: #F28705;
+    border:0px none #ffffff;
+    box-shadow:2px 2px 5px #000000;
+    -moz-box-shadow:2px 2px 5px #000000;
+    -webkit-box-shadow:2px 2px 5px #000000;
+
 }
 
-#dadosC input{
-    width: auto;
-    font-size: 16px;
+#qtd{
+    width: 10vh;
 }
 
-@media screen and (min-width: 412px){
-    .img-ibge{
-        width: 50%;
-        padding: 5px;
-    }
-    
-    .img-ibge img{
-        width: 50%;
-    }
-    
-    .search{
-        display: flex;
-        width: 50%;
-        padding: 5px;
-    }
-    
-    .search img{
-        width: 15%;
-    }
+#comparar{
+    display: none;
+    margin-bottom: 2vh;
 }
 
-@media screen and (min-width: 800px) {
-    .img-ibge{
-        width: 75%;
-        padding: 5px;
-    }
-    
-    .img-ibge img{
-        width: 20%;
-    }
-    
-    .search{
-        display: flex;
-        width: 25%;
-        padding: 5px;
-    }
-    
-    .search img{
-        width: 15%;
+#selecoes select {
+    display: none;
+}
+canvas{
+    display: none;
+}
+
+/*---- RESPONSIVIDADE (!CUIDADO AO MODIFICAR!) ----*/
+
+/* PARA TABLET (VERTICAL)*/
+
+@media (max-width: 884px) AND (max-height: 1280px){
+
+    body{
+        overflow: auto;
     }
 
-    .container{
+    /* REFERENTE AO TOP DA PAGINA */
+    .navbar {
+        margin: 0%;
+        padding-left: 0.5%;
+        padding-top: 0.5%;
+        padding-bottom: 0.5%;
+        width: auto;
+        background: #193C40; /*#193C40;*/
+    }
+
+    .logo {
+        margin-left: 33%;
+        width: 30%;
+    
+    }
+
+    /* REFERENTE AO RODAPE DA PAGINA */
+
+    footer{
+        width: 100%;
+        height: auto;    
+        position: absolute;
+        bottom: -15vh;
+        background: #193C40;
+        text-align: center;
+    }
+
+    #img_footer {
+        width: 50vh;
+
+    }
+
+    /* REFERENTE AO CORPO DA PAGINA */
+
+    .container {
+        display:block;
+        padding-top: 2%;
+        padding-left: 3%;
+    }
+
+    /* Referenhte a Box Search */
+   
+    .box-search {
+        width: 97%;
+        height: 38vh;
+        border-radius: 2%;
+        margin-right: 0px;
+        float: left;
+        
+    }
+
+    #title-search {
+        padding: 5%;
+        margin: auto;
+        margin-top: -5vh;
+        text-align: center;
+        font-size: 300%;
+        font-weight: bolder;
+    }
+
+    .formulario {
+        padding-left: 4%;
+        width: 100%;
+        margin-left: 2%;
+        margin-top: -4vh;
+        font-weight: bolder;
+    }
+
+    form {
+        font-size: 1.7rem;
+        grid-column: 1;
+        grid-row: 2;
+    }
+
+    .grid_search {
+        display: grid;
+        grid-template-columns: auto;
+        grid-template-rows: auto;
+
+    }
+
+    .estado_cidade{
+        margin-top: -2vh;
+        margin-left: 16vh;
+        margin-bottom: 4%;
+        grid-column: 1;
+        grid-row: 1;
+    }
+
+    #slctEstados {
+        width: 13vh;
+        height: 4vh;
+        font-size: 1.7rem;
+        margin-left: -10vh;
+        
+    }
+
+    #slctCidades{
+        width: 13vh;
+        height: 4vh;
+        margin-left: 2%;
+        font-size: 1.7rem;
+    }
+
+    .sltAno{
+        margin-top: -2vh;
+        margin-left: -25.4vh;
+        margin-bottom: 4%;
+        grid-column: 2;
+        grid-row: 1;
+    }
+
+    #slctAno{
+        width: 13vh;
+        height: 4vh;
+        font-size: 1.7rem;
+    }
+
+    #checkbox {
+        margin-bottom: 2%;
+    }
+
+    .checkbox_icon {
+        width: 1.7rem;
+        height: 1.7rem;
+    }
+
+    .slctDensidadeDmg{
+        width: 40.9vh;
+        height: auto;
+    }
+
+    .btnConsultar{
+        width: 20vh;
+        height: 6vh;
+        grid-column: 1;
+        grid-row: 2;
+        margin-top: 15vh;
+        margin-left: 35vh;
+    }
+
+    #btnConsultar {
+        width: 20vh;
+        height: 6vh;
+        padding: 0%;
+        margin-top: -0.5vh;
+        font-size: 1.7rem;
+        border-radius:0px 10px 10px 10px;
+        -moz-border-radius:0px 10px 10px 10px;
+        -webkit-border-radius:0px 10px 10px 10px;
+       
+    }
+
+    /* Referenhte a Box Print */
+
+    .box-print {
+        margin-left: 0.3%;
+        margin-top: 2%;
+        width: 54vh;
+        height: 60vh;
+        border-radius: 1%;
+        float: left;
+        padding-left: 8%;
+        padding-right: 6%;
+        padding-top: 4%;
+        overflow: auto;
+        font-weight: bolder;
+    }
+
+    .grid_print {
+        display: grid;
+        grid-template-columns: auto;
+        grid-template-rows: auto;
+        font-size: 1.6rem;
+        
+    }
+
+    .retNomeCidade{
+        width: max-content;
+        height: 8vh;
+    }
+    #retNomeCidade {
+        font-size: 4rem;
+    }
+    
+    .retNomeEstado{
+        margin-top: -2vh;
+        margin-bottom: 4vh;
+    }
+    
+    #retNomeEstado {
+        font-size: 2.5rem;
+    }
+
+    #retMalhaC{
         display: flex;
-        flex-direction: row;
-        justify-content: center;
         align-items: center;
+        justify-content: center;
+        width: 0vh;
+        margin-left: 10vh;
+        margin-top: 2vh;
+    
     }
-
-    .container .pesquisa{
-        margin: 10px;
-        width: 50%;
-    }
-
-    .container #resposta{
-        margin: 10px;
-        width: 50%;
-    }
-
-    #resposta #retEstado{
-        display: flex;
-    }
-
-    #resposta #retMalhaE{
-        width: 30%;
-    }
-
-    #retMalhaE img{
-        width: 100%;
-    }
-
-    #dadosE{
-        margin-left: 10px;
-    }
-
-    #resposta #retCidade{
-        display: flex;
-    }
-
-    #resposta #retMalhaC{
-        width: 30%;
-    }
-
+    
     #retMalhaC img{
+        width: 20vh;
+        height: 20vh;
+    }
+
+    .print_info{
+        margin-top: 6vh;
+        margin-bottom: 5vh;
+    }
+
+    #real_compara {
+        font-size: 2rem;
+        margin-left: 0.1vh;
+        margin-bottom: 2vh;
+    }
+    
+    .textResp{
+        color: #ffffff;
+        margin-bottom: vh;
+        font-size: 1.3rem;
+        
+    }
+
+    .restInp {
+        width: 9vh;
+        color: #ffffff;
+        background: transparent;
+        text-align: right;
+        font-size: 1.3rem;
+        font-weight: bolder;
+        box-shadow: 0 0 0 0;
+        border: 0 none;
+        outline: 0;
+        
+    }
+
+    .titler_compar{
+        font-size: 1.5rem;
+    }
+
+    #qtd{
+        font-size: 1.3rem;
+    }
+
+    #tipoGrafico{
+        font-size: 1.3rem;
+        height: 2.6vh;
+    }
+
+    #btnOk {
+        font-size: 1.3rem;
+    }
+
+    #selecoes{
+        font-size: 2rem;
+    }
+
+    #slctCidades2{
+        font-size: 1.3rem;
+        height: 2.6vh;
+    }
+
+    #slctCidades3{
+        font-size: 1.3rem;
+        height: 2.6vh;
+    }
+
+    #slctAno2{
+        font-size: 1.3rem;
+        height: 2.6vh;
+    }
+    .comparaAno {
+        width: auto;
+        height: 30vh;
+        font-size: 8rem;
+    }
+
+
+
+
+}
+
+/* PARA MOBILE */
+
+@media (max-width: 428px) AND (max-height: 926px){
+
+    /* REFERENTE AO TOP DA PAGINA */
+    .navbar {
+        margin: 0%;
+        padding-left: 0.5%;
+        padding-top: 0.5%;
+        padding-bottom: 0.5%;
+        width: auto;
+        background: #193C40; /*#193C40;*/
+    }
+
+    .logo {
+        margin-left: 33%;
+        width: 30%;
+    
+    }
+
+    /* REFERENTE AO RODAPE DA PAGINA */
+
+    footer{
         width: 100%;
+        height: auto;    
+        position: absolute;
+        bottom: -30vh;
+        background: #193C40;
+        text-align: center;
     }
 
-    #dadosC{
-        margin-left: 10px;
+    #img_footer {
+        width: 50vh;
+
     }
 
-    footer div{
+    /* REFERENTE AO CORPO DA PAGINA */
+
+    .container {
+        padding-top: 2%;
+        padding-left: 3%;
+    }
+
+    /* Referenhte a Box Search */
+   
+    .box-search {
+        width: 97%;
+        height: 52vh;
+        border-radius: 2%;
+        margin-right: 0px;
+        float: left;
+        
+    }
+
+    #title-search {
+        padding: 5%;
+        margin: auto;
+        margin-top: -3vh;
+        text-align: center;
+        font-size: 200%;
+        font-weight: bolder;
+    }
+
+    .formulario {
+        padding-left: 4%;
+        width: 100%;
+        margin-left: 2%;
+        margin-top: -4vh;
+        font-weight: bolder;
+    }
+
+    form {
+        font-size: 1.2rem;
+        grid-column: 1;
+        grid-row: 2;
+    }
+
+    .grid_search {
+        display: grid;
+        grid-template-columns: auto;
+        grid-template-rows: auto;
+
+    }
+
+    .estado_cidade{
         display: flex;
+        margin-left: 14vh;
+        margin-bottom: 4%;
+        grid-column: 1;
+        grid-row: 1;
+    }
+
+    #slctEstados {
+        width: 13vh;
+        height: 4vh;
+        font-size: 1rem;
+        
+    }
+
+    #slctCidades{
+        width: 13vh;
+        height: 4vh;
+        margin-left: 2%;
+        font-size: 1rem;
+    }
+
+    .sltAno{
+        margin-left: -17.8vh;
+        margin-bottom: 4%;
+        grid-column: 2;
+        grid-row: 1;
+    }
+
+    #slctAno{
+        width: 13vh;
+        height: 4vh;
+        font-size: 1rem;
+    }
+
+    #checkbox {
+        margin-bottom: 2%;
+    }
+
+    .checkbox_icon {
+        width: 1.2rem;
+        height: 1.2rem;
+    }
+
+    .slctDensidadeDmg{
+        width: 44vh;
+        height: auto;
+    }
+
+    .btnConsultar{
+        width: 15vh;
+        height: 6vh;
+        grid-column: 1;
+        grid-row: 2;
+        margin-top: 26vh;
+        margin-left: 0%;
+    }
+
+    #btnConsultar {
+        width: 20vh;
+        height: 6vh;
+        padding: 0%;
+        margin-top: 0vh;
+        font-size: 1.2rem;
+        border-radius:0px 10px 10px 10px;
+        -moz-border-radius:0px 10px 10px 10px;
+        -webkit-border-radius:0px 10px 10px 10px;
+       
+    }
+
+    /* Referenhte a Box Print */
+
+    .box-print {
+        margin-left: 0.3%;
+        margin-top: 2%;
+        width: 46.7vh;
+        height: 60vh;
+        border-radius: 1%;
+        float: left;
+        padding-left: 8%;
+        padding-right: 6%;
+        padding-top: 8%;
+        overflow: auto;
+        font-weight: bolder;
+    }
+
+    .grid_print {
+        display: grid;
+        grid-template-columns: auto;
+        grid-template-rows: auto;
+        font-size: 1.6rem;
+        
+    }
+
+    .retNomeCidade{
+        width: max-content;
+        height: 8vh;
+    }
+    #retNomeCidade {
+        margin-top: 0%;
+        font-size: 2rem;
     }
     
-    footer h3{
-        margin-right: 4px;
+    .retNomeEstado{
+        margin-top: 0%;
+        margin-bottom: 4vh;
     }
+    
+    #retNomeEstado {
+        margin-top: -2vh;
+        font-size: 1.5rem;
+    }
+
+    .restInp {
+        width: 12vh;
+        color: #ffffff;
+        background: transparent;
+        text-align: left;
+        font-size: 1.1rem;
+        font-weight: bolder;
+        box-shadow: 0 0 0 0;
+        border: 0 none;
+        outline: 0;
+        
+    }
+    
+    #real_compara{
+        font-size: 1.3rem;
+    }
+
+    .textResp{
+        color: #ffffff;
+        margin-bottom: 2vh;
+        font-size: 1.1rem;
+        
+    }
+
+    .titler_compar{
+        font-size: 1.1rem;
+    }
+
+    #qtd{
+        font-size: 1.1rem;
+    }
+
+    #tipoGrafico{
+        font-size: 1.1rem;
+        height: 3.5vh;
+    }
+
+    #btnOk {
+        font-size: 1.1rem;
+    }
+
+    #selecoes{
+        font-size: 2rem;
+    }
+
+    #slctCidades2{
+        font-size: 1.1rem;
+        height: 3.5vh;
+    }
+
+    #slctCidades3{
+        font-size: 1.1rem;
+        height: 3.5vh;
+    }
+
+    #slctAno2{
+        font-size: 1.1rem;
+        height: 3.5vh;
+    }
+    .comparaAno {
+        width: auto;
+        height: 30vh;
+        font-size: 8rem;
+    }
+
+
+
+
 }
 
-@media screen and (min-width: 810px) {
-    .img-ibge{
-        width: 75%;
-        padding: 5px;
-    }
-    
-    .img-ibge img{
-        width: 20%;
-    }
-    
-    .search{
-        display: flex;
-        width: 25%;
-        padding: 5px;
-    }
-    
-    .search img{
-        width: 15%;
-    }
-
-    footer div{
-        display: flex;
-    }
-    
-    footer h3{
-        margin-right: 4px;
-    }
-}
