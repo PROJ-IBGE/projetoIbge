@@ -111,7 +111,9 @@
 */
 
       var conf1 = {
-        op: 13,
+        op: 1,
+        func: [j => {return 'ano'},
+          j => {return 'local'}],
         local: 'all', // se não for inserido esse parâmetro, a localidade padrão é "all"
         ano: 'all', // inserir os anos separados por espaços, se quiser retornar todos os anos insira a palavra "all" ou insira o parâmetro (ano)
         variavel: 'nascimentos', // se não for inserido esse parâmetro, a variavel padrão é "populacao"
