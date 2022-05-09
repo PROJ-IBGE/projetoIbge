@@ -1,0 +1,21 @@
+$.ajax({
+    url:
+    type:
+    data:{},
+    success: function(){}
+})
+
+switch($("#tipo").val()){
+    // Gráfico de barra
+    case "barra":
+        break
+    // Gráfico de linha
+    case "linha":
+        break
+    // Gráfico de pizza
+        case "pizza":
+            break
+    default:
+        console.log("Opção inválida");
+            break
+}

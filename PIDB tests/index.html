@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="style.css">
+        <title>PIDB tests</title>
+    </head>
+    <body>
+        <div class="container">
+            <div class="pesquisa">
+                <h1>Pesquisa</h1>
+                <div class="select">
+                    <!-- Seleciona estados -->
+                    <select id="slctEstados"></select>
+                    <!-- Seleciona municípios -->
+                    <select id="slctCidades"></select>
+                    <!-- Seleciona o ano -->
+                    <select id="slctAno">
+                        <option value="">Selecione um ano</option>
+                        <option value="2001">2001</option>
+                        <option value="2002">2002</option>
+                        <option value="2003">2003</option>
+                        <option value="2004">2004</option>
+                        <option value="2005">2005</option>
+                        <option value="2006">2006</option>
+                        <option value="2007">2007</option>
+                        <option value="2008">2008</option>
+                        <option value="2009">2009</option>
+                        <option value="2010">2010</option>
+                        <option value="2011">2011</option>
+                        <option value="2012">2012</option>
+                        <option value="2013">2013</option>
+                        <option value="2014">2014</option>
+                        <option value="2015">2015</option>
+                        <option value="2016">2016</option>
+                        <option value="2017">2017</option>
+                        <option value="2018">2018</option>
+                        <option value="2019">2019</option>
+                        <option value="2020">2020</option>
+                        <option value="2021">2021</option>
+                    </select>
+                </div>
+                <div class="ckbox">
+                    <label>
+                        <input type="checkbox" id="slctAreaT"> Área Territorial
+                    </label>
+                    <label>
+                        <input type="checkbox" id="slctDensidadeDmg"> Densidade Demográfica
+                    </label>
+                    <label>
+                        <input type="checkbox" id="slctPopulacao"> População
+                    </label>
+                    <label>
+                        <input type="checkbox" id="slctEscolarizacao"> Escolaridade
+                    </label>
+                    <label>
+                        <input type="checkbox" id="slctPib"> PIB
+                    </label>
+                </div>
+                <button id="btnConsultar">Consultar</button>
+            </div>
+            <div class="resposta">
+                <h2>Resultado</h2>
+                <h3 id="retNomeEstado"></h3>
+                <div id="retEstado">
+                    <div id="retMalhaEstado"></div>
+                    <div id="dadosEstado">
+                        <label id="retDensidadeDmgE"></label>
+                        <label id="retPopulacaoE"></label>
+                        <label id="retPibE"></label>
+                    </div>
+                </div>
+                <h3 id="retNomeCidade"></h3>
+                <div id="retCidade">
+                    <div id="retMalhaCidade"></div>
+                    <div id="dadosCidade">
+                        <label id="retAreaC"></label>
+                        <label id="retDensidadeDmgC"></label>
+                        <label id="retPopulacaoC"></label>
+                        <label id="retEscolarizacaoCT"></label>
+                        <label id="retEscolarizacaoCH"></label>
+                        <label id="retEscolarizacaoCM"></label>
+                        <label id="retPibC"></label>
+                        <div style="display: none">
+                            <!-- Retorna informações das outras opções -->
+                            <label id="retPopulacaoCA2"></label>
+                            <label id="retPopulacaoC2"></label>
+                            <label id="retAreaC2"></label>
+                        </div>
+                    </div>
+                </div>
+                <div class="comparar">
+                    <h4>Realizar Comparações</h4>
+                    <label>Informe com quantas cidades/estados quer comparar: 
+                        <input type="text" id="qtd" placeholder="Limite de 2 cidades">
+                        <select id="tipo">
+                            <option value="">Tipo de Gráfico</option>
+                            <option value="barra">Barra</option>
+                            <option value="linha">Linha</option>
+                            <option value="pizza">Pizza</option>
+                        </select>
+                    </label>
+                    <div id="outrasOpcoes">
+                        <!-- Seleciona outro ano para comparações -->
+                        <select id="slctAno2">
+                            <option value="">Selecione um ano</option>
+                            <option value="2001">2001</option>
+                            <option value="2002">2002</option>
+                            <option value="2003">2003</option>
+                            <option value="2004">2004</option>
+                            <option value="2005">2005</option>
+                            <option value="2006">2006</option>
+                            <option value="2007">2007</option>
+                            <option value="2008">2008</option>
+                            <option value="2009">2009</option>
+                            <option value="2010">2010</option>
+                            <option value="2011">2011</option>
+                            <option value="2012">2012</option>
+                            <option value="2013">2013</option>
+                            <option value="2014">2014</option>
+                            <option value="2015">2015</option>
+                            <option value="2016">2016</option>
+                            <option value="2017">2017</option>
+                            <option value="2018">2018</option>
+                            <option value="2019">2019</option>
+                            <option value="2020">2020</option>
+                            <option value="2021">2021</option>
+                        </select>
+                        <!-- Seleciona uma segunda cidade para comparação -->
+                        <select id="slctCidades2"></select>
+                        <!-- Seleciona uma terceira cidade para comparação -->
+                        <select id="slctCidades3"></select>
+                    </div>
+                    <button id="btnCompara">Comparar</button>
+                    <div id="graficos">
+                        <canvas id="populacaoCAno"></canvas>
+                        <canvas id="populacoaCidades"></canvas>
+                        <canvas id="areaCidades"></canvas>
+                    </div>
+                </div>
+                </div>
+        </div>
+
+        <!-- Biblioteca jquery do javascript para facilitar a conexão com as api's -->
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+        <!-- Biblioteca chart.js do javascript para trabalhar com gráficos -->
+        <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+        <script src="api.js"></script>
+        <script src="infoEstado.js"></script>
+        <script src="infoCidade.js"></script>
+        <script src="malhas.js"></script>
+        <script src="infoOutrasOpcoes.js"></script>
+        <script src="graficosCidade.js"></script>
+        <script src="funcaoCompara.js"></script>
+    </body>
+</html>

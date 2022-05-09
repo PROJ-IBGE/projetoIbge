@@ -1,0 +1,167 @@
+*{
+    margin: 0;
+    padding: 0;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+body{
+    display: flex;
+    flex-direction: column;
+    justify-items: center;
+    align-items: center;
+    background-color: #d9d9d9;
+}
+
+h1, h2{
+    font-size: 30px;
+}
+
+.container{
+    display: flex;
+}
+
+.pesquisa{
+    display: flex;
+    flex-direction: column;
+    background-color: #ffffff;
+    border-radius: 5px;
+    padding: 5px;
+    margin: 5px;
+}
+
+#btnConsultar{
+    padding: 3px;
+    cursor: pointer;
+    width: 15%;
+}
+
+.select{
+    padding: 3px;
+}
+
+.select select{
+    padding: 3px;
+}
+
+.ckbox{
+    display: flex;
+    flex-direction: column;
+}
+
+.resposta{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background-color: #ffffff;
+    border-radius: 5px;
+    padding: 5px;
+    margin: 5px;
+}
+
+#retEstado{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#retMalhaEstado{
+    width: 20%;
+}
+
+#retMalhaEstado img{
+    width: 100%;
+}
+
+#dadosEstado{
+    display: flex;
+    flex-direction: column;
+}
+
+#dadosEstado input{
+    border: none;
+    width: 50px;
+    font-size: 16px;
+}
+
+#dadosEstado #inpPopE{
+    width: 65px;
+}
+
+#dadosEstado #inpPibE{
+    width: 80px;
+}
+
+#retCidade{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#retMalhaCidade{
+    width: 20%;
+}
+
+#dadosCidade{
+    display: flex;
+    flex-direction: column;
+}
+
+#retMalhaCidade img{
+    width: 100%;
+}
+
+#dadosCidade input{
+    border: none;
+    width: 60px;
+    font-size: 16px;
+}
+
+#dadosCidade #inpPopC{
+    width: 65px;
+}
+
+#dadosCidade #inpPibC{
+    width: 75px;
+}
+
+#dadosCidade #inpETC{
+    width: 35px;
+}
+
+#dadosCidade #inpEHC{
+    width: 35px;
+}
+
+#dadosCidade #inpEMC{
+    width: 35px;
+}
+
+#comparar{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+#comparar input{
+    width: auto;
+}
+
+#comparar button, select{
+    padding: 3px;
+    margin: 2px;
+}
+
+canvas{
+    display: none;
+}
+
+#outrasOpcoes select{
+    display: none;
+}
+
+#outrasOpcoes button{
+    display: none;
+    padding: 3px;
+}
