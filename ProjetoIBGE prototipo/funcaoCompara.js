@@ -1,7 +1,6 @@
 $(document).ready(function(){
-    $("#btnOk").click(function(){
-        var qtd = document.getElementById("qtd").value;
-        switch(qtd){
+    $("#qtd").change(function(){
+        switch($("#qtd").val()){
             case "0":
                 document.getElementById("slctAno2").style.display = "block";
                 break;

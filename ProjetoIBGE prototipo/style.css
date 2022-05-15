@@ -214,7 +214,7 @@ form {
     text-align: center;
 }
 
-#btnOk {
+#btnCompara {
     width: auto;
     height: 3vh;
     
@@ -512,7 +512,7 @@ canvas{
         height: 2.6vh;
     }
 
-    #btnOk {
+    #btnCompara {
         font-size: 1.3rem;
     }
 
@@ -779,7 +779,7 @@ canvas{
         height: 3.5vh;
     }
 
-    #btnOk {
+    #btnCompara {
         font-size: 1.1rem;
     }
 

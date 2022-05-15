@@ -80,7 +80,7 @@ $(document).ready(function(){
                             },
                             success: function(populacao){
                                 var populacaoC = "População em " + $("#slctAno").val() + ": ";
-                                populacaoC = populacaoC + "<input class='restInp' type='text' readonly id='inpPopC' value='"+populacao[0].resultados[0].series[0].serie['2007']+"'>";
+                                populacaoC = populacaoC + "<input class='restInp' type='text' readonly id='' value='"+populacao[0].resultados[0].series[0].serie['2007']+"'>";
                                 $("#retPopulacaoC").html(populacaoC);
                             }
                         })
