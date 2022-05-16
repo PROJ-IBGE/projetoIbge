@@ -7,13 +7,8 @@ $(document).ready(function(){
             case "1":
                 document.getElementById("slctCidades2").style.display = "block";
                 break;
-            case "2":
-                document.getElementById("slctCidades2").style.display = "block";
-                document.getElementById("slctCidades3").style.display = "block";
-                break
             default:
                 break;
         }
-
     })
 })

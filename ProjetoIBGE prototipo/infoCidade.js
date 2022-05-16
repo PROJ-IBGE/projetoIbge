@@ -18,7 +18,7 @@ $(document).ready(function(){
         }
     })
 
-    // Caso o input do tipo checkbox relacionada a Área Territorial seja selecionado e for verdadeiro, retorna as informações da Área Territorial
+    // Caso o input do tipo checkbox relacionada a Área Territorial seja selecionado, retorna as informações da Área Territorial
     $("#slctAreaT").change(function(){
         if( $(this).prop("checked") == true ){
             $("#btnConsultar").click(function(){
@@ -27,9 +27,7 @@ $(document).ready(function(){
                 $.ajax({
                     url: "https://servicodados.ibge.gov.br/api/v3/agregados/1301/periodos/2010/variaveis/615?localidades=N6["+$("#slctCidades").val()+"]" ,
                     type: "GET" ,
-                    data: {
-
-                    } ,
+                    data: {} ,
                     success: function(areaT){
                         var areaTC = "Área Territorial: "
                         areaTC = areaTC + "<input class='restInp' type='text' readonly id='inpArea' value='"+areaT[0].resultados[0].series[0].serie['2010']+"'>km2";
@@ -37,8 +35,6 @@ $(document).ready(function(){
                     }
                 })
             })
-        } else {
-            return;
         }
     })
 
@@ -50,9 +46,7 @@ $(document).ready(function(){
                 $.ajax({
                     url: "https://servicodados.ibge.gov.br/api/v3/agregados/1301/periodos/2010/variaveis/616?localidades=N6[" + $("#slctCidades").val() + "]" ,
                     type: "GET" ,
-                    data: {
-
-                    } ,
+                    data: {} ,
                     success: function(densidadeDmg){
                         var densidadeDmgC = "Densidade Demográfica[2010]: "
                         densidadeDmgC = densidadeDmgC + "<input class='restInp' type='text' readonly value='"+densidadeDmg[0].resultados[0].series[0].serie['2010']+"'>hab/km2";
@@ -60,8 +54,6 @@ $(document).ready(function(){
                     }
                 })
             })
-        } else {
-            return;
         }
     })
 
@@ -75,12 +67,10 @@ $(document).ready(function(){
                         $.ajax({
                             url: "https://servicodados.ibge.gov.br/api/v3/agregados/793/periodos/2007/variaveis/93?localidades=N6["+$("#slctCidades").val()+"]",
                             type: "GET",
-                            data:{
-
-                            },
+                            data:{},
                             success: function(populacao){
                                 var populacaoC = "População em " + $("#slctAno").val() + ": ";
-                                populacaoC = populacaoC + "<input class='restInp' type='text' readonly id='' value='"+populacao[0].resultados[0].series[0].serie['2007']+"'>";
+                                populacaoC = populacaoC + "<input class='restInp' type='text' readonly id='inpPopC' value='"+populacao[0].resultados[0].series[0].serie['2007']+"'>";
                                 $("#retPopulacaoC").html(populacaoC);
                             }
                         })
@@ -117,8 +107,6 @@ $(document).ready(function(){
                         break
                 }
             })
-        } else {
-            return;
         }
     })
 
