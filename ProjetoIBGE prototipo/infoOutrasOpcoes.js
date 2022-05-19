@@ -14,8 +14,8 @@ $(document).ready(function(){
                                 type: "GET",
                                 data:{},
                                 success: function(populacao){
-                                    var populacaoCidade = "População em "+$("#slctAno2").val()+": ";
-                                    populacaoCidade = populacaoCidade+"<input type='text' readonly id='inpPopCA2' value='"+populacao[0].resultados[0].series[0].serie['2007']+"'>";
+                                    var populacaoCidade = "<td>População em "+$("#slctAno2").val()+":</td>";
+                                    populacaoCidade = populacaoCidade+"<td><input class='restInp' type='text' readonly id='inpPopCA2' value='"+populacao[0].resultados[0].series[0].serie['2007']+"'></td>";
                                     $("#retPopulacaoCA2").html(populacaoCidade);
                                 }
                             })
@@ -26,8 +26,8 @@ $(document).ready(function(){
                                 type: "GET",
                                 data:{},
                                 success: function(populacao){
-                                    var populacaoCidade = "População em "+$("#slctAno2").val()+": ";
-                                    populacaoCidade = populacaoCidade+"<input type='text' readonly id='inpPopCA2' value='"+populacao[0].resultados[0].series[0].serie['2010']+"'>";
+                                    var populacaoCidade = "<td>População em "+$("#slctAno2").val()+":</td>";
+                                    populacaoCidade = populacaoCidade+"<td><input class='restInp' type='text' readonly id='inpPopCA2' value='"+populacao[0].resultados[0].series[0].serie['2010']+"'></td>";
                                     $("#retPopulacaoCA2").html(populacaoCidade);
                                 }
                             })
@@ -38,8 +38,8 @@ $(document).ready(function(){
                                 type: "GET",
                                 data:{},
                                 success: function(populacao){
-                                    var populacaoCidade = "População em "+$("#slctAno2").val()+": ";
-                                    populacaoCidade = populacaoCidade+"<input type='text' readonly id='inpPopCA2' value='"+populacao[0].resultados[0].series[0].serie[$("#slctAno2").val()]+"'>";
+                                    var populacaoCidade = "<td>População em "+$("#slctAno2").val()+":</td>";
+                                    populacaoCidade = populacaoCidade+"<td><input class='restInp' type='text' readonly id='inpPopCA2' value='"+populacao[0].resultados[0].series[0].serie[$("#slctAno2").val()]+"'></td>";
                                     $("#retPopulacaoCA2").html(populacaoCidade);
                                 }
                             })
