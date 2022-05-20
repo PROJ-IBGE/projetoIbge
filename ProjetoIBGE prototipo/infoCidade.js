@@ -80,9 +80,7 @@ $(document).ready(function(){
                         $.ajax({
                             url: "https://servicodados.ibge.gov.br/api/v3/agregados/3175/periodos/2010/variaveis/93?localidades=N6["+$("#slctCidades").val()+"]",
                             type: "GET",
-                            data:{
-
-                            },
+                            data:{},
                             success: function(populacao){
                                 var populacaoC = "<td>População em " + $("#slctAno").val() + ":</td>";
                                 populacaoC = populacaoC + "<td><input class='restInp' type='text' readonly id='inpPopC' value='"+populacao[0].resultados[0].series[0].serie['2010']+"'></td>";
@@ -95,9 +93,7 @@ $(document).ready(function(){
                         $.ajax({
                             url: "https://servicodados.ibge.gov.br/api/v3/agregados/6579/periodos/"+$("#slctAno").val()+"/variaveis/9324?localidades=N6["+$("#slctCidades").val()+"]" ,
                             type: "GET" ,
-                            data: {
-
-                            } ,
+                            data: {} ,
                             success: function(populacao){
                                 var populacaoC = "<td>População em " + $("#slctAno").val() + ":</>";
                                 populacaoC = populacaoC + "<td><input class='restInp' type='text' readonly id='inpPopC' value='"+populacao[0].resultados[0].series[0].serie[$("#slctAno").val()]+"'></td>";
