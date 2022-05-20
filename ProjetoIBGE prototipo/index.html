@@ -36,30 +36,7 @@
 
               <div class="sltAno">
                 <!-- Caixa de seleção que pede para o usuário selecionar um ano -->
-                <select name="slctAno" id="slctAno">
-                    <option>ANO</option>
-                    <option value="2001">2001</option>
-                    <option value="2002">2002</option>
-                    <option value="2003">2003</option>
-                    <option value="2004">2004</option>
-                    <option value="2005">2005</option>
-                    <option value="2006">2006</option>
-                    <option value="2007">2007</option>
-                    <option value="2008">2008</option>
-                    <option value="2009">2009</option>
-                    <option value="2010">2010</option>
-                    <option value="2011">2011</option>
-                    <option value="2012">2012</option>
-                    <option value="2013">2013</option>
-                    <option value="2014">2014</option>
-                    <option value="2015">2015</option>
-                    <option value="2016">2016</option>
-                    <option value="2017">2017</option>
-                    <option value="2018">2018</option>
-                    <option value="2019">2019</option>
-                    <option value="2020">2020</option>
-                    <option value="2021">2021</option>
-                </select>
+                <select name="slctAno" id="slctAno"></select>
               </div>
               
               <form>
@@ -89,19 +66,17 @@
                 </div> 
               </form>
               
-
               <!-- Botão de consulta -->
               <div class="btnConsultar">
                 <button id="btnConsultar">CONSULTAR</button>
               </div>
             </section>
           </div>
-
         
       </div>
       
       <div class="box-print">
-                    <!-- A div retorna as informações após btnConsutar ser clicado -->
+          <!-- A div retorna as informações após btnConsutar ser clicado -->
           <div id="resposta">
            
             <section class="grid_print">
@@ -116,34 +91,23 @@
               <div id="retMalhaC"></div>
 
               <div class="print_info">
-                <div class="retareaTC">
-                  <p class="textResp" id="retareaTC"></p>
-                </div>
-                
-                <div class="retDensidadeDmgC">
-                  <p class="textResp" id="retDensidadeDmgC"></p>
-                </div>
-            
-                <div class="retPopulacaoC">
-                  <p class="textResp" id="retPopulacaoC"></p>
-                </div>
+                <table>
+                  <tr class="textResp" id="retareaTC"></tr>
+                  <tr class="textResp" id="retDensidadeDmgC"></tr>
+                  <tr class="textResp" id="retPopulacaoC"></tr>
+                  <tr class="textResp" id="retPopulacaoCA2"></tr>
+                  <tr class="textResp" id="retEscolarizacaoCT"></tr>
+                  <tr class="textResp" id="retEscolarizacaoCH"></tr>
+                  <tr class="textResp" id="retEscolarizacaoCM"></tr>
+                  <tr class="textResp" id="retPibC"></tr>
+                </table>
 
-                <div class="retEscolarizacaoCT">
-                  <p class="textResp" id="retEscolarizacaoCT"></p>
-                </div>
+              </div>
 
-                <div class="retEscolarizacaoCH">
-                  <p class="textResp" id="retEscolarizacaoCH"></p>
-                </div>
-                
-                <div class="retEscolarizacaoCM">
-                  <p class="textResp" id="retEscolarizacaoCM"></p>
-                </div>
-
-                <div class="retPibC">
-                  <p class="textResp" id="retPibC"></p>
-                </div>
-              
+              <!-- Necessário apenas ser lida pelo jquery. Retorna informações das outras opções.-->
+              <div style="display: none">
+                <label id="retPopulacaoC2"></label>
+                <label id="retAreaC2"></label>
               </div>
 
               <div id="comparar">
@@ -160,7 +124,6 @@
                         <option value="pizza">Pizza</option>
                     </select>
                 </label>
-                <button id="btnOk">Ok</button>
 
                 <div class="textResp">
                   <p>Coloque um parâmetro de 0 ou 1. O 0 irar comparar com ele mesmo, mas em datas diferentes.</p>
@@ -171,30 +134,9 @@
                     <select name="slctCidades2" id="slctCidades2"></select>
 
                     <!-- Caixa de seleção na qual o usuário pode fazer uma comparação com outras cidades -->
-                    <select name="slctAno2" id="slctAno2">
-                        <option>SELECIONE UM ANO</option>
-                        <option value="2001">2001</option>
-                        <option value="2002">2002</option>
-                        <option value="2003">2003</option>
-                        <option value="2004">2004</option>
-                        <option value="2005">2005</option>
-                        <option value="2006">2006</option>
-                        <option value="2007">2007</option>
-                        <option value="2008">2008</option>
-                        <option value="2009">2009</option>
-                        <option value="2010">2010</option>
-                        <option value="2011">2011</option>
-                        <option value="2012">2012</option>
-                        <option value="2013">2013</option>
-                        <option value="2014">2014</option>
-                        <option value="2015">2015</option>
-                        <option value="2016">2016</option>
-                        <option value="2017">2017</option>
-                        <option value="2018">2018</option>
-                        <option value="2019">2019</option>
-                        <option value="2020">2020</option>
-                        <option value="2021">2021</option>
-                    </select>
+                    <select name="slctAno2" id="slctAno2"></select>
+
+                    <button id="btnCompara">Comparar</button>
                 </div>
 
                 <div id="graficos">
@@ -204,14 +146,7 @@
                 </div>
               </div>
               
-
-              
-                    
-              
-              
             </section> 
-            
-      
 
           </div>
 
@@ -227,8 +162,6 @@
       </div>
     </footer>
 
-    
-
       <!-- Tag style -->
       <link rel="stylesheet" type="text/css" href="style.css">
 
@@ -237,12 +170,15 @@
       
       <!-- Biblioteca chart.js do javascript para trabalhar com gráficos -->
       <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+      <script src="ano.js"></script>
       
       <!-- APIs DO PROJETO-->
       <script src="api.js"></script>
       <script src="infoEstado.js"></script>
       <script src="infoCidade.js"></script>
       <script src="malha.js"></script>
+      <script src="infoOutrasOpcoes.js"></script>
       <script src="funcaoCompara.js"></script>
       <script src="graficoPopulacaoAnoCidade.js"></script>
       <script src="graficoPopulacaoCidades.js"></script>

@@ -18,7 +18,7 @@ $(document).ready(function(){
         }
     })
 
-    // Caso o input do tipo checkbox relacionada a Área Territorial seja selecionado e for verdadeiro, retorna as informações da Área Territorial
+    // Caso o input do tipo checkbox relacionada a Área Territorial seja selecionado, retorna as informações da Área Territorial
     $("#slctAreaT").change(function(){
         if( $(this).prop("checked") == true ){
             $("#btnConsultar").click(function(){
@@ -27,18 +27,14 @@ $(document).ready(function(){
                 $.ajax({
                     url: "https://servicodados.ibge.gov.br/api/v3/agregados/1301/periodos/2010/variaveis/615?localidades=N6["+$("#slctCidades").val()+"]" ,
                     type: "GET" ,
-                    data: {
-
-                    } ,
+                    data: {} ,
                     success: function(areaT){
-                        var areaTC = "Área Territorial: "
-                        areaTC = areaTC + "<input class='restInp' type='text' readonly id='inpArea' value='"+areaT[0].resultados[0].series[0].serie['2010']+"'>km2";
+                        var areaTC = "<td>Área Territorial:</td>"
+                        areaTC = areaTC + "<td><input class='restInp' type='text' readonly id='inpArea' value='"+areaT[0].resultados[0].series[0].serie['2010']+"'>km2</td>";
                         $("#retareaTC").html(areaTC);
                     }
                 })
             })
-        } else {
-            return;
         }
     })
 
@@ -50,18 +46,14 @@ $(document).ready(function(){
                 $.ajax({
                     url: "https://servicodados.ibge.gov.br/api/v3/agregados/1301/periodos/2010/variaveis/616?localidades=N6[" + $("#slctCidades").val() + "]" ,
                     type: "GET" ,
-                    data: {
-
-                    } ,
+                    data: {} ,
                     success: function(densidadeDmg){
-                        var densidadeDmgC = "Densidade Demográfica[2010]: "
-                        densidadeDmgC = densidadeDmgC + "<input class='restInp' type='text' readonly value='"+densidadeDmg[0].resultados[0].series[0].serie['2010']+"'>hab/km2";
+                        var densidadeDmgC = "<td>Densidade Demográfica[2010]:</td>"
+                        densidadeDmgC = densidadeDmgC + "<td><input class='restInp' type='text' readonly value='"+densidadeDmg[0].resultados[0].series[0].serie['2010']+"'>hab/km2</td>";
                         $("#retDensidadeDmgC").html(densidadeDmgC);
                     }
                 })
             })
-        } else {
-            return;
         }
     })
 
@@ -75,12 +67,10 @@ $(document).ready(function(){
                         $.ajax({
                             url: "https://servicodados.ibge.gov.br/api/v3/agregados/793/periodos/2007/variaveis/93?localidades=N6["+$("#slctCidades").val()+"]",
                             type: "GET",
-                            data:{
-
-                            },
+                            data:{},
                             success: function(populacao){
-                                var populacaoC = "População em " + $("#slctAno").val() + ": ";
-                                populacaoC = populacaoC + "<input class='restInp' type='text' readonly id='inpPopC' value='"+populacao[0].resultados[0].series[0].serie['2007']+"'>";
+                                var populacaoC = "<td>População em " + $("#slctAno").val() + ":</td>";
+                                populacaoC = populacaoC + "<td><input class='restInp' type='text' readonly id='inpPopC' value='"+populacao[0].resultados[0].series[0].serie['2007']+"'></td>";
                                 $("#retPopulacaoC").html(populacaoC);
                             }
                         })
@@ -94,8 +84,8 @@ $(document).ready(function(){
 
                             },
                             success: function(populacao){
-                                var populacaoC = "População em " + $("#slctAno").val() + ": ";
-                                populacaoC = populacaoC + "<input class='restInp' type='text' readonly id='inpPopC' value='"+populacao[0].resultados[0].series[0].serie['2010']+"'>";
+                                var populacaoC = "<td>População em " + $("#slctAno").val() + ":</td>";
+                                populacaoC = populacaoC + "<td><input class='restInp' type='text' readonly id='inpPopC' value='"+populacao[0].resultados[0].series[0].serie['2010']+"'></td>";
                                 $("#retPopulacaoC").html(populacaoC);
                             }
                         })
@@ -109,16 +99,14 @@ $(document).ready(function(){
 
                             } ,
                             success: function(populacao){
-                                var populacaoC = "População em " + $("#slctAno").val() + ": ";
-                                populacaoC = populacaoC + "<input class='restInp' type='text' readonly id='inpPopC' value='"+populacao[0].resultados[0].series[0].serie[$("#slctAno").val()]+"'>";
+                                var populacaoC = "<td>População em " + $("#slctAno").val() + ":</>";
+                                populacaoC = populacaoC + "<td><input class='restInp' type='text' readonly id='inpPopC' value='"+populacao[0].resultados[0].series[0].serie[$("#slctAno").val()]+"'></td>";
                                 $("#retPopulacaoC").html(populacaoC);
                             }
                         })
                         break
                 }
             })
-        } else {
-            return;
         }
     })
 
@@ -135,8 +123,8 @@ $(document).ready(function(){
                         type: "GET",
                         data:{},
                         success: function(escolarTotal){
-                            var escolarTotalC = "Alfabetização total de pessoas com 10 anos: ";
-                            escolarTotalC = escolarTotalC+"<input class='restInp' type='text' readonly id='inpETC' value='"+escolarTotal[0].resultados[0].series[0].serie['2010']+"'>%";
+                            var escolarTotalC = "<td>Alfabetização total de pessoas com 10 anos:</td>";
+                            escolarTotalC = escolarTotalC+"<td><input class='restInp' type='text' readonly id='inpETC' value='"+escolarTotal[0].resultados[0].series[0].serie['2010']+"'>%</td>";
                             $("#retEscolarizacaoCT").html(escolarTotalC);
                         }
                     })
@@ -146,8 +134,8 @@ $(document).ready(function(){
                         type: "GET",
                         data:{},
                         success: function(escolarHomens){
-                            var escolarHomensC = "Alfabetização total de homens com 10 anos: ";
-                            escolarHomensC = escolarHomensC+"<input class='restInp' type='text' readonly id='inpEHC' value='"+escolarHomens[0].resultados[0].series[0].serie['2010']+"'>%";
+                            var escolarHomensC = "<td>Alfabetização total de homens com 10 anos:</td>";
+                            escolarHomensC = escolarHomensC+"<td><input class='restInp' type='text' readonly id='inpEHC' value='"+escolarHomens[0].resultados[0].series[0].serie['2010']+"'>%</td>";
                             $("#retEscolarizacaoCH").html(escolarHomensC);
                         }
                     })
@@ -157,8 +145,8 @@ $(document).ready(function(){
                         type: "GET",
                         data:{},
                         success: function(escolarMulheres){
-                            var escolarMulheresC = "Alfabetização total de mulheres com 10 anos: ";
-                            escolarMulheresC = escolarMulheresC+"<input class='restInp' type='text' readonly id='inpEMC' value='"+escolarMulheres[0].resultados[0].series[0].serie['2010']+"'>%";
+                            var escolarMulheresC = "<td>Alfabetização total de mulheres com 10 anos:</td>";
+                            escolarMulheresC = escolarMulheresC+"<td><input class='restInp' type='text' readonly id='inpEMC' value='"+escolarMulheres[0].resultados[0].series[0].serie['2010']+"'>%</td>";
                             $("#retEscolarizacaoCM").html(escolarMulheresC);
                         }
                     })
@@ -198,8 +186,8 @@ $(document).ready(function(){
                             type: "GET",
                             data:{},
                             success: function(pib){
-                                var pibC = "PIB em "+$("#slctAno").val()+": R$";
-                                pibC = pibC+"<input class='restInp' type='text' readonly id='inpPibC' value='"+pib[0].resultados[0].series[0].serie[$("#slctAno").val()]+"'>";
+                                var pibC = "<td>PIB em "+$("#slctAno").val()+":</td><td>R$";
+                                pibC = pibC+"<input class='restInp' type='text' readonly id='inpPibC' value='"+pib[0].resultados[0].series[0].serie[$("#slctAno").val()]+"'></td>";
                                 $("#retPibC").html(pibC);
                             }
                         })
@@ -210,8 +198,8 @@ $(document).ready(function(){
                             type: "GET",
                             data:{},
                             success: function(pib){
-                                var pibC = "PIB em 2019: R$";
-                                pibC = pibC+"<input type='text' readonly id='inpPibC' value='"+pib[0].resultados[0].series[0].serie['2019']+"'>";
+                                var pibC = "<td>PIB em 2019:</td><td>R$";
+                                pibC = pibC+"<input class='restInp' type='text' readonly id='inpPibC' value='"+pib[0].resultados[0].series[0].serie['2019']+"'></td>";
                                 $("#retPibC").html(pibC);
                             }
                         })

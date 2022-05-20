@@ -1,14 +1,13 @@
 $(document).ready(function(){
-    // Gráfico da área total entre os municípios
+    // Gráfico da área da cidade: Compração entre Cidades
     $("#slctAreaT").change(function(){
-        if($(this).prop("checked") == true){
-            $("#slctCidades2").change(function(){
-                document.getElementById("graficoAreaCidades").style.display = "flex";
-                $.ajax({
-                    url: "https://servicodados.ibge.gov.br/api/v3/agregados/1301/periodos/2010/variaveis/615?localidades=N6["+$("#slctCidades2").val()+"]" ,
-                    type: "GET" ,
-                    data: {} ,
-                    success: function(comapraArea){
+        if( $(this).prop("checked") == true ){
+            if( $("#slctCidades option:selected").text() == "Selecione uma cidade" ){
+                return
+            } else {
+                $("#slctCidades2").change(function(){
+                    $("#btnCompara").click(function(){
+                        document.getElementById("graficoAreaCidades").style.display = "flex";
                         switch($("#tipoGrafico").val()){
                             // Gráfico de barra
                             case "barra":
@@ -17,7 +16,7 @@ $(document).ready(function(){
                                     datasets: [{
                                         label: 'Área Total',
                                         data: [ {id: $("#slctCidades option:selected").text(), nested: {value: $("#inpArea").val()}},
-                                                {id: $("#slctCidades2 option:selected").text(), nested: {value: comapraArea[0].resultados[0].series[0].serie['2010']}}],
+                                                {id: $("#slctCidades2 option:selected").text(), nested: {value: $("#inpAreaC2").val()}} ],
                                         backgroundColor: `#f28705`,
                                         borderColor: `#04d9b2`
                                     }]
@@ -57,8 +56,7 @@ $(document).ready(function(){
                                         }
                                     }
                                 };
-                                var barGraph = document.getElementById("graficoAreaCidades");
-                                var ctx = new Chart(barGraph, config);
+                                var ctx = new Chart(document.getElementById("graficoAreaCidades"), config);
                                 $("#slctCidades2").change(function(){
                                     ctx.destroy();
                                 })
@@ -72,13 +70,13 @@ $(document).ready(function(){
                                     labels: [$("#slctCidades option:selected").text(), $("#slctCidades2 option:selected").text()],
                                     datasets: [{
                                         label: 'Área Total',
-                                        data:[$("#inpArea").val(), comapraArea[0].resultados[0].series[0].serie['2010']],
+                                        data: [ $("#inpArea").val(), $("#inpAreaC2").val() ],
                                         backgroundColor: `#f28705`,
                                         borderColor: `#04d9b2`,
                                         fill: false,
                                         tension: 0.4
                                     }]
-                                };     
+                                };  
                                 var config = {
                                     type: 'line',
                                     data: data,
@@ -110,8 +108,7 @@ $(document).ready(function(){
                                         }
                                     }
                                 };
-                                var lineGraph = document.getElementById("graficoAreaCidades");
-                                var ctx = new Chart(lineGraph, config);
+                                var ctx = new Chart(document.getElementById("graficoAreaCidades"), config);
                                 $("#slctCidades2").change(function(){
                                     ctx.destroy();
                                 })
@@ -125,7 +122,7 @@ $(document).ready(function(){
                                     labels: [$("#slctCidades option:selected").text(), $("#slctCidades2 option:selected").text()],
                                     datasets: [{
                                         label: 'Área Total',
-                                        data:[$("#inpArea").val(), comapraArea[0].resultados[0].series[0].serie['2010']],
+                                        data:[ $("#inpArea").val(), $("#inpAreaC2").val() ],
                                         backgroundColor: [`#f28705`, `#00a000`],
                                         borderColor: `#04d9b2`
                                     }]
@@ -148,8 +145,7 @@ $(document).ready(function(){
                                         }
                                     }
                                 };
-                                var pieGraph = document.getElementById("graficoAreaCidades");
-                                var ctx = new Chart(pieGraph, config);
+                                var ctx = new Chart(document.getElementById("graficoAreaCidades"), config);
                                 $("#slctCidades2").change(function(){
                                     ctx.destroy();
                                 })
@@ -163,7 +159,7 @@ $(document).ready(function(){
                                     labels: [$("#slctCidades option:selected").text(), $("#slctCidades2 option:selected").text()],
                                     datasets: [{
                                         label: 'Área Total',
-                                        data: [ $("#inpArea").val(), comapraArea[0].resultados[0].series[0].serie['2010'] ],
+                                        data: [ $("#inpArea").val(), $("#inpAreaC2").val() ],
                                         backgroundColor: [`#f28705`, `#00a000`],
                                         borderColor: `#04d9b2`
                                     }]
@@ -202,7 +198,7 @@ $(document).ready(function(){
                                     labels: [$("#slctCidades option:selected").text(), $("#slctCidades2 option:selected").text()],
                                     datasets: [{
                                         label: 'Área Total',
-                                        data:[$("#inpArea").val(), comapraArea[0].resultados[0].series[0].serie['2010']],
+                                        data:[$("#inpArea").val(), $("#inpAreaC2").val()    ],
                                         backgroundColor: [`#f28705`, `#00a000`],
                                         borderColor: `#04d9b2`
                                     }]
@@ -234,10 +230,13 @@ $(document).ready(function(){
                                     ctx.destroy();
                                 })
                                 break
+                            default:
+                                console.log("Opção inválida");
+                                break
                         }
-                    }
+                    })
                 })
-            })
+            }
         }
     })
 })
