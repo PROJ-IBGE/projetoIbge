@@ -45,8 +45,9 @@ function populacao(){
                         if (list[i] === 'grafico-polar') obj.grafico = 'polar'
                         if (list[i] === 'grafico-radar') obj.grafico = 'radar'
                         if (list[i] === 'grafico-desligado') obj.grafico = ''
-                        if (list[i] === 'tabela-ligado') obj.tabela = true
-                        if (list[i] === 'tabela-desligado') obj.tabela = false
+                        if (list[i] === 'tabela-matriz') obj.tabela = 'tabela matriz'
+                        if (list[i] === 'tabela-linha') obj.tabela = 'tabela linha'
+                        if (list[i] === 'tabela-desligado') obj.tabela = ''
                     }
                 }
                 delete list_sub
@@ -108,8 +109,9 @@ function populacao(){
                         if (list[i] === 'grafico-polar') obj.grafico = 'polar'
                         if (list[i] === 'grafico-radar') obj.grafico = 'radar'
                         if (list[i] === 'grafico-desligado') obj.grafico = ''
-                        if (list[i] === 'tabela-ligado') obj.tabela = true
-                        if (list[i] === 'tabela-desligado') obj.tabela = false
+                        if (list[i] === 'tabela-matriz') obj.tabela = 'tabela matriz'
+                        if (list[i] === 'tabela-linha') obj.tabela = 'tabela linha'
+                        if (list[i] === 'tabela-desligado') obj.tabela = ''
                     }
                 }
                 delete list_sub
@@ -171,8 +173,9 @@ function populacao(){
                         if (list[i] === 'grafico-polar') obj.grafico = 'polar'
                         if (list[i] === 'grafico-radar') obj.grafico = 'radar'
                         if (list[i] === 'grafico-desligado') obj.grafico = ''
-                        if (list[i] === 'tabela-ligado') obj.tabela = true
-                        if (list[i] === 'tabela-desligado') obj.tabela = false
+                        if (list[i] === 'tabela-matriz') obj.tabela = 'tabela matriz'
+                        if (list[i] === 'tabela-linha') obj.tabela = 'tabela linha'
+                        if (list[i] === 'tabela-desligado') obj.tabela = ''
                     }
                 }
                 delete list_sub
@@ -244,8 +247,9 @@ function populacao(){
                         if (list[i] === 'grafico-polar') obj.grafico = 'polar'
                         if (list[i] === 'grafico-radar') obj.grafico = 'radar'
                         if (list[i] === 'grafico-desligado') obj.grafico = ''
-                        if (list[i] === 'tabela-ligado') obj.tabela = true
-                        if (list[i] === 'tabela-desligado') obj.tabela = false
+                        if (list[i] === 'tabela-matriz') obj.tabela = 'tabela matriz'
+                        if (list[i] === 'tabela-linha') obj.tabela = 'tabela linha'
+                        if (list[i] === 'tabela-desligado') obj.tabela = ''
                     }
                 }
                 delete list_sub
@@ -298,8 +302,9 @@ function populacao(){
                         if (list[i] === 'grafico-polar') obj.grafico = 'polar'
                         if (list[i] === 'grafico-radar') obj.grafico = 'radar'
                         if (list[i] === 'grafico-desligado') obj.grafico = ''
-                        if (list[i] === 'tabela-ligado') obj.tabela = true
-                        if (list[i] === 'tabela-desligado') obj.tabela = false
+                        if (list[i] === 'tabela-matriz') obj.tabela = 'tabela matriz'
+                        if (list[i] === 'tabela-linha') obj.tabela = 'tabela linha'
+                        if (list[i] === 'tabela-desligado') obj.tabela = ''
                     }
                 }
                 delete list_sub
@@ -361,8 +366,9 @@ function populacao(){
                         if (list[i] === 'grafico-polar') obj.grafico = 'polar'
                         if (list[i] === 'grafico-radar') obj.grafico = 'radar'
                         if (list[i] === 'grafico-desligado') obj.grafico = ''
-                        if (list[i] === 'tabela-ligado') obj.tabela = true
-                        if (list[i] === 'tabela-desligado') obj.tabela = false
+                        if (list[i] === 'tabela-matriz') obj.tabela = 'tabela matriz'
+                        if (list[i] === 'tabela-linha') obj.tabela = 'tabela linha'
+                        if (list[i] === 'tabela-desligado') obj.tabela = ''
                     }
                 }
                 delete list_sub
@@ -424,8 +430,9 @@ function populacao(){
                         if (list[i] === 'grafico-polar') obj.grafico = 'polar'
                         if (list[i] === 'grafico-radar') obj.grafico = 'radar'
                         if (list[i] === 'grafico-desligado') obj.grafico = ''
-                        if (list[i] === 'tabela-ligado') obj.tabela = true
-                        if (list[i] === 'tabela-desligado') obj.tabela = false
+                        if (list[i] === 'tabela-matriz') obj.tabela = 'tabela matriz'
+                        if (list[i] === 'tabela-linha') obj.tabela = 'tabela linha'
+                        if (list[i] === 'tabela-desligado') obj.tabela = ''
                     }
                 }
                 delete list_sub
@@ -481,8 +488,9 @@ function populacao(){
                         if (list[i] === 'grafico-polar') obj.grafico = 'polar'
                         if (list[i] === 'grafico-radar') obj.grafico = 'radar'
                         if (list[i] === 'grafico-desligado') obj.grafico = ''
-                        if (list[i] === 'tabela-ligado') obj.tabela = true
-                        if (list[i] === 'tabela-desligado') obj.tabela = false
+                        if (list[i] === 'tabela-matriz') obj.tabela = 'tabela matriz'
+                        if (list[i] === 'tabela-linha') obj.tabela = 'tabela linha'
+                        if (list[i] === 'tabela-desligado') obj.tabela = ''
                     }
                 }
                 delete list_sub
@@ -544,8 +552,9 @@ function populacao(){
                         if (list[i] === 'grafico-polar') obj.grafico = 'polar'
                         if (list[i] === 'grafico-radar') obj.grafico = 'radar'
                         if (list[i] === 'grafico-desligado') obj.grafico = ''
-                        if (list[i] === 'tabela-ligado') obj.tabela = true
-                        if (list[i] === 'tabela-desligado') obj.tabela = false
+                        if (list[i] === 'tabela-matriz') obj.tabela = 'tabela matriz'
+                        if (list[i] === 'tabela-linha') obj.tabela = 'tabela linha'
+                        if (list[i] === 'tabela-desligado') obj.tabela = ''
                     }
                 }
                 delete list_sub
@@ -607,8 +616,9 @@ function populacao(){
                         if (list[i] === 'grafico-polar') obj.grafico = 'polar'
                         if (list[i] === 'grafico-radar') obj.grafico = 'radar'
                         if (list[i] === 'grafico-desligado') obj.grafico = ''
-                        if (list[i] === 'tabela-ligado') obj.tabela = true
-                        if (list[i] === 'tabela-desligado') obj.tabela = false
+                        if (list[i] === 'tabela-matriz') obj.tabela = 'tabela matriz'
+                        if (list[i] === 'tabela-linha') obj.tabela = 'tabela linha'
+                        if (list[i] === 'tabela-desligado') obj.tabela = ''
                     }
                 }
                 delete list_sub
@@ -661,8 +671,9 @@ function populacao(){
                         if (list[i] === 'grafico-polar') obj.grafico = 'polar'
                         if (list[i] === 'grafico-radar') obj.grafico = 'radar'
                         if (list[i] === 'grafico-desligado') obj.grafico = ''
-                        if (list[i] === 'tabela-ligado') obj.tabela = true
-                        if (list[i] === 'tabela-desligado') obj.tabela = false
+                        if (list[i] === 'tabela-matriz') obj.tabela = 'tabela matriz'
+                        if (list[i] === 'tabela-linha') obj.tabela = 'tabela linha'
+                        if (list[i] === 'tabela-desligado') obj.tabela = ''
                     }
                 }
                 delete list_sub
@@ -724,8 +735,9 @@ function populacao(){
                         if (list[i] === 'grafico-polar') obj.grafico = 'polar'
                         if (list[i] === 'grafico-radar') obj.grafico = 'radar'
                         if (list[i] === 'grafico-desligado') obj.grafico = ''
-                        if (list[i] === 'tabela-ligado') obj.tabela = true
-                        if (list[i] === 'tabela-desligado') obj.tabela = false
+                        if (list[i] === 'tabela-matriz') obj.tabela = 'tabela matriz'
+                        if (list[i] === 'tabela-linha') obj.tabela = 'tabela linha'
+                        if (list[i] === 'tabela-desligado') obj.tabela = ''
                     }
                 }
                 delete list_sub
@@ -787,8 +799,9 @@ function populacao(){
                         if (list[i] === 'grafico-polar') obj.grafico = 'polar'
                         if (list[i] === 'grafico-radar') obj.grafico = 'radar'
                         if (list[i] === 'grafico-desligado') obj.grafico = ''
-                        if (list[i] === 'tabela-ligado') obj.tabela = true
-                        if (list[i] === 'tabela-desligado') obj.tabela = false
+                        if (list[i] === 'tabela-matriz') obj.tabela = 'tabela matriz'
+                        if (list[i] === 'tabela-linha') obj.tabela = 'tabela linha'
+                        if (list[i] === 'tabela-desligado') obj.tabela = ''
                     }
                 }
                 delete list_sub
@@ -878,8 +891,9 @@ function populacao(){
                             if (list[i] === 'grafico-polar') obj.grafico = 'polar'
                             if (list[i] === 'grafico-radar') obj.grafico = 'radar'
                             if (list[i] === 'grafico-desligado') obj.grafico = ''
-                            if (list[i] === 'tabela-ligado') obj.tabela = true
-                            if (list[i] === 'tabela-desligado') obj.tabela = false
+                            if (list[i] === 'tabela-matriz') obj.tabela = 'tabela matriz'
+                            if (list[i] === 'tabela-linha') obj.tabela = 'tabela linha'
+                            if (list[i] === 'tabela-desligado') obj.tabela = ''
                         }
                     }
                     delete list_sub
@@ -923,8 +937,9 @@ function populacao(){
                             if (list[i] === 'grafico-polar') obj.grafico = 'polar'
                             if (list[i] === 'grafico-radar') obj.grafico = 'radar'
                             if (list[i] === 'grafico-desligado') obj.grafico = ''
-                            if (list[i] === 'tabela-ligado') obj.tabela = true
-                            if (list[i] === 'tabela-desligado') obj.tabela = false
+                            if (list[i] === 'tabela-matriz') obj.tabela = 'tabela matriz'
+                            if (list[i] === 'tabela-linha') obj.tabela = 'tabela linha'
+                            if (list[i] === 'tabela-desligado') obj.tabela = ''
                         }
                     }
                     delete list_sub
@@ -968,8 +983,9 @@ function populacao(){
                             if (list[i] === 'grafico-polar') obj.grafico = 'polar'
                             if (list[i] === 'grafico-radar') obj.grafico = 'radar'
                             if (list[i] === 'grafico-desligado') obj.grafico = ''
-                            if (list[i] === 'tabela-ligado') obj.tabela = true
-                            if (list[i] === 'tabela-desligado') obj.tabela = false
+                            if (list[i] === 'tabela-matriz') obj.tabela = 'tabela matriz'
+                            if (list[i] === 'tabela-linha') obj.tabela = 'tabela linha'
+                            if (list[i] === 'tabela-desligado') obj.tabela = ''
                         }
                     }
                     delete list_sub
@@ -1072,8 +1088,9 @@ function populacao(){
                             if (list[i] === 'grafico-polar') obj.grafico = 'polar'
                             if (list[i] === 'grafico-radar') obj.grafico = 'radar'
                             if (list[i] === 'grafico-desligado') obj.grafico = ''
-                            if (list[i] === 'tabela-ligado') obj.tabela = true
-                            if (list[i] === 'tabela-desligado') obj.tabela = false
+                            if (list[i] === 'tabela-matriz') obj.tabela = 'tabela matriz'
+                            if (list[i] === 'tabela-linha') obj.tabela = 'tabela linha'
+                            if (list[i] === 'tabela-desligado') obj.tabela = ''
                         }
                     }
                     delete list_sub
@@ -1119,8 +1136,9 @@ function populacao(){
                             if (list[i] === 'grafico-polar') obj.grafico = 'polar'
                             if (list[i] === 'grafico-radar') obj.grafico = 'radar'
                             if (list[i] === 'grafico-desligado') obj.grafico = ''
-                            if (list[i] === 'tabela-ligado') obj.tabela = true
-                            if (list[i] === 'tabela-desligado') obj.tabela = false
+                            if (list[i] === 'tabela-matriz') obj.tabela = 'tabela matriz'
+                            if (list[i] === 'tabela-linha') obj.tabela = 'tabela linha'
+                            if (list[i] === 'tabela-desligado') obj.tabela = ''
                         }
                     }
                     delete list_sub
@@ -1166,8 +1184,9 @@ function populacao(){
                             if (list[i] === 'grafico-polar') obj.grafico = 'polar'
                             if (list[i] === 'grafico-radar') obj.grafico = 'radar'
                             if (list[i] === 'grafico-desligado') obj.grafico = ''
-                            if (list[i] === 'tabela-ligado') obj.tabela = true
-                            if (list[i] === 'tabela-desligado') obj.tabela = false
+                            if (list[i] === 'tabela-matriz') obj.tabela = 'tabela matriz'
+                            if (list[i] === 'tabela-linha') obj.tabela = 'tabela linha'
+                            if (list[i] === 'tabela-desligado') obj.tabela = ''
                         }
                     }
                     delete list_sub
@@ -1270,8 +1289,9 @@ function populacao(){
                             if (list[i] === 'grafico-polar') obj.grafico = 'polar'
                             if (list[i] === 'grafico-radar') obj.grafico = 'radar'
                             if (list[i] === 'grafico-desligado') obj.grafico = ''
-                            if (list[i] === 'tabela-ligado') obj.tabela = true
-                            if (list[i] === 'tabela-desligado') obj.tabela = false
+                            if (list[i] === 'tabela-matriz') obj.tabela = 'tabela matriz'
+                            if (list[i] === 'tabela-linha') obj.tabela = 'tabela linha'
+                            if (list[i] === 'tabela-desligado') obj.tabela = ''
                         }
                     }
                     delete list_sub
@@ -1317,8 +1337,9 @@ function populacao(){
                             if (list[i] === 'grafico-polar') obj.grafico = 'polar'
                             if (list[i] === 'grafico-radar') obj.grafico = 'radar'
                             if (list[i] === 'grafico-desligado') obj.grafico = ''
-                            if (list[i] === 'tabela-ligado') obj.tabela = true
-                            if (list[i] === 'tabela-desligado') obj.tabela = false
+                            if (list[i] === 'tabela-matriz') obj.tabela = 'tabela matriz'
+                            if (list[i] === 'tabela-linha') obj.tabela = 'tabela linha'
+                            if (list[i] === 'tabela-desligado') obj.tabela = ''
                         }
                     }
                     delete list_sub
@@ -1364,8 +1385,9 @@ function populacao(){
                             if (list[i] === 'grafico-polar') obj.grafico = 'polar'
                             if (list[i] === 'grafico-radar') obj.grafico = 'radar'
                             if (list[i] === 'grafico-desligado') obj.grafico = ''
-                            if (list[i] === 'tabela-ligado') obj.tabela = true
-                            if (list[i] === 'tabela-desligado') obj.tabela = false
+                            if (list[i] === 'tabela-matriz') obj.tabela = 'tabela matriz'
+                            if (list[i] === 'tabela-linha') obj.tabela = 'tabela linha'
+                            if (list[i] === 'tabela-desligado') obj.tabela = ''
                         }
                     }
                     delete list_sub
