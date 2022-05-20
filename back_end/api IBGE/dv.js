@@ -1,6 +1,6 @@
 function visualizar(query, grafico, tabela, cor, res) {
     const div = document.querySelector(query)
-    if (tabela) {
+    if (tabela === 'tabela matriz') {
         if (query != '') {
             let ano
             for (let i in res) {
@@ -10,7 +10,7 @@ function visualizar(query, grafico, tabela, cor, res) {
                 }
             }
             let cont = 0
-            let html = '<table border="1" class="tabelaClass" id="tabelaId"><caption class="tituloClass" id="tituloId">'+res.variavel+' - '+res.unidade+'</caption><tr>'
+            let html = `<table border="1" class="tabelaClass" id="tabelaId"><tread><tr><td colspan="${ano.length+1}">`+res.variavel+' - '+res.unidade+'</td></tr></tread><tr>'
             for (let i in ano) {
                 if (cont === 0) {
                     cont++
@@ -29,6 +29,36 @@ function visualizar(query, grafico, tabela, cor, res) {
                     html += '</tr>'
                 }
             }
+            html += '</table>'
+            while (div.firstElementChild != null) div.removeChild(div.firstElementChild)
+            div.innerHTML = html
+        } else return "Erro: insira uma query!"
+    } else if (tabela === 'tabela linha') {
+        if (query != '') {
+            let local = [], ano = []
+            for (let i in res) {
+                if (i != 'unidade' && i != 'variavel') {
+                    local.push(i)
+                }
+            }
+            for (let i in res[local[0]]) {
+                ano.push(i)
+            }
+            let html = '<table border="1" class="tabelaClass" id="tabelaId"><tread><tr><td colspan="3">'+res.variavel+' - '+res.unidade+'</td></tr></tread>'
+            html += '<tbody>'
+            let cont2 = 0
+            for (let a in ano) {
+                html += `<tr><td rowspan="${local.length}">${ano[a]}</td>`
+                let cont = 0
+                for (let l in local) {
+                    if (cont === 0) html += `<td>${local[l]}</td><td>${res[local[l]][ano[a]]}</td></tr>`
+                    if (cont != 0) html += `<tr><td>${local[l]}</td><td>${res[local[l]][ano[a]]}</td></tr>`
+                    cont++
+                }
+                cont2++
+                if (cont2 != ano.length) html += '<tr><td colspan="3"></td><tr/>'
+            }
+            html += '</tbody>'
             html += '</table>'
             while (div.firstElementChild != null) div.removeChild(div.firstElementChild)
             div.innerHTML = html

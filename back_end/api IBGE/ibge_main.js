@@ -60,7 +60,7 @@ function IBGE(obj) {
             if (obj.variavel === undefined) obj.variavel = 'populacao'
             if (obj.query === undefined) obj.query = 'body'
             if (obj.tabela === undefined && obj.grafico === undefined) {
-                obj.tabela = false
+                obj.tabela = 'tabela matriz'
                 obj.grafico = 'linha'
             } else if (obj.tabela === true) obj.grafico = ''
             if (obj.gini === undefined) obj.gini = false
