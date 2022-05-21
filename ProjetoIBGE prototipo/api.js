@@ -1,8 +1,7 @@
 $(document).ready(function(){
-    // Cada vez que um estado for selecionado a select de município é atualizada
-    $("#slctEstados").change(function(){
-        // Método de conexão com a API de municípios
-        $.ajax({
+    // Retorna os municípios
+    $("#slctEstados").change(function(){  // Cada vez que um estado for selecionado a select de município é atualizada
+        $.ajax({  // Método de conexão com a API de municípios
             url: "https://servicodados.ibge.gov.br/api/v1/localidades/estados/"+$("#slctEstados").val()+"/municipios" ,
             type: "GET" ,
             data: {
@@ -18,8 +17,8 @@ $(document).ready(function(){
         })
     })
 
-    // Método de conexão com a API de estados
-    $.ajax({
+    // Retorna os estados
+    $.ajax({  // Método de conexão com a API de estados
         url: "https://servicodados.ibge.gov.br/api/v1/localidades/estados" ,
         type: "GET" ,
         data: {
@@ -36,9 +35,8 @@ $(document).ready(function(){
         }
     })
 
-    $("#btnConsultar").click(function(){
-        // Método de conexão com todos os municípios
-        $.ajax({
+    $("#btnConsultar").click(function(){  // Retorna todos os municípios. Para comparações
+        $.ajax({  // Método de conexão com todos os municípios
             url: "https://servicodados.ibge.gov.br/api/v1/localidades/municipios" ,
             type: "GET" ,
             data: {

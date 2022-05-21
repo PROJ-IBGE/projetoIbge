@@ -1,4 +1,4 @@
-$(document).ready(function(){
+$(document).ready(function(){ // Retorna os anos de 2001 a 2021
     var ano = "<option>ANO</option>";
     ano = ano + "<option value='2001'>2001</option>";
     ano = ano + "<option value='2002'>2002</option>";

@@ -93,27 +93,30 @@
                 <p  class="textResp" id="retNomeEstado"></p>
               </div>
 
-              <div id="retMalhaC"></div>
+              <div id="retMalha"></div>
 
               <div class="print_info">
                 <table>
-                  <tr class="textResp" id="retareaTC"></tr>
-                  <tr class="textResp" id="retDensidadeDmgC"></tr>
-                  <tr class="textResp" id="retPopulacaoC"></tr>
-                  <tr class="textResp" id="retPopulacaoCA2"></tr>
-                  <tr class="textResp" id="retEscolarizacaoCT"></tr>
-                  <tr class="textResp" id="retEscolarizacaoCH"></tr>
-                  <tr class="textResp" id="retEscolarizacaoCM"></tr>
-                  <tr class="textResp" id="retPibC"></tr>
-                  <tr class="textResp" id="retIdhC"></tr>
+                  <tr class="textResp" id="retAreaT"></tr>
+                  <tr class="textResp" id="retDensidadeDmg"></tr>
+                  <tr class="textResp" id="retPopulacao"></tr>
+                  <tr class="textResp" id="retPopulacaoAno2"></tr>
+                  <tr class="textResp" id="retEscolarizacaoTotal"></tr>
+                  <tr class="textResp" id="retEscolarizacaoHomens"></tr>
+                  <tr class="textResp" id="retEscolarizacaoMulheres"></tr>
+                  <tr class="textResp" id="retPib"></tr>
+                  <tr class="textResp" id="retIdh"></tr>
                 </table>
 
               </div>
 
               <!-- Necessário apenas ser lida pelo jquery. Retorna informações das outras opções.-->
               <div style="display: none">
-                <label id="retPopulacaoC2"></label>
-                <label id="retAreaC2"></label>
+                <label id="retPopulacaoCidade2"></label>
+                <label id="retAreaCidade2"></label>
+                <label id="retPibAno2"></label>
+                <label id="retPibCidade2"></label>
+                <label id="retDensidadeDmgCidade2"></label>
               </div>
 
               <div id="comparar">
@@ -149,6 +152,13 @@
                     <canvas id="garficoPopulacaoAno"></canvas>
                     <canvas id="garficoPopulacaoCidades"></canvas>
                     <canvas id="graficoAreaCidades"></canvas>
+                    <canvas id="graficoDensidadeCidades"></canvas>
+                    <canvas id="graficoPibAno"></canvas>
+                    <canvas id="graficoPibCidades"></canvas>
+                    <canvas id="graficoEscolarTotalCidades"></canvas>
+                    <canvas id="graficoEscolarHomemCidades"></canvas>
+                    <canvas id="graficoEscolarMulherCidades"></canvas>
+                    <canvas id="graficoIdhCidades"></canvas>
                 </div>
               </div>
               
@@ -178,6 +188,7 @@
       <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
       <script src="ano.js"></script>
+      <script src="funcaoCompara.js"></script>
       
       <!-- APIs DO PROJETO-->
       <script src="api.js"></script>
@@ -185,10 +196,18 @@
       <script src="infoCidade.js"></script>
       <script src="malha.js"></script>
       <script src="infoOutrasOpcoes.js"></script>
-      <script src="funcaoCompara.js"></script>
-      <script src="graficoPopulacaoAnoCidade.js"></script>
+
+      <!-- GRÁFICOS -->
+      <script src="graficoPopulacaoAno.js"></script>
       <script src="graficoPopulacaoCidades.js"></script>
-      <script src="graficosCidade.js"></script>
+      <script src="graficoAreaCidades.js"></script>
+      <script src="graficoDensidadeCidades.js"></script>
+      <script src="graficoIdhCidades.js"></script>
+      <script src="graficoPibAno.js"></script>
+      <script src="graficoPibCidades.js"></script>
+      <script src="graficoEscolarTotalCidades.js"></script>
+      <script src="graficoEscolarHomemCidades.js"></script>
+      <script src="graficoEscolarMulherCidades.js"></script>
     
 </body>
 </html>

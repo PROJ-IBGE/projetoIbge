@@ -20,8 +20,8 @@ $(document).ready(function(){
             return;
         } else {
             $("#btnConsultar").click(function(){
-                var malhaC = "<img src='https://servicodados.ibge.gov.br/api/v3/malhas/municipios/"+$("#slctCidades").val()+"?formato=image/svg+xml&qualidade=maxima' title='Malha da cidade'>"
-                $("#retMalhaC").html(malhaC);
+                var malha = "<img src='https://servicodados.ibge.gov.br/api/v3/malhas/municipios/"+$("#slctCidades").val()+"?formato=image/svg+xml&qualidade=maxima' title='Malha da cidade'>"
+                $("#retMalha").html(malha);
             })
         }
     })

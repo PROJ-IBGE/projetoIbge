@@ -1,14 +1,9 @@
-$(document).ready(function(){
-    // TUDO RELACIONADO AOS ESTADOS
-    // Função que serve para capturar a informação "ESTADO" quando um estado é selecionado
-    // A captura é feita a cada vez que um estado diferente é selecionado
-    $("#slctEstados").change(function(){       
+$(document).ready(function(){  // TUDO RELACIONADO AOS ESTADOS
+    $("#slctEstados").change(function(){  // Função que serve para retornar o nome do estado selecionado 
         if($("#slctEstados option:selected").text() == "Selecione um estado"){
             return;
         } else {
             $("#btnConsultar").click(function(){
-                document.getElementById("resposta").style.display = 'flex';
-
                 var valueEstado = $("#slctEstados option:selected").text();
                 $("#retNomeEstado").html(valueEstado);
             })
