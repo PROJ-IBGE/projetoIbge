@@ -240,4 +240,45 @@ $(document).ready(function(){  // Informações de outras opções selecionadas.
             })
         }
     })
+
+    $("#slctEscolarizacao").change(function(){ //Escolaridade quando uma segunda cidade é selecionada
+        if( $(this).prop("checked") == true ){
+            $("#slctCidades2").click(function(){
+                if( $("#slctCidades2 option:selected").text() == "Selecione uma cidade" ){
+                    return
+                } else {
+                    $.ajax({  // Escolarização total %
+                        url: "https://servicodados.ibge.gov.br/api/v3/agregados/1383/periodos/2010/variaveis/1646?localidades=N6[" + $("#slctCidades2").val() + "]&classificacao=2[6794]",
+                        type: "GET",
+                        data:{},
+                        success: function(escolarTotal){
+                            var escolarizacaoTotal = "<td>Alfabetização total de pessoas com 10 anos:</td>";
+                            escolarizacaoTotal = escolarizacaoTotal + "<td><input class='restInp' type='text' readonly id='inpEscTotal2' value='" + escolarTotal[0].resultados[0].series[0].serie['2010'] + "'>%</td>";
+                            $("#retEscolarizacaoTotal2").html(escolarizacaoTotal);
+                        }
+                    })
+                    $.ajax({  // Escolarização de homens %
+                        url: "https://servicodados.ibge.gov.br/api/v3/agregados/1383/periodos/2010/variaveis/1646?localidades=N6[" + $("#slctCidades2").val() + "]&classificacao=2[4]",
+                        type: "GET",
+                        data:{},
+                        success: function(escolarHomens){
+                            var escolarizacaoHomens = "<td>Alfabetização total de homens com 10 anos:</td>";
+                            escolarizacaoHomens = escolarizacaoHomens + "<td><input class='restInp' type='text' readonly id='inpEscHomens2' value='" + escolarHomens[0].resultados[0].series[0].serie['2010'] + "'>%</td>";
+                            $("#retEscolarizacaoHomens2").html(escolarizacaoHomens);
+                        }
+                    })
+                    $.ajax({  // Escolarização de mulheres %
+                        url: "https://servicodados.ibge.gov.br/api/v3/agregados/1383/periodos/2010/variaveis/1646?localidades=N6[" + $("#slctCidades2").val() + "]&classificacao=2[5]",
+                        type: "GET",
+                        data:{},
+                        success: function(escolarMulheres){
+                            var escolarizacaoMulheres = "<td>Alfabetização total de mulheres com 10 anos:</td>";
+                            escolarizacaoMulheres = escolarizacaoMulheres + "<td><input class='restInp' type='text' readonly id='inpEscMulheres2' value='" + escolarMulheres[0].resultados[0].series[0].serie['2010'] + "'>%</td>";
+                            $("#retEscolarizacaoMulheres2").html(escolarizacaoMulheres);
+                        }
+                    })
+                }
+            })
+        }
+    })
 })

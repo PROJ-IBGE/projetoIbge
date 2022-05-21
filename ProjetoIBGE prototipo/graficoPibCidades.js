@@ -29,7 +29,7 @@ $(document).ready(function(){  //Gráfico do PIB: comparação entre cidades
                                         },
                                         title: {
                                             display: true,
-                                            text: 'Gráfico do PIB das cidades em ' + $("#slctAno").val(),
+                                            text: 'PIB das cidades em ' + $("#slctAno").val(),
                                             color: "#fff"
                                         }
                                     },
@@ -81,7 +81,7 @@ $(document).ready(function(){  //Gráfico do PIB: comparação entre cidades
                                     plugins: {
                                         title: {
                                             display: true,
-                                            text: 'Gráfico do PIB das cidades em ' + $("#slctAno").val(),
+                                            text: 'PIB das cidades em ' + $("#slctAno").val(),
                                             color: "#fff"
                                         },
                                         legend: {
@@ -136,7 +136,7 @@ $(document).ready(function(){  //Gráfico do PIB: comparação entre cidades
                                         },
                                         title: {
                                             display: true,
-                                            text: 'Gráfico do PIB das cidades em ' + $("#slctAno").val(),
+                                            text: 'PIB das cidades em ' + $("#slctAno").val(),
                                             color: "#fff"
                                         }
                                     }
@@ -175,7 +175,7 @@ $(document).ready(function(){  //Gráfico do PIB: comparação entre cidades
                                         },
                                         title: {
                                             display: true,
-                                            text: 'Gráfico do PIB das cidades em ' + $("#slctAno").val(),
+                                            text: 'PIB das cidades em ' + $("#slctAno").val(),
                                             color: "#fff"
                                         }
                                     }
@@ -214,7 +214,7 @@ $(document).ready(function(){  //Gráfico do PIB: comparação entre cidades
                                         },
                                         title: {
                                             display: true,
-                                            text: 'Gráfico do PIB das cidades em ' + $("#slctAno").val(),
+                                            text: 'PIB das cidades em ' + $("#slctAno").val(),
                                             color: "#fff"
                                         }
                                     }

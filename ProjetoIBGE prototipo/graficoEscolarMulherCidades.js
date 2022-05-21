@@ -1,17 +1,17 @@
-$(document).ready(function(){  //Gráfico do PIB da cidade: Comparação entre anos
-    $("#slctPib").change(function(){
+$(document).ready(function(){  // Gráfico de escolarização de mulheres: comparação entre cidades
+    $("#slctEscolarizacao").change(function(){
         if( $(this).prop("checked") == true ){
-            $("#slctAno2").change(function(){
+            $("#slctCidades2").change(function(){
                 $("#btnCompara").click(function(){
-                    document.getElementById("graficoPibAno").style.display = "flex";
-                    switch($("#tipoGrafico").val()){
-                        case "barra":  //Gráfico de Barra
+                    document.getElementById("graficoEscolarMulherCidades").style.display = "flex";
+                    switch($("tipoGrafico").val()){
+                        case "barra":  // Gráfico de barra
                             var data = {
-                                labels: [$("#slctAno").val(), $("#slctAno2").val()],
+                                labels: [$("#slctCidades option:selected").text(), $("#slctCidades2 option:selected").text()],
                                 datasets: [{
-                                    label: 'PIB',
-                                    data: [ {id: $("#slctAno").val(), nested: {value: $("#inpPib").val()}},
-                                            {id: $("#slctAno2").val(), nested: {value: $("#inpPibAno2").val()}} ],
+                                    label: 'Escolaridade de mulheres',
+                                    data: [ {id: $("#slctCidades option:selected").text(), nested: {value: $("#inpEscMulheres").val()}},
+                                            {id: $("#slctCidades2 option:selected").text(), nested: {value: $("#inpEscMulheres2").val()}} ],
                                     backgroundColor: [`#f28705`, `#00a000`],
                                     borderColor: `#04d9b2`
                                 }]
@@ -29,7 +29,7 @@ $(document).ready(function(){  //Gráfico do PIB da cidade: Comparação entre a
                                         },
                                         title: {
                                             display: true,
-                                            text: 'PIB',
+                                            text: 'Gráfico de escolaridade de mulheres das cidades',
                                             color: "#fff"
                                         }
                                     },
@@ -51,8 +51,8 @@ $(document).ready(function(){  //Gráfico do PIB da cidade: Comparação entre a
                                     }
                                 }
                             };
-                            var ctx = new Chart(document.getElementById("graficoPibAno"), config);
-                            $("#slctAno2").change(function(){
+                            var ctx = new Chart(document.getElementById("graficoEscolarMulherCidades"), config);
+                            $("#slctCidades2").change(function(){
                                 ctx.destroy();
                             })
                             $("#slctCidades").change(function(){
@@ -61,12 +61,12 @@ $(document).ready(function(){  //Gráfico do PIB da cidade: Comparação entre a
                                 })
                             })
                             break
-                        case "linha":  //Gráfico de Linha
+                        case "linha":  // Gráfico de linha
                             var data = {
-                                labels: [$("#slctAno").val(), $("#slctAno2").val()],
+                                labels: [$("#slctCidades option:selected").text(), $("#slctCidades2 option:selected").text()],
                                 datasets: [{
-                                    label: 'PIB',
-                                    data: [ $("#inpPib").val(), $("#inpPibAno2").val() ],
+                                    label: 'Escolaridade de mulheres',
+                                    data: [ $("#inpEscMulheres").val(), $("#inpEscMulheres2").val() ],
                                     backgroundColor: `#f28705`,
                                     borderColor: `#04d9b2`,
                                     fill: false,
@@ -81,7 +81,7 @@ $(document).ready(function(){  //Gráfico do PIB da cidade: Comparação entre a
                                     plugins: {
                                         title: {
                                             display: true,
-                                            text: 'PIB',
+                                            text: 'Gráfico de escolaridade de mulheres das cidades',
                                             color: "#fff"
                                         },
                                         legend: {
@@ -104,8 +104,8 @@ $(document).ready(function(){  //Gráfico do PIB da cidade: Comparação entre a
                                     }
                                 }
                             };
-                            var ctx = new Chart(document.getElementById("graficoPibAno"), config);
-                            $("#slctAno2").change(function(){
+                            var ctx = new Chart(document.getElementById("graficoEscolarMulherCidades"), config);
+                            $("#slctCidades2").change(function(){
                                 ctx.destroy();
                             })
                             $("#slctCidades").change(function(){
@@ -114,12 +114,12 @@ $(document).ready(function(){  //Gráfico do PIB da cidade: Comparação entre a
                                 })
                             })
                             break
-                        case "pizza":  //Gráfico de Pizza
+                        case "pizza": // Gráfico de pizza
                             var data = {
-                                labels: [$("#slctAno").val(), $("#slctAno2").val()],
+                                labels: [$("#slctCidades option:selected").text(), $("#slctCidades2 option:selected").text()],
                                 datasets: [{
-                                    label: 'PIB',
-                                    data:[ $("#inpPib").val(), $("#inpPibAno2").val() ],
+                                    label: 'Escolaridade de mulheres',
+                                    data:[ $("#inpEscMulheres").val(), $("#inpEscMulheres2").val() ],
                                     backgroundColor: [`#f28705`, `#00a000`],
                                     borderColor: `#04d9b2`
                                 }]
@@ -136,14 +136,14 @@ $(document).ready(function(){  //Gráfico do PIB da cidade: Comparação entre a
                                         },
                                         title: {
                                             display: true,
-                                            text: 'PIB',
+                                            text: 'Gráfico de escolaridade de mulheres das cidades',
                                             color: "#fff"
                                         }
                                     }
                                 }
                             };
-                            var ctx = new Chart(document.getElementById("graficoPibAno"), config);
-                            $("#slctAno2").change(function(){
+                            var ctx = new Chart(document.getElementById("graficoEscolarMulherCidades"), config);
+                            $("#slctCidades2").change(function(){
                                 ctx.destroy();
                             })
                             $("#slctCidades").change(function(){
@@ -152,12 +152,12 @@ $(document).ready(function(){  //Gráfico do PIB da cidade: Comparação entre a
                                 })
                             })
                             break
-                        case "polar":  //Gráfico Polar
+                        case "polar":  // Gráfico polar
                             var data = {
-                                labels: [$("#slctAno").val(), $("#slctAno2").val()],
+                                labels: [$("#slctCidades option:selected").text(), $("#slctCidades2 option:selected").text()],
                                 datasets: [{
-                                    label: 'População',
-                                    data: [ $("#inpPib").val(), $("#inpPibAno2").val() ],
+                                    label: 'Escolaridade de mulheres',
+                                    data: [ $("#inpEscMulheres").val(), $("#inpEscMulheres2").val() ],
                                     backgroundColor: [`#f28705`, `#00a000`],
                                     borderColor: `#04d9b2`
                                 }]
@@ -175,15 +175,15 @@ $(document).ready(function(){  //Gráfico do PIB da cidade: Comparação entre a
                                         },
                                         title: {
                                             display: true,
-                                            text: 'PIB',
+                                            text: 'Gráfico de escolaridade de mulheres das cidades',
                                             color: "#fff"
                                         }
                                     }
                                 }
                             };
-                            var polarGraph = document.getElementById("graficoPibAno");
+                            var polarGraph = document.getElementById("graficoEscolarMulherCidades");
                             var ctx = new Chart(polarGraph, config);
-                            $("#slctAno2").change(function(){
+                            $("#slctCidades2").change(function(){
                                 ctx.destroy();
                             })
                             $("#slctCidades").change(function(){
@@ -192,12 +192,12 @@ $(document).ready(function(){  //Gráfico do PIB da cidade: Comparação entre a
                                 })
                             })
                             break
-                        case "anel":  //Gráfico de Anel
+                         case "anel":  // Gráfico de anel
                             var data = {
-                                labels: [$("#slctAno").val(), $("#slctAno2").val()],
+                                labels: [$("#slctCidades option:selected").text(), $("#slctCidades2 option:selected").text()],
                                 datasets: [{
-                                    label: 'PIB',
-                                    data:[$("#inpPib").val(), $("#inpPibAno2").val()],
+                                    label: 'Escolaridade de mulheres',
+                                    data:[$("#inpEscMulheres").val(), $("#inpEscMulheres2").val()],
                                     backgroundColor: [`#f28705`, `#00a000`],
                                     borderColor: `#04d9b2`
                                 }]
@@ -214,15 +214,15 @@ $(document).ready(function(){  //Gráfico do PIB da cidade: Comparação entre a
                                         },
                                         title: {
                                             display: true,
-                                            text: 'PIB',
+                                            text: 'Gráfico de escolaridade de mulheres das cidades',
                                             color: "#fff"
                                         }
                                     }
                                 }
                             };
-                            var doughnutGraph = document.getElementById("graficoPibAno");
+                            var doughnutGraph = document.getElementById("graficoEscolarMulherCidades");
                             var ctx = new Chart(doughnutGraph, config);
-                            $("#slctAno2").change(function(){
+                            $("#slctCidades2").change(function(){
                                 ctx.destroy();
                             })
                             $("#slctCidades").change(function(){

@@ -96,7 +96,7 @@ $(document).ready(function(){  // TUDO RELACIONADO AOS MUNICÍPIOS
         }
     })
    
-    $("#slctEscolarizacao").change(function(){ // // Retorna a escolarização total das pessoas, de homens e de mulheres da cidade com mais de 10 anos
+    $("#slctEscolarizacao").change(function(){ // Retorna a escolarização total das pessoas, de homens e de mulheres da cidade com mais de 10 anos
         if( $(this).prop("checked") == true ){
             $("#btnConsultar").click(function(){
                 if( $("#slctCidades option:selected").text() == "Selecione uma cidade" ){
@@ -178,7 +178,7 @@ $(document).ready(function(){  // TUDO RELACIONADO AOS MUNICÍPIOS
                             data:{},
                             success: function(pibCidade){
                                 var pib = "<td>PIB em 2019:</td><td>R$";
-                                pib = pib + "<input class='restInp' type='text' readonly id='inpPibC' value='" + pibCidade[0].resultados[0].series[0].serie['2019'] + "'></td>";
+                                pib = pib + "<input class='restInp' type='text' readonly id='inpPib' value='" + pibCidade[0].resultados[0].series[0].serie['2019'] + "'></td>";
                                 $("#retPib").html(pib);
                             }
                         })
