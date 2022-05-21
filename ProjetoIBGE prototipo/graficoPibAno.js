@@ -1,17 +1,17 @@
-$(document).ready(function(){  // Gráfico da população da cidade: Compração entre cidades
-    $("#slctPopulacao").change(function(){
+$(document).ready(function(){  //Gráfico do PIB da cidade: Comparação entre anos
+    $("#slctPib").change(function(){
         if( $(this).prop("checked") == true ){
-            $("#slctCidades2").change(function(){
+            $("#slctAno2").change(function(){
                 $("#btnCompara").click(function(){
-                    document.getElementById("garficoPopulacaoCidades").style.display = "flex";
+                    document.getElementById("graficoPibAno").style.display = "flex";
                     switch($("#tipoGrafico").val()){
-                        case "barra":  // Gráfico de barra
+                        case "barra":  //Gráfico de Barra
                             var data = {
-                                labels: [$("#slctCidades option:selected").text(), $("#slctCidades2 option:selected").text()],
+                                labels: [$("#slctAno").val(), $("#slctAno2").val()],
                                 datasets: [{
-                                    label: 'População',
-                                    data: [ {id: $("#slctCidades option:selected").text(), nested: {value: $("#inpPopulacao").val()}},
-                                            {id: $("#slctCidades2 option:selected").text(), nested: {value: $("#inpPopulacaoCidade2").val()}} ],
+                                    label: 'PIB',
+                                    data: [ {id: $("#slctAno").val(), nested: {value: $("#inpPib").val()}},
+                                            {id: $("#slctAno2").val(), nested: {value: $("#inpPibAno2").val()}} ],
                                     backgroundColor: [`#f28705`, `#00a000`],
                                     borderColor: `#04d9b2`
                                 }]
@@ -29,7 +29,7 @@ $(document).ready(function(){  // Gráfico da população da cidade: Compração
                                         },
                                         title: {
                                             display: true,
-                                            text: 'Gráfico das Populações das cidades em ' + $("#slctAno").val(),
+                                            text: 'Gráfico do PIB',
                                             color: "#fff"
                                         }
                                     },
@@ -51,8 +51,8 @@ $(document).ready(function(){  // Gráfico da população da cidade: Compração
                                     }
                                 }
                             };
-                            var ctx = new Chart(document.getElementById("garficoPopulacaoCidades"), config);
-                            $("#slctCidades2").change(function(){
+                            var ctx = new Chart(document.getElementById("graficoPibAno"), config);
+                            $("#slctAno2").change(function(){
                                 ctx.destroy();
                             })
                             $("#slctCidades").change(function(){
@@ -61,12 +61,12 @@ $(document).ready(function(){  // Gráfico da população da cidade: Compração
                                 })
                             })
                             break
-                        case "linha":  // Gráfico de linha
+                        case "linha":  //Gráfico de Linha
                             var data = {
-                                labels: [$("#slctCidades option:selected").text(), $("#slctCidades2 option:selected").text()],
+                                labels: [$("#slctAno").val(), $("#slctAno2").val()],
                                 datasets: [{
-                                    label: 'População',
-                                    data: [ $("#inpPopulacao").val(), $("#inpPopulacaoCidade2").val() ],
+                                    label: 'PIB',
+                                    data: [ $("#inpPib").val(), $("#inpPibAno2").val() ],
                                     backgroundColor: `#f28705`,
                                     borderColor: `#04d9b2`,
                                     fill: false,
@@ -81,7 +81,7 @@ $(document).ready(function(){  // Gráfico da população da cidade: Compração
                                     plugins: {
                                         title: {
                                             display: true,
-                                            text: 'Gráfico das Populações das cidades em ' + $("#slctAno").val(),
+                                            text: 'Gráfico do PIB',
                                             color: "#fff"
                                         },
                                         legend: {
@@ -104,8 +104,8 @@ $(document).ready(function(){  // Gráfico da população da cidade: Compração
                                     }
                                 }
                             };
-                            var ctx = new Chart(document.getElementById("garficoPopulacaoCidades"), config);
-                            $("#slctCidades2").change(function(){
+                            var ctx = new Chart(document.getElementById("graficoPibAno"), config);
+                            $("#slctAno2").change(function(){
                                 ctx.destroy();
                             })
                             $("#slctCidades").change(function(){
@@ -114,12 +114,12 @@ $(document).ready(function(){  // Gráfico da população da cidade: Compração
                                 })
                             })
                             break
-                        case "pizza":  // Gráfico de pizza
+                        case "pizza":  //Gráfico de Pizza
                             var data = {
-                                labels: [$("#slctCidades option:selected").text(), $("#slctCidades2 option:selected").text()],
+                                labels: [$("#slctAno").val(), $("#slctAno2").val()],
                                 datasets: [{
-                                    label: 'População',
-                                    data:[ $("#inpPopulacao").val(), $("#inpPopulacaoCidade2").val() ],
+                                    label: 'PIB',
+                                    data:[ $("#inpPib").val(), $("#inpPibAno2").val() ],
                                     backgroundColor: [`#f28705`, `#00a000`],
                                     borderColor: `#04d9b2`
                                 }]
@@ -136,14 +136,14 @@ $(document).ready(function(){  // Gráfico da população da cidade: Compração
                                         },
                                         title: {
                                             display: true,
-                                            text: 'Gráfico das Populações das cidades em ' + $("#slctAno").val(),
+                                            text: 'Gráfico do PIB',
                                             color: "#fff"
                                         }
                                     }
                                 }
                             };
-                            var ctx = new Chart(document.getElementById("garficoPopulacaoCidades"), config);
-                            $("#slctCidades2").change(function(){
+                            var ctx = new Chart(document.getElementById("graficoPibAno"), config);
+                            $("#slctAno2").change(function(){
                                 ctx.destroy();
                             })
                             $("#slctCidades").change(function(){
@@ -152,12 +152,12 @@ $(document).ready(function(){  // Gráfico da população da cidade: Compração
                                 })
                             })
                             break
-                        case "polar":  // Gráfico polar
+                        case "polar":  //Gráfico Polar
                             var data = {
-                                labels: [$("#slctCidades option:selected").text(), $("#slctCidades2 option:selected").text()],
+                                labels: [$("#slctAno").val(), $("#slctAno2").val()],
                                 datasets: [{
                                     label: 'População',
-                                    data: [ $("#inpPopulacao").val(), $("#inpPopulacaoCidade2").val() ],
+                                    data: [ $("#inpPib").val(), $("#inpPibAno2").val() ],
                                     backgroundColor: [`#f28705`, `#00a000`],
                                     borderColor: `#04d9b2`
                                 }]
@@ -175,15 +175,15 @@ $(document).ready(function(){  // Gráfico da população da cidade: Compração
                                         },
                                         title: {
                                             display: true,
-                                            text: 'Gráfico das Populações das cidades em ' + $("#slctAno").val(),
+                                            text: 'Gráfico do PIB',
                                             color: "#fff"
                                         }
                                     }
                                 }
                             };
-                            var polarGraph = document.getElementById("garficoPopulacaoCidades");
+                            var polarGraph = document.getElementById("graficoPibAno");
                             var ctx = new Chart(polarGraph, config);
-                            $("#slctCidades2").change(function(){
+                            $("#slctAno2").change(function(){
                                 ctx.destroy();
                             })
                             $("#slctCidades").change(function(){
@@ -192,12 +192,12 @@ $(document).ready(function(){  // Gráfico da população da cidade: Compração
                                 })
                             })
                             break
-                         case "anel":  // Gráfico de anel
+                        case "anel":  //Gráfico de Anel
                             var data = {
-                                labels: [$("#slctCidades option:selected").text(), $("#slctCidades2 option:selected").text()],
+                                labels: [$("#slctAno").val(), $("#slctAno2").val()],
                                 datasets: [{
-                                    label: 'População',
-                                    data:[$("#inpPopulacao").val(), $("#inpPopulacaoCidade2").val()],
+                                    label: 'PIB',
+                                    data:[$("#inpPib").val(), $("#inpPibAno2").val()],
                                     backgroundColor: [`#f28705`, `#00a000`],
                                     borderColor: `#04d9b2`
                                 }]
@@ -214,15 +214,15 @@ $(document).ready(function(){  // Gráfico da população da cidade: Compração
                                         },
                                         title: {
                                             display: true,
-                                            text: 'Gráfico das Populações das cidades em ' + $("#slctAno").val(),
+                                            text: 'Gráfico do PIB',
                                             color: "#fff"
                                         }
                                     }
                                 }
                             };
-                            var doughnutGraph = document.getElementById("garficoPopulacaoCidades");
+                            var doughnutGraph = document.getElementById("graficoPibAno");
                             var ctx = new Chart(doughnutGraph, config);
-                            $("#slctCidades2").change(function(){
+                            $("#slctAno2").change(function(){
                                 ctx.destroy();
                             })
                             $("#slctCidades").change(function(){

@@ -1,17 +1,17 @@
-$(document).ready(function(){  // Gráfico da população da cidade: Compração entre cidades
-    $("#slctPopulacao").change(function(){
+$(document).ready(function(){  //Gráfico de Densidade Demográfica: comparação entre cidades
+    $("#slctDensidadeDmg").change(function(){
         if( $(this).prop("checked") == true ){
             $("#slctCidades2").change(function(){
                 $("#btnCompara").click(function(){
-                    document.getElementById("garficoPopulacaoCidades").style.display = "flex";
-                    switch($("#tipoGrafico").val()){
+                    document.getElementById("graficoDensidadeCidades").style.display = "flex";
+                    switch($("tipoGrafico").val()){
                         case "barra":  // Gráfico de barra
                             var data = {
                                 labels: [$("#slctCidades option:selected").text(), $("#slctCidades2 option:selected").text()],
                                 datasets: [{
-                                    label: 'População',
-                                    data: [ {id: $("#slctCidades option:selected").text(), nested: {value: $("#inpPopulacao").val()}},
-                                            {id: $("#slctCidades2 option:selected").text(), nested: {value: $("#inpPopulacaoCidade2").val()}} ],
+                                    label: 'Densidade Demográfica',
+                                    data: [ {id: $("#slctCidades option:selected").text(), nested: {value: $("#inpDensidade").val()}},
+                                            {id: $("#slctCidades2 option:selected").text(), nested: {value: $("#inpDensidadeCidade2").val()}} ],
                                     backgroundColor: [`#f28705`, `#00a000`],
                                     borderColor: `#04d9b2`
                                 }]
@@ -29,7 +29,7 @@ $(document).ready(function(){  // Gráfico da população da cidade: Compração
                                         },
                                         title: {
                                             display: true,
-                                            text: 'Gráfico das Populações das cidades em ' + $("#slctAno").val(),
+                                            text: 'Gráfico de densidade demográfica das cidades',
                                             color: "#fff"
                                         }
                                     },
@@ -51,7 +51,7 @@ $(document).ready(function(){  // Gráfico da população da cidade: Compração
                                     }
                                 }
                             };
-                            var ctx = new Chart(document.getElementById("garficoPopulacaoCidades"), config);
+                            var ctx = new Chart(document.getElementById("graficoDensidadeCidades"), config);
                             $("#slctCidades2").change(function(){
                                 ctx.destroy();
                             })
@@ -65,8 +65,8 @@ $(document).ready(function(){  // Gráfico da população da cidade: Compração
                             var data = {
                                 labels: [$("#slctCidades option:selected").text(), $("#slctCidades2 option:selected").text()],
                                 datasets: [{
-                                    label: 'População',
-                                    data: [ $("#inpPopulacao").val(), $("#inpPopulacaoCidade2").val() ],
+                                    label: 'Densidade Demográfica',
+                                    data: [ $("#inpDensidade").val(), $("#inpDensidadeCidade2").val() ],
                                     backgroundColor: `#f28705`,
                                     borderColor: `#04d9b2`,
                                     fill: false,
@@ -81,7 +81,7 @@ $(document).ready(function(){  // Gráfico da população da cidade: Compração
                                     plugins: {
                                         title: {
                                             display: true,
-                                            text: 'Gráfico das Populações das cidades em ' + $("#slctAno").val(),
+                                            text: 'Gráfico de densidade demográfica das cidades',
                                             color: "#fff"
                                         },
                                         legend: {
@@ -104,7 +104,7 @@ $(document).ready(function(){  // Gráfico da população da cidade: Compração
                                     }
                                 }
                             };
-                            var ctx = new Chart(document.getElementById("garficoPopulacaoCidades"), config);
+                            var ctx = new Chart(document.getElementById("graficoDensidadeCidades"), config);
                             $("#slctCidades2").change(function(){
                                 ctx.destroy();
                             })
@@ -118,8 +118,8 @@ $(document).ready(function(){  // Gráfico da população da cidade: Compração
                             var data = {
                                 labels: [$("#slctCidades option:selected").text(), $("#slctCidades2 option:selected").text()],
                                 datasets: [{
-                                    label: 'População',
-                                    data:[ $("#inpPopulacao").val(), $("#inpPopulacaoCidade2").val() ],
+                                    label: 'Densidade Demográfica',
+                                    data:[ $("#inpDensidade").val(), $("#inpDensidadeCidade2").val() ],
                                     backgroundColor: [`#f28705`, `#00a000`],
                                     borderColor: `#04d9b2`
                                 }]
@@ -136,13 +136,13 @@ $(document).ready(function(){  // Gráfico da população da cidade: Compração
                                         },
                                         title: {
                                             display: true,
-                                            text: 'Gráfico das Populações das cidades em ' + $("#slctAno").val(),
+                                            text: 'Gráfico de densidade demográfica das cidades',
                                             color: "#fff"
                                         }
                                     }
                                 }
                             };
-                            var ctx = new Chart(document.getElementById("garficoPopulacaoCidades"), config);
+                            var ctx = new Chart(document.getElementById("graficoDensidadeCidades"), config);
                             $("#slctCidades2").change(function(){
                                 ctx.destroy();
                             })
@@ -156,8 +156,8 @@ $(document).ready(function(){  // Gráfico da população da cidade: Compração
                             var data = {
                                 labels: [$("#slctCidades option:selected").text(), $("#slctCidades2 option:selected").text()],
                                 datasets: [{
-                                    label: 'População',
-                                    data: [ $("#inpPopulacao").val(), $("#inpPopulacaoCidade2").val() ],
+                                    label: 'Densidade Demográfica',
+                                    data: [ $("#inpDensidade").val(), $("#inpDensidadeCidade2").val() ],
                                     backgroundColor: [`#f28705`, `#00a000`],
                                     borderColor: `#04d9b2`
                                 }]
@@ -175,13 +175,13 @@ $(document).ready(function(){  // Gráfico da população da cidade: Compração
                                         },
                                         title: {
                                             display: true,
-                                            text: 'Gráfico das Populações das cidades em ' + $("#slctAno").val(),
+                                            text: 'Gráfico de densidade demográfica das cidades',
                                             color: "#fff"
                                         }
                                     }
                                 }
                             };
-                            var polarGraph = document.getElementById("garficoPopulacaoCidades");
+                            var polarGraph = document.getElementById("graficoDensidadeCidades");
                             var ctx = new Chart(polarGraph, config);
                             $("#slctCidades2").change(function(){
                                 ctx.destroy();
@@ -196,8 +196,8 @@ $(document).ready(function(){  // Gráfico da população da cidade: Compração
                             var data = {
                                 labels: [$("#slctCidades option:selected").text(), $("#slctCidades2 option:selected").text()],
                                 datasets: [{
-                                    label: 'População',
-                                    data:[$("#inpPopulacao").val(), $("#inpPopulacaoCidade2").val()],
+                                    label: 'Densidade Demográfica',
+                                    data:[$("#inpDensidade").val(), $("#inpDensidadeCidade2").val()],
                                     backgroundColor: [`#f28705`, `#00a000`],
                                     borderColor: `#04d9b2`
                                 }]
@@ -214,13 +214,13 @@ $(document).ready(function(){  // Gráfico da população da cidade: Compração
                                         },
                                         title: {
                                             display: true,
-                                            text: 'Gráfico das Populações das cidades em ' + $("#slctAno").val(),
+                                            text: 'Gráfico de densidade demográfica das cidades',
                                             color: "#fff"
                                         }
                                     }
                                 }
                             };
-                            var doughnutGraph = document.getElementById("garficoPopulacaoCidades");
+                            var doughnutGraph = document.getElementById("graficoDensidadeCidades");
                             var ctx = new Chart(doughnutGraph, config);
                             $("#slctCidades2").change(function(){
                                 ctx.destroy();
