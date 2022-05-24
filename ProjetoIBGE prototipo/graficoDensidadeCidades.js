@@ -4,7 +4,7 @@ $(document).ready(function(){  //Gráfico de Densidade Demográfica: comparaçã
             $("#slctCidades2").change(function(){
                 $("#btnCompara").click(function(){
                     document.getElementById("graficoDensidadeCidades").style.display = "flex";
-                    switch($("tipoGrafico").val()){
+                    switch($("#tipoGrafico").val()){
                         case "barra":  // Gráfico de barra
                             var data = {
                                 labels: [$("#slctCidades option:selected").text(), $("#slctCidades2 option:selected").text()],

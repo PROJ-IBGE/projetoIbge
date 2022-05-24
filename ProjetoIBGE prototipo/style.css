@@ -173,7 +173,7 @@ form {
     font-size: 1.5rem; 
 }
 
-#retMalhaC{
+#retMalha{
     display: flex;
     align-items: center;
     justify-content: center;
@@ -183,7 +183,7 @@ form {
 
 }
 
-#retMalhaC img{
+#retMalha img{
     width: 30vh;
     height: 30vh;
 }
@@ -457,7 +457,7 @@ canvas{
         font-size: 2.5rem;
     }
 
-    #retMalhaC{
+    #retMalha{
         display: flex;
         align-items: center;
         justify-content: center;
@@ -467,7 +467,7 @@ canvas{
     
     }
     
-    #retMalhaC img{
+    #retMalha img{
         width: 20vh;
         height: 20vh;
     }
