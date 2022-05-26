@@ -1,68 +1,71 @@
 function visualizar(query, grafico, tabela, cor, res) {
     const div = document.querySelector(query)
-    if (tabela === 'tabela matriz') {
-        if (query != '') {
-            let ano
-            for (let i in res) {
-                if (i != 'unidade' && i != 'variavel') {
-                    ano = Object.keys(res[i])
-                    break
-                }
-            }
-            let cont = 0
-            let html = `<table border="1" class="tabelaClass" id="tabelaId"><tread><tr><td colspan="${ano.length+1}">`+res.variavel+' - '+res.unidade+'</td></tr></tread><tr>'
-            for (let i in ano) {
-                if (cont === 0) {
-                    cont++
-                    html += '<th></th>'
-                }
-                html += '<th>'+ano[i]+'</th>'
-            }
-            cont = 0
-            html += '</tr>'
-            for (let i in res) {
-                if (i != 'unidade' && i != 'variavel') {
-                    html += '<tr><th>'+i+'</th>'
-                    for (let i1 in res[i]) {
-                        html += '<td>'+res[i][i1]+'</td>'
+    if (tabela != '') {
+        switch (tabela) {
+            case 'tabela matriz':
+                if (query != '') {
+                    let ano, local = []
+                    for (let i in res) {
+                        if (i != 'unidade' && i != 'variavel') {
+                            ano = Object.keys(res[i])
+                            break
+                        }
                     }
-                    html += '</tr>'
-                }
-            }
-            html += '</table>'
-            while (div.firstElementChild != null) div.removeChild(div.firstElementChild)
-            div.innerHTML = html
-        } else return "Erro: insira uma query!"
-    } else if (tabela === 'tabela linha') {
-        if (query != '') {
-            let local = [], ano = []
-            for (let i in res) {
-                if (i != 'unidade' && i != 'variavel') {
-                    local.push(i)
-                }
-            }
-            for (let i in res[local[0]]) {
-                ano.push(i)
-            }
-            let html = '<table border="1" class="tabelaClass" id="tabelaId"><tread><tr><td colspan="3">'+res.variavel+' - '+res.unidade+'</td></tr></tread>'
-            html += '<tbody>'
-            let cont2 = 0
-            for (let a in ano) {
-                html += `<tr><td rowspan="${local.length}">${ano[a]}</td>`
-                let cont = 0
-                for (let l in local) {
-                    if (cont === 0) html += `<td>${local[l]}</td><td>${res[local[l]][ano[a]]}</td></tr>`
-                    if (cont != 0) html += `<tr><td>${local[l]}</td><td>${res[local[l]][ano[a]]}</td></tr>`
-                    cont++
-                }
-                cont2++
-                if (cont2 != ano.length) html += '<tr><td colspan="3"></td><tr/>'
-            }
-            html += '</tbody>'
-            html += '</table>'
-            while (div.firstElementChild != null) div.removeChild(div.firstElementChild)
-            div.innerHTML = html
-        } else return "Erro: insira uma query!"
+                    for (let i in res) {
+                        if (i != 'unidade' && i != 'variavel') {
+                            local.push(i)
+                        }
+                    }
+                    let html = '<table border="1"><tread><tr><th colspan="' + (local.length + 1) + '">' + res.variavel + ' - ' + res.unidade + '</th></tr></tread>'
+                    html += `<tr><td>Ano</td>`
+                    for (let i in local) {
+                        html += `<td>${local[i]}</td>`
+                    }
+                    html += `</tr>`
+                    for (let i in ano) {
+                        html += `<tr><td>${ano[i]}</td>`
+                        for (let i1 in local) {
+                            html += `<td>${res[local[i1]][ano[i]]}</td>`
+                        }
+                        html += `</tr>`
+                    }
+                    html += '</table>'
+                    while (div.firstElementChild != null) div.removeChild(div.firstElementChild)
+                    div.innerHTML = html
+                } else return "Erro: insira uma query!"
+                break
+            case 'tabela linha':
+                if (query != '') {
+                    let local = [], ano = []
+                    for (let i in res) {
+                        if (i != 'unidade' && i != 'variavel') {
+                            local.push(i)
+                        }
+                    }
+                    for (let i in res[local[0]]) {
+                        ano.push(i)
+                    }
+                    let html = '<table border="1" class="tabelaClass" id="tabelaId"><tread><tr><td colspan="3">'+res.variavel+' - '+res.unidade+'</td></tr></tread>'
+                    html += '<tbody>'
+                    for (let a in ano) {
+                        html += '<tr><td colspan="3"></td><tr/>'
+                        html += `<tr><td rowspan="${local.length}">${ano[a]}</td>`
+                        let cont = 0
+                        for (let l in local) {
+                            if (cont === 0) html += `<td>${local[l]}</td><td>${res[local[l]][ano[a]]}</td></tr>`
+                            if (cont != 0) html += `<tr><td>${local[l]}</td><td>${res[local[l]][ano[a]]}</td></tr>`
+                            cont++
+                        }
+                    }
+                    html += '</tbody>'
+                    html += '</table>'
+                    while (div.firstElementChild != null) div.removeChild(div.firstElementChild)
+                    div.innerHTML = html
+                } else return "Erro: insira uma query!"
+                break
+            default:
+                console.log(`Erro: tabela = '${tabela}' não existe!`)
+        }
     }
     if (grafico != '') {
         switch(grafico) {
