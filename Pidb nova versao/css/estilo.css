@@ -1,0 +1,155 @@
+*{
+    margin: 0;
+    padding: 0;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+body{
+    display: flex;
+    flex-direction: column;
+    background-color: #193C40;
+    color: #fff;
+    font-size: 18px;
+}
+
+select, button{
+    margin: 4px;
+    padding: 5px;
+    border-radius: 5px;
+    width: 105px;
+    cursor: pointer;
+}
+
+header{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#logo{
+    width: 250px;
+    padding: 5px;
+}
+
+#logo img{
+    width: 100%;
+}
+
+#container{
+    display: flex;
+    flex-direction: column;
+    background-color: #04D9B2;
+}
+
+#form{
+    height: 400px;
+}
+
+#form, #info{
+    width: 360px;
+    margin: 45px 30px; /*top, right, bottom, left*/
+    padding: 15px;
+    border-radius: 7px;
+    background-color: #193C40;
+}
+
+#form h2, #info h2{
+    text-align: center;
+}
+
+.slct{
+    display: flex;
+}
+
+.ckbox{
+    display: flex;
+    flex-direction: column;
+    margin: 7px;
+}
+
+#info{
+    display: none;
+    margin: 0 30px 45px; /*top, right, bottom, left*/
+}
+
+#malha_cidade img{
+    width: 100%;
+}
+
+#info label{
+    display: flex;
+}
+
+#info input[type=text]{
+    color: #fff;
+    font-size: 18px;
+    border: none;
+    background: transparent;
+}
+
+.load {
+    animation: is-rotating 1s infinite;
+    border: 6px solid #e5e5e5;
+    border-top-color: #51d4db;
+    border-radius: 50%;
+    height: 50px;
+    width: 50px;
+}
+
+@keyframes is-rotating {
+    to {
+        transform: rotate(1turn);
+    }
+}
+
+#comparacao{
+    display: none;
+    margin-top: 20px;
+}
+
+#graficos{
+    display: none;
+    flex-direction: column;
+}
+
+footer{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#img_footer{
+    width: 430px;
+    padding: 5px;
+}
+
+#img_footer img{
+    width: 100%;
+}
+
+@media screen and (min-width: 800px){
+    #container{
+        flex-direction: row;
+    }
+
+    #form{
+        width: 450px;
+    }
+
+    #info{
+        display: block;
+        width: 60%;
+        height: 400px;
+        margin: 45px 30px 45px 0; /*top, right, bottom, left*/
+        overflow-y: auto;
+    }
+
+    #malha_cidade{
+        float: right;
+        width: 30%;
+    }
+
+    #malha_cidade img{
+        width: 100%;
+    }
+}
