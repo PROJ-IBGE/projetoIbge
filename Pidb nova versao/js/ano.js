@@ -1,4 +1,3 @@
-// Retorna os anos de 2000 até o ano atual.
 function ano(){
     const anoAtual = new Date();
     
@@ -9,6 +8,6 @@ function ano(){
 
     document.getElementById('slctAno').innerHTML = ano;
     document.getElementById('slctAno2').innerHTML = ano;
-}
+} // Retorna os anos de 2000 até o ano atual.
 
 ano();

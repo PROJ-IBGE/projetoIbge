@@ -1,8 +1,11 @@
-function grafico(objCidade, objA, objCidade2, objB, label, title, context){
+function grafico(objA, objB, label, title, context){
     let tipo = document.getElementById('tipoGrafico').value;
 
+    let cidade = nomeCidade();
+    let cidade2 = nomeSegundaCidade();
+
     let data = {
-        labels: [objCidade, objCidade2],
+        labels: [cidade, cidade2],
         datasets: [{
             label: label,
             data: [objA, objB],
@@ -13,7 +16,11 @@ function grafico(objCidade, objA, objCidade2, objB, label, title, context){
 
     let config = {};
 
-    switch(tipo){
+    switch (tipo) {
+        case `grafico`:
+            document.getElementById('graficos').style.display = 'none';
+            alert(`Opção inválida.`);
+            break;
         case `bar`:
         case `line`:
             config = {
@@ -57,7 +64,7 @@ function grafico(objCidade, objA, objCidade2, objB, label, title, context){
 
     let ctx = new Chart(context, config);
 
-    function destroy() {
+    function destroy(){
         ctx.destroy();
     };
 

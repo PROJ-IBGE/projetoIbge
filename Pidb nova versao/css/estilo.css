@@ -46,8 +46,7 @@ header{
 }
 
 #form, #info{
-    width: 360px;
-    margin: 45px 30px; /*top, right, bottom, left*/
+    margin: 45px 20px; /*top, right, bottom, left*/
     padding: 15px;
     border-radius: 7px;
     background-color: #193C40;
@@ -69,7 +68,11 @@ header{
 
 #info{
     display: none;
-    margin: 0 30px 45px; /*top, right, bottom, left*/
+    margin: 0 20px 45px; /*top, right, bottom, left*/
+}
+
+#malha_cidade{
+    width: 200px;
 }
 
 #malha_cidade img{
@@ -127,7 +130,13 @@ footer{
     width: 100%;
 }
 
-@media screen and (min-width: 800px){
+@media screen and (min-width: 630px) {
+    #malha_cidade{
+        float: right;
+    }
+}
+
+@media screen and (min-width: 780px){
     #container{
         flex-direction: row;
     }
@@ -145,11 +154,12 @@ footer{
     }
 
     #malha_cidade{
-        float: right;
-        width: 30%;
+        float:none;
     }
+}
 
-    #malha_cidade img{
-        width: 100%;
+@media screen and (min-width: 1085px) {
+    #malha_cidade{
+        float: right;
     }
 }
