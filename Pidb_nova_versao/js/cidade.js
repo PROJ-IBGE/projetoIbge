@@ -1,7 +1,3 @@
-let cidade = `<option value="cidade">CIDADE</option>`;
-document.getElementById('slctCidade').innerHTML = cidade;
-document.getElementById('slctCidade2').innerHTML = cidade;
-
 const cidades = async(estado) => {
     if (estado != 'estado') {
         let url = `https://servicodados.ibge.gov.br/api/v1/localidades/estados/${estado}/municipios`;
@@ -9,47 +5,25 @@ const cidades = async(estado) => {
         let resultado = await dados.json();
 
         resultado.sort(compara); // Ordena as cidades por nome.
-        let cidade = `<option value="cidade">CIDADE</option>`;
+        let cidade = ``;
         for(var i = 0; i < resultado.length; i++){
             cidade += `<option value="${resultado[i].id}">${resultado[i].nome}</option>`;
         }
-        document.getElementById('slctCidade').innerHTML = cidade;
+        return cidade;
     } else alert(`Um estado precisa ser escolhido.`);
 } // Retorna as cidades do estado.
 
-function nomeCidade(){
-    let iCidade = document.getElementById('slctCidade').selectedIndex;
-    let nomeCidade = document.getElementById('slctCidade').options;
-    let cidade = nomeCidade[iCidade].text;
+function nomeCidade(nomeCidade){
+    let iCidade = nomeCidade.selectedIndex;
+    let nome = nomeCidade.options;
+    let cidade = nome[iCidade].text;
     return cidade;
 } // Retorna o nome da cidade através de seu índice.
-
-const outrasCidades = async(estado) => {
-    if (estado != 'estado') {
-        let url = `https://servicodados.ibge.gov.br/api/v1/localidades/estados/${estado}/municipios`;
-        let dados = await fetch(url);
-        let resultado = await dados.json();
-
-        resultado.sort(compara); // Ordena as cidades por nome.
-        let cidade = `<option value="cidade">CIDADE</option>`;
-        for(var i = 0; i < resultado.length; i++){
-            cidade += `<option value="${resultado[i].id}">${resultado[i].nome}</option>`;
-        }
-        document.getElementById('slctCidade2').innerHTML = cidade;
-    } else alert(`Um estado precisa ser escolhido.`);
-} // Retorna as cidades do segundo estado.
-
-function nomeSegundaCidade(){
-    let iCidade = document.getElementById('slctCidade2').selectedIndex;
-    let nomeCidade = document.getElementById('slctCidade2').options;
-    let cidade = nomeCidade[iCidade].text;
-    return cidade;
-} // Retorna o nome da segunda cidade através de seu índice.
 
 const malha = async(cidade) => {
     if (cidade != 'cidade') {
         let malha = `<img src="https://servicodados.ibge.gov.br/api/v3/malhas/municipios/${cidade}?formato=image/svg+xml&qualidade=maxima" alt="malha da cidade">`;
-        document.getElementById('malha_cidade').innerHTML = malha;
+        return malha;
     } else alert(`Uma cidade precisa ser escolhido.`);
 } // Retorna a malha da cidade.
 

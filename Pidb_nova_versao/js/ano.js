@@ -5,9 +5,5 @@ function ano(){
     for(var i = 2000; i < anoAtual.getFullYear(); i++){
         ano += `<option value="${i}">${i}</option>`;
     }
-
-    document.getElementById('slctAno').innerHTML = ano;
-    document.getElementById('slctAno2').innerHTML = ano;
+    return ano;
 } // Retorna os anos de 2000 até o ano atual.
-
-ano();

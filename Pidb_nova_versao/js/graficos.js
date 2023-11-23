@@ -1,8 +1,8 @@
 function grafico(objA, objB, label, title, context){
     let tipo = document.getElementById('tipoGrafico').value;
 
-    let cidade = nomeCidade();
-    let cidade2 = nomeSegundaCidade();
+    let cidade = nomeCidade(document.getElementById('slctCidade'));
+    let cidade2 = nomeCidade(document.getElementById('slctCidade2'));
 
     let data = {
         labels: [cidade, cidade2],
@@ -68,5 +68,5 @@ function grafico(objA, objB, label, title, context){
         ctx.destroy();
     };
 
-    document.getElementById('tipoGrafico').addEventListener('change', destroy);
+    document.getElementById('btnGerarGrafico').addEventListener('click', destroy);
 }
